@@ -109,6 +109,12 @@ extension Date {
     }
         
     //MARK:-
+    func dateByAdd(minutes:Int) -> Date {
+        var dateComponents = DateComponents()
+        dateComponents.minute = minutes
+        return Calendar.shared().date(byAdding: dateComponents, to: self)!
+    }
+    
     func dateByAdd(days:Int) -> Date {
         var dateComponents = DateComponents()
         dateComponents.day = days

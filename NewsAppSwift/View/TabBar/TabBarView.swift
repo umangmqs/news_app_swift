@@ -9,7 +9,9 @@ import SwiftUI
 
 struct TabBarView: View {
     @StateObject var tabVM: TabViewModel
+    
     let homeVM: HomeViewModel
+    let profileVM: ProfileViewModel
     
     var body: some View {
         TabView(selection: tabVM.binding(for: \.selection)) {
@@ -31,7 +33,7 @@ struct TabBarView: View {
                     }
                     .tag(2)
                 
-                ProfileView()
+            ProfileView(profileVM: profileVM)
                     .tabItem {
                         Label("Profile", systemImage: "person.crop.circle.fill")
                     }
@@ -42,6 +44,7 @@ struct TabBarView: View {
                 UITabBar.appearance().backgroundColor = .appPrimary
                 UITabBar.appearance().unselectedItemTintColor = .appPrimaryLight
             }
+            .navigationBarBackButtonHidden()
     }
 }
 

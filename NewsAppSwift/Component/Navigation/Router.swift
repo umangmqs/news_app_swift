@@ -12,6 +12,8 @@ final class Router: ObservableObject {
         case onboarding
         case login
         case signup
+        case forgotPassword
+        case changePassword
         case verifyOtp 
         case tabbar
         case newsDetail

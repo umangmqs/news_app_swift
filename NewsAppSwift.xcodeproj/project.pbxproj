@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		241DC4C12C3E4EB10087ACAE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241DC4C02C3E4EB10087ACAE /* ForgotPasswordView.swift */; };
+		241DC4C32C3E505D0087ACAE /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241DC4C22C3E505D0087ACAE /* ProfileViewModel.swift */; };
+		241DC4C52C3E59230087ACAE /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241DC4C42C3E59230087ACAE /* ForgotPasswordViewModel.swift */; };
+		241DC4C72C3E74490087ACAE /* VerifyOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241DC4C62C3E74490087ACAE /* VerifyOTPViewModel.swift */; };
+		241DC4C92C3E98D70087ACAE /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241DC4C82C3E98D70087ACAE /* WebView.swift */; };
+		241DC4CB2C3EA6270087ACAE /* reset_password.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 241DC4CA2C3EA6270087ACAE /* reset_password.mp4 */; };
+		241DC4CD2C3EA63D0087ACAE /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241DC4CC2C3EA63D0087ACAE /* ChangePasswordView.swift */; };
+		241DC4CF2C3EA6B70087ACAE /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241DC4CE2C3EA6B70087ACAE /* ChangePasswordViewModel.swift */; };
+		241DC4D12C3EAA520087ACAE /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241DC4D02C3EAA520087ACAE /* PlayerView.swift */; };
 		2424EAB82C3CF98A00539145 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2424EAB62C3CF98A00539145 /* UserDefaults+Extension.swift */; };
 		2424EAC12C3D06F700539145 /* LoaderUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2424EAC02C3D06F700539145 /* LoaderUI */; };
 		2424EAC42C3D173F00539145 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2424EAC32C3D173F00539145 /* SDWebImageSwiftUI */; };
@@ -87,6 +96,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		241DC4C02C3E4EB10087ACAE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		241DC4C22C3E505D0087ACAE /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		241DC4C42C3E59230087ACAE /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		241DC4C62C3E74490087ACAE /* VerifyOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPViewModel.swift; sourceTree = "<group>"; };
+		241DC4C82C3E98D70087ACAE /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		241DC4CA2C3EA6270087ACAE /* reset_password.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = reset_password.mp4; sourceTree = "<group>"; };
+		241DC4CC2C3EA63D0087ACAE /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		241DC4CE2C3EA6B70087ACAE /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		241DC4D02C3EAA520087ACAE /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2424EAB62C3CF98A00539145 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		2424EAC62C3D207200539145 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2424EAC72C3D207200539145 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -179,6 +197,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		241DC4D22C3EBFE40087ACAE /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				244139992C35588F00DDC524 /* SignupViewModel.swift */,
+				24EB8A192C3C1D0F00662E23 /* LoginViewModel.swift */,
+				241DC4C42C3E59230087ACAE /* ForgotPasswordViewModel.swift */,
+				241DC4C62C3E74490087ACAE /* VerifyOTPViewModel.swift */,
+				241DC4CE2C3EA6B70087ACAE /* ChangePasswordViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		2424EAB72C3CF98A00539145 /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,10 +322,10 @@
 		244139982C35587900DDC524 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				244139992C35588F00DDC524 /* SignupViewModel.swift */,
-				24EB8A192C3C1D0F00662E23 /* LoginViewModel.swift */,
+				241DC4D22C3EBFE40087ACAE /* Auth */,
 				2424EACF2C3D325800539145 /* HomeViewModel.swift */,
 				24BC2A242C3D61C200C84AD0 /* TabViewModel.swift */,
+				241DC4C22C3E505D0087ACAE /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -348,6 +378,7 @@
 		24D33DD52C2E7E46007D266C /* NewsAppSwift */ = {
 			isa = PBXGroup;
 			children = (
+				241DC4CA2C3EA6270087ACAE /* reset_password.mp4 */,
 				24D33DD62C2E7E46007D266C /* NewsAppSwiftApp.swift */,
 				243488D72C33FDC90099FBDC /* Model */,
 				244139982C35587900DDC524 /* ViewModel */,
@@ -534,6 +565,7 @@
 				243488E12C3426A00099FBDC /* News */,
 				244139962C3556D500DDC524 /* Bookmark */,
 				244139912C35504800DDC524 /* Profile */,
+				241DC4C82C3E98D70087ACAE /* WebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -545,6 +577,8 @@
 				243488CD2C33C8DC0099FBDC /* OnBoardingView.swift */,
 				243488D12C33FACF0099FBDC /* SignupView.swift */,
 				24EB8A172C3C125200662E23 /* VerifyOTPView.swift */,
+				241DC4C02C3E4EB10087ACAE /* ForgotPasswordView.swift */,
+				241DC4CC2C3EA63D0087ACAE /* ChangePasswordView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -566,6 +600,7 @@
 				24EB8A142C3C055C00662E23 /* Loader */,
 				24D33E2C2C2EB315007D266C /* UI */,
 				24DCBB212C3D3E3500038781 /* FirstAppear.swift */,
+				241DC4D02C3EAA520087ACAE /* PlayerView.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -694,6 +729,7 @@
 				24D33DE02C2E7E47007D266C /* Preview Assets.xcassets in Resources */,
 				24D33E172C2E8CF9007D266C /* Montserrat-Medium.ttf in Resources */,
 				24D33DDD2C2E7E47007D266C /* Assets.xcassets in Resources */,
+				241DC4CB2C3EA6270087ACAE /* reset_password.mp4 in Resources */,
 				24D33E232C2E9E39007D266C /* Lato-Medium.ttf in Resources */,
 				24D33E1D2C2E967B007D266C /* Lato-Regular.ttf in Resources */,
 				24D33E152C2E8CF9007D266C /* Montserrat-Regular.ttf in Resources */,
@@ -716,6 +752,7 @@
 				24CD53A12C2EB8BF003A5C50 /* AppTextField.swift in Sources */,
 				24DCBB222C3D3E3500038781 /* FirstAppear.swift in Sources */,
 				2424EAB82C3CF98A00539145 /* UserDefaults+Extension.swift in Sources */,
+				241DC4C52C3E59230087ACAE /* ForgotPasswordViewModel.swift in Sources */,
 				24D33E042C2E8719007D266C /* ConvertToNumeric.swift in Sources */,
 				248ABF662C2EE58100D21A1A /* AppButton.swift in Sources */,
 				24D33E082C2E879C007D266C /* Device+Extension.swift in Sources */,
@@ -728,10 +765,13 @@
 				2424EAD62C3D36DD00539145 /* HomeFeedView.swift in Sources */,
 				2441399A2C35588F00DDC524 /* SignupViewModel.swift in Sources */,
 				24EB8A182C3C125200662E23 /* VerifyOTPView.swift in Sources */,
+				241DC4C12C3E4EB10087ACAE /* ForgotPasswordView.swift in Sources */,
 				243488D62C33FCC60099FBDC /* AppNavigationBar.swift in Sources */,
 				24EB8A102C3BFFF300662E23 /* MimeType.swift in Sources */,
 				243488E42C3426BC0099FBDC /* NewsCell.swift in Sources */,
+				241DC4C72C3E74490087ACAE /* VerifyOTPViewModel.swift in Sources */,
 				24D33E2B2C2EA4B2007D266C /* BorderViewModifier.swift in Sources */,
+				241DC4CF2C3EA6B70087ACAE /* ChangePasswordViewModel.swift in Sources */,
 				243488E62C3426D80099FBDC /* HomeView.swift in Sources */,
 				24D33E012C2E8719007D266C /* String+Extension.swift in Sources */,
 				24D33E002C2E8719007D266C /* Optional+Extension.swift in Sources */,
@@ -744,6 +784,8 @@
 				2441398C2C352F2F00DDC524 /* TabBarView.swift in Sources */,
 				24D33DF02C2E80E2007D266C /* AppNavigationView.swift in Sources */,
 				244139A82C35641600DDC524 /* Constants.swift in Sources */,
+				241DC4D12C3EAA520087ACAE /* PlayerView.swift in Sources */,
+				241DC4CD2C3EA63D0087ACAE /* ChangePasswordView.swift in Sources */,
 				24EB8A162C3C056E00662E23 /* LoaderView.swift in Sources */,
 				24EB8A072C3BE86E00662E23 /* Data+Extension.swift in Sources */,
 				243488CE2C33C8DC0099FBDC /* OnBoardingView.swift in Sources */,
@@ -752,12 +794,14 @@
 				24D33E052C2E8719007D266C /* ExetensionDouble.swift in Sources */,
 				244139882C352CCC00DDC524 /* BreakingNewsCell.swift in Sources */,
 				24EB8A0D2C3BFF6E00662E23 /* Date+Extension.swift in Sources */,
+				241DC4C92C3E98D70087ACAE /* WebView.swift in Sources */,
 				243488E92C342E650099FBDC /* TitleSeeMore.swift in Sources */,
 				244139A42C355D7F00DDC524 /* ToastView.swift in Sources */,
 				2424EAC92C3D207200539145 /* NetworkMonitor.swift in Sources */,
 				244139B12C356DB100DDC524 /* Validator.swift in Sources */,
 				2424EAD02C3D325800539145 /* HomeViewModel.swift in Sources */,
 				244139A62C35622100DDC524 /* MediaManager.swift in Sources */,
+				241DC4C32C3E505D0087ACAE /* ProfileViewModel.swift in Sources */,
 				24EB8A092C3BEC9700662E23 /* MDLUser.swift in Sources */,
 				2424EACC2C3D208B00539145 /* HomeService.swift in Sources */,
 				244139902C35309900DDC524 /* ProfileView.swift in Sources */,

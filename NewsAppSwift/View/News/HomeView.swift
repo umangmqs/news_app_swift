@@ -10,9 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var router: Router
     @StateObject var tabVM: TabViewModel
-    @StateObject var homeVM: HomeViewModel
-    
-    @Namespace var nameSpace
+    @StateObject var homeVM: HomeViewModel 
     
     @State var arrFeedMenu: [MDLFeedMenu] = [
         MDLFeedMenu(title: "Feeds", selected: true),
@@ -85,8 +83,10 @@ struct HomeView: View {
                     }
                     
                 } else if selectedIndex == 1 {
-                    ForEach(0..<10, id: \.self) { _ in
-                        NewsCell()
+                    if homeVM.popularData?.articles?.count ?? 0 > 0 {
+                        ForEach(homeVM.popularData!.articles!, id: \.id) { data in
+                            NewsCell(data: data)
+                        }
                     }
                 } else {
                     ForEach(0..<10, id: \.self) { _ in
@@ -108,8 +108,18 @@ struct HomeView: View {
         }
         .onChange(of: selectedIndex) { newValue in
             print("Name changed to \(newValue)!")
-            if newValue == 0 {
-//                homeVM.getFeedData()
+            Task {
+                if newValue == 0 {
+                    if homeVM.feedData == nil {
+                        await homeVM.getFeedData()
+                    }
+                } else if newValue == 1 {
+                    if homeVM.popularData == nil {
+                        await homeVM.getPopularData()
+                    }
+                } else {
+                    
+                }
             }
         }
         .padding(.horizontal, 16.aspectRatio)

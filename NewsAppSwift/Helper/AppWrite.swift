@@ -30,11 +30,10 @@ class Appwrite: ObservableObject {
     
     func getFileURL(fileId: String) -> String {
         return "\(serverURL)/storage/buckets/\(storageId)/files/\(fileId)/preview?project=\(projectId)"
-//    https://cloud.appwrite.io/v1/storage/buckets/[BUCKET_ID]/files/[FILE_ID]/preview?project=[PROJECT_ID]
-//    https://cloud.appwrite.io/v1/storage/buckets/668bc45f000e97dd51ad/files/668be0705e967c9ba686/preview?project=667e46960005d9cb1338
     }
 }
 
 struct CollectionName {
     static let users = "668bb81a00067041a376"
+    static let otp = "668e327900341aaf16e8"
 }

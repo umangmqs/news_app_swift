@@ -14,10 +14,13 @@ struct AppNavigationView: View {
     
     var appWrite = Appwrite()
     var networkMonitor = NetworkMonitor()
+    var verifyOTPViewModel: VerifyOTPViewModel!
     
     init() {
         networkMonitor.startMonitoring()
         Constants.userInfo = try? UserDefaults.standard.get(objectType: MDLUser.self, forKey: StorageKey.userInfo)
+        
+        verifyOTPViewModel = VerifyOTPViewModel(appWrite: appWrite)
     }
     
     var body: some View {
@@ -43,10 +46,27 @@ struct AppNavigationView: View {
                         OnBoardingView()
                     case .signup:
                         SignupView(
-                            signVM: SignupViewModel(appWrite: appWrite)
+                            signVM: SignupViewModel(
+                                appWrite: appWrite
+                            )
+                        )
+                    case .forgotPassword:
+                        ForgotPasswordView(
+                            forgetVM: ForgotPasswordViewModel(
+                                appWrite: appWrite
+                            ), 
+                            verifyVM: verifyOTPViewModel
+                        )
+                    case .changePassword:
+                        ChangePasswordView(
+                            changePassVM: ChangePasswordViewModel(
+                                appWrite: appWrite
+                            )
                         )
                     case .verifyOtp:
-                        VerifyOTPView() 
+                        VerifyOTPView(
+                            verifyVM: verifyOTPViewModel
+                        )
                     case .tabbar:
                         tabView
                     case .newsDetail:
@@ -72,6 +92,9 @@ struct AppNavigationView: View {
             tabVM: TabViewModel(),
             homeVM: HomeViewModel(
                 service: HomeViewService()
+            ),
+            profileVM: ProfileViewModel(
+                appWrite: appWrite
             )
         )
     }

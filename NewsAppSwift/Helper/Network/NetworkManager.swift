@@ -33,6 +33,7 @@ enum BaseUrl: String {
 
 enum Endpoint: String {
     case headline = "top-headlines"
+    case everything = "everything"
 }
 
 struct HTTPMethod: RawRepresentable, Equatable, Hashable {

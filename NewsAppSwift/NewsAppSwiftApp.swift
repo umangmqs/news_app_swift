@@ -12,7 +12,7 @@ import IQKeyboardManagerSwift
 struct NewsAppSwiftApp: App {
 
     var body: some Scene {
-        WindowGroup {
+        WindowGroup { 
             AppNavigationView()
                 .onAppear {
                     IQKeyboardManager.shared.enable = true

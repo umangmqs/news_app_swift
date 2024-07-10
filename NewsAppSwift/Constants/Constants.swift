@@ -5,7 +5,7 @@
 //  Created by MQF-6 on 03/07/24.
 //
 
-import Foundation
+import UIKit
 
 let CGCDMainThread = DispatchQueue.main
 let CGCDBackgroundThread = DispatchQueue.global(qos: .background)
@@ -19,6 +19,11 @@ let storageId = "668bc45f000e97dd51ad"
 
 class Constants {
     static var userInfo: MDLUser!
+    
+    
+    static func getDeviceUUID() -> String {
+        return UIDevice.current.identifierForVendor?.uuidString ?? ""
+    }
 }
 
 struct StorageKey {

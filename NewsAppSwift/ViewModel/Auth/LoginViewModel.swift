@@ -20,7 +20,7 @@ class LoginViewModel: ObservableObject {
     
     @Published var loginVM: Bool = false
     @Published var remember: Bool = false
-    @Published var secured: Bool = false
+    @Published var secured: Bool = true
     
     @AppStorage(StorageKey.remembarEmail) var remembserEmail = ""
     @AppStorage(StorageKey.remembarPass) var remembserPass = ""

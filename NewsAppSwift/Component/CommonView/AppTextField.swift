@@ -16,6 +16,8 @@ struct AppTextField: View {
     var secured: Bool = false
     var keyboard: UIKeyboardType = .default
     var maxLength: Int = 40
+    var textAlignment: TextAlignment = .leading
+    @FocusState var isFocused: Bool
     var suffixAction: (() -> ())?
     
     var body: some View {
@@ -32,12 +34,14 @@ struct AppTextField: View {
                     AnyView(SecureField("", text: $text)) :
                     AnyView(
                         TextField("", text: $text)
+                            .multilineTextAlignment(textAlignment)
                             .textInputAutocapitalization(.never)
                             .onChange(of: text) { newValue in
                                 if newValue.count > maxLength {
                                     text = String(newValue.prefix(maxLength))
                                 }
                             }
+                            .focused($isFocused)
                     )
                 }
                 

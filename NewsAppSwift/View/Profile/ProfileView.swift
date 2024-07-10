@@ -15,6 +15,7 @@ struct MDLSetting: Identifiable {
 }
 
 struct ProfileView: View {
+    @StateObject var profileVM: ProfileViewModel
     
     var arrSettings = [
         MDLSetting(title: "Notifications Center", image: .icNotification),
@@ -22,6 +23,8 @@ struct ProfileView: View {
         MDLSetting(title: "Language ", image: .icLang),
         MDLSetting(title: "FAQs", image: .icFaq),
     ]
+    
+    @State private var showAlert = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -58,7 +61,9 @@ struct ProfileView: View {
             Spacer()
             
             HStack(spacing: 12.aspectRatio) {
-                Button(action: {}) {
+                Button(action: {
+                    showAlert = true
+                }) {
                     Spacer()
                     Image(.icLogout)
                     Text("Log Out")
@@ -72,8 +77,24 @@ struct ProfileView: View {
             }
         }
         .padding(.horizontal, 16.aspectRatio)
+        .alert("Logout", isPresented: $showAlert) {
+            Button("No") {
+                
+            }
+            
+            Button("Yes") {
+                Task {
+                    await profileVM.logoutAction()
+                }
+            }
+        } message: {
+            Text("Are you sure want to logout?")
+        }
+
     }
-     
+}
+
+extension ProfileView {
     var profileSection: some View {
         VStack {
             ZStack(alignment: .bottomTrailing) {
@@ -136,6 +157,6 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(profileVM: ProfileViewModel(appWrite: Appwrite()))
 }
 

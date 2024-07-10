@@ -14,6 +14,7 @@ enum NavigationBarType {
     case multipleTrailingWithBack
     case multipleTrailingWithProfile
     case title
+    case titleAndLeading
 }
 
 
@@ -58,7 +59,7 @@ struct AppNavigationBar: View {
                 Circle()
                     .fill(.appPrimary)
                     .overlay {
-                        Image(.icOption)
+                        Image(leadingImage)
                     }
                     .onTapGesture {
                         leadingAction?()
@@ -74,16 +75,38 @@ struct AppNavigationBar: View {
         } else if type == .title {
                 Text(title ?? "")
                     .font(.montserrat(.semibold, size: 24))  
+        } else if type == .titleAndLeading {
+            ZStack {
+                Text(title ?? "")
+                    .font(.montserrat(.semibold, size: 24))
+                
+                HStack {
+                    Button {
+                        leadingAction?()
+                    } label: {
+                        Image(leadingImage)
+                            .renderingMode(.template)
+                            .foregroundStyle(.appPrimary)
+                    }
+
+                    
+                    Spacer()
+                }
+                
+            }
         } else if type == .multipleTrailingWithProfile {
             HStack {
                 HStack {
-                    AnimatedImage(url: URL(string: Constants.userInfo.profileImage ?? "")) {
+                    ZStack {
                         Image(.icUser)
-                    }.resizable()
-                        .frame(width: 60.aspectRatio, height: 60.aspectRatio)
-                        .corner(radius: 30.aspectRatio)
-                        .transition(.fade(duration: 2))
-                   
+                            .resizable()
+                            .scaledToFit()
+                        WebImage(url: URL(string: "\(Constants.userInfo.profileImage ?? "" + "11231")"))
+                            .resizable()
+                            .transition(.fade(duration: 2))
+                    }
+                    .frame(width: 60.aspectRatio, height: 60.aspectRatio)
+                    .corner(radius: 30.aspectRatio)
                     
                     VStack(alignment: .leading) {
                         Text(greeting)

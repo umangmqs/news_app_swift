@@ -55,14 +55,13 @@ struct LoginView: View {
                             loginVM.remember.toggle()
                         }
                         
-                        
                         Spacer()
                         
                         Text("Forgot Password?")
                             .font(.lato(.regular, size: 14.aspectRatio))
                             .foregroundStyle(.black)
                             .onTapGesture {
-                                
+                                router.navigate(to: .forgotPassword)
                             }
                         
                     }
