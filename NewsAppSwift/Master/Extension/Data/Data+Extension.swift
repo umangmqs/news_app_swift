@@ -9,15 +9,14 @@
 import Foundation
 
 extension Data {
-    
     func decoded<T: Decodable>() throws -> T {
-        return try JSONDecoder().decode(T.self,from:self)
+        try JSONDecoder().decode(T.self, from: self)
     }
-    
+
     var formattedLength: String {
         let bcf = ByteCountFormatter()
         bcf.allowedUnits = [.useAll]
         bcf.countStyle = .file
-        return bcf.string(fromByteCount: Int64(self.count))
+        return bcf.string(fromByteCount: Int64(count))
     }
 }

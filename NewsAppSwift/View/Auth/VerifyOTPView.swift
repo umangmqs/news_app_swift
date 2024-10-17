@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct VerifyOTPView: View {
-    
     @EnvironmentObject private var router: Router
     @Environment(\.dismiss) private var dismiss
-    
+
     @StateObject var verifyVM: VerifyOTPViewModel
-        
+
     @FocusState var firstFocused: Bool
     @FocusState var secondFocused: Bool
     @FocusState var thirdFocused: Bool
@@ -32,21 +31,20 @@ struct VerifyOTPView: View {
                 leadingImage: .icBack,
                 title: "Verify OTP"
             )
-            
+
             ScrollView {
                 Image(.verifyOtp)
                     .resizable()
                     .frame(height: 320.aspectRatio)
                     .padding(.bottom, 22.aspectRatio)
-                
-                Text("We have sent otp to \(verifyVM.email)")
+
+                Text("\("We have sent otp to") \(verifyVM.email)")
                     .multilineTextAlignment(.center)
                     .font(.lato(.medium, size: 16))
                     .padding(.horizontal, 30.aspectRatio)
-                
-                
+
                 otpView
-                
+
                 AppPrimaryButton(title: "Verify OTP") {
                     Task {
                         verifyVM.isLoading = true
@@ -54,12 +52,12 @@ struct VerifyOTPView: View {
                         verifyVM.isLoading = false
                         if success {
                             verifyVM.toast = Toast(message: "OTP Vetified successfully")
-                            router.navigate(to: .changePassword)
+                            router.push(to: .changePassword)
                         }
                     }
                 }
                 .padding(.top, 50.aspectRatio)
-                
+
                 Spacer()
             }
             .scrollIndicators(.hidden)
@@ -68,7 +66,6 @@ struct VerifyOTPView: View {
         .toast(toast: $verifyVM.toast)
         .loader(loading: verifyVM.isLoading)
         .navigationBarBackButtonHidden()
-        
     }
 }
 
@@ -155,6 +152,7 @@ extension VerifyOTPView {
         }
     }
 }
+
 #Preview {
     VerifyOTPView(verifyVM: VerifyOTPViewModel(appWrite: Appwrite()))
 }

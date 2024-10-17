@@ -8,8 +8,7 @@
 
 import Foundation
 
-extension Optional where Wrapped == String {
-    
+extension String? {
     func isEmptyOrNil() -> Bool {
         guard let strongSelf = self else {
             return true

@@ -6,118 +6,125 @@
 //  Copyright © 2021. All rights reserved.
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 /*
  ``` Example
  let value = "10"
  print(value.convert() as Int)
- 
+
  let doubleValue: Double = value.convert()
  print(doubleValue)
- 
+
  let floatValue : Float = value.convert()
  print(floatValue)
  */
 
-protocol NumericType : Comparable {
-    
-    init(_ value:Float)
-    init(_ value:Double)
-    init(_ value:Int)
-    init(_ value:UInt)
-    init(_ value:Int8)
-    init(_ value:UInt8)
-    init(_ value:Int16)
-    init(_ value:UInt16)
-    init(_ value:Int32)
-    init(_ value:UInt32)
-    init(_ value:Int64)
-    init(_ value:UInt64)
-    init(_ value:CGFloat)
-    func convert<T:NumericType>() -> T
+protocol NumericType: Comparable {
+    init(_ value: Float)
+    init(_ value: Double)
+    init(_ value: Int)
+    init(_ value: UInt)
+    init(_ value: Int8)
+    init(_ value: UInt8)
+    init(_ value: Int16)
+    init(_ value: UInt16)
+    init(_ value: Int32)
+    init(_ value: UInt32)
+    init(_ value: Int64)
+    init(_ value: UInt64)
+    init(_ value: CGFloat)
+    func convert<T: NumericType>() -> T
 }
 
 // Implementations of _asOther() – they simply call the given initialisers listed
 // in the protocol requirement (it's required for them to be repeated like this,
 // as the compiler won't know which initialiser you're referring to otherwise)
-extension Float   : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+extension Float: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
 
-extension Double  : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+extension Double: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
 
-extension CGFloat : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+extension CGFloat: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
-extension Int     : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+
+extension Int: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
-extension Int8    : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+
+extension Int8: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
-extension Int16   : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+
+extension Int16: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
-extension Int32   : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+
+extension Int32: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
-extension Int64   : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+
+extension Int64: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
-extension UInt    : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+
+extension UInt: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
-extension UInt8   : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+
+extension UInt8: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
-extension UInt16  : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+
+extension UInt16: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
-extension UInt32  : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+
+extension UInt32: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
-extension UInt64  : NumericType {
-    func convert<T:NumericType>() -> T {
-        return self.description.convert()
+
+extension UInt64: NumericType {
+    func convert<T: NumericType>() -> T {
+        description.convert()
     }
 }
 
 extension String {
-    
-    func convert<T:NumericType>() -> T {
-        
+    func convert<T: NumericType>() -> T {
         guard let myNumber = NumberFormatter().number(from: self) else {
             return T(0)
         }
-        if (T.self) == Float.self || (T.self) == CGFloat.self{
+        if (T.self) == Float.self || (T.self) == CGFloat.self {
             return T(myNumber.floatValue)
         }
         if (T.self) == Double.self {
@@ -153,7 +160,7 @@ extension String {
         if (T.self) == UInt64.self {
             return T(myNumber.uint64Value)
         }
-        
+
         return T(0)
     }
 }

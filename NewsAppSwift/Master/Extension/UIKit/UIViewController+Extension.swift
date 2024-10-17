@@ -8,7 +8,6 @@
 import UIKit
 
 enum AAction: Equatable {
-    
     case Okay
     case Ok
     case Yes
@@ -19,59 +18,58 @@ enum AAction: Equatable {
     case Setting
     case Remove
     case Logout
-    case Custom(title:String)
-    
-    var title : String {
+    case Custom(title: String)
+
+    var title: String {
         switch self {
         case .Okay:
-            return "Okay"
+            "Okay"
         case .Ok:
-            return "Ok"
+            "Ok"
         case .Yes:
-            return "Yes"
+            "Yes"
         case .No:
-            return "No"
+            "No"
         case .Cancel:
-            return "Cancel"
+            "Cancel"
         case .Edit:
-            return "Edit"
+            "Edit"
         case .Delete:
-            return "Delete"
+            "Delete"
         case .Remove:
-            return "Remove"
+            "Remove"
         case .Logout:
-            return "Logout"
+            "Logout"
         case .Setting:
-            return "Settings"
-        case .Custom(let title):
-            return title
+            "Settings"
+        case let .Custom(title):
+            title
         }
     }
-    
+
     var style: UIAlertAction.Style {
         switch self {
         case .Cancel:
-            return .cancel
+            .cancel
         case .Delete, .Remove, .Logout, .No:
-            return .destructive
+            .destructive
         default:
-            return .default
+            .default
         }
     }
 }
 
 // MARK: - Extension of UIViewController For AlertView with Different Numbers of Buttons -
+
 extension UIViewController {
-    
-    func alertView(title: String? = nil, message: String? = nil, style: UIAlertController.Style = .alert, actions: [AAction] = [],  handler: ((AAction) -> Void)? = nil) {
-        
+    func alertView(title: String? = nil, message: String? = nil, style: UIAlertController.Style = .alert, actions: [AAction] = [], handler: ((AAction) -> Void)? = nil) {
         var _actions = actions
         if actions.isEmpty {
             _actions.append(AAction.Okay)
         }
-        var arrAction : [UIAlertAction] = []
+        var arrAction: [UIAlertAction] = []
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
-        let onSelect : ((UIAlertAction) -> Void)? = { (alert) in
+        let onSelect: ((UIAlertAction) -> Void)? = { alert in
             guard let index = arrAction.firstIndex(of: alert) else {
                 return
             }
@@ -80,8 +78,7 @@ extension UIViewController {
         for action in _actions {
             arrAction.append(UIAlertAction(title: action.title, style: action.style, handler: onSelect))
         }
-        let _ = arrAction.map({alertController.addAction($0)})
-        self.present(alertController, animated: true, completion: nil)
+        _ = arrAction.map { alertController.addAction($0) }
+        present(alertController, animated: true, completion: nil)
     }
-
 }

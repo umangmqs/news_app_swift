@@ -9,50 +9,54 @@ import Foundation
 
 class ChangePasswordViewModel: ObservableObject {
     let appWrite: Appwrite
-    
+
     @Published var toast: Toast?
     @Published var isLoading = false
-    
-    @Published var password = ""
+
+    @Published var oldPassword = ""
+    @Published var newPassword = ""
     @Published var confirmPassword = ""
-    
-    @Published var secured = true
+
+    @Published var oldSecured = true
+    @Published var newSecured = true
     @Published var confirmSecured = true
-    
+
     init(appWrite: Appwrite) {
         self.appWrite = appWrite
     }
 }
 
 extension ChangePasswordViewModel {
-    
     @MainActor
     func validate() -> Bool {
-        if let msg = Validator.validatePassword(password) {
+        if let msg = Validator.validatePassword(oldPassword) {
             toast = Toast(message: msg)
             return false
-        } else if let msg = Validator.validateConfirmPassword(confirmPassword, password: password) {
+        } else if let msg = Validator.validateNewPassword(newPassword) {
+            toast = Toast(message: msg)
+            return false
+        } else if let msg = Validator.validateConfirmPassword(confirmPassword, password: newPassword) {
             toast = Toast(message: msg)
             return false
         }
         return true
     }
-    
+
     @MainActor
-    func changePassword() async {
+    func changePassword() async -> Bool {
         if !validate() {
-            return
+            return false
         }
-        
+
         do {
-            let result = try await appWrite.account.createRecovery(email: "umang@yopmail.com", url: "https://cloud.appwrite.io")
-            AppPrint.debugPrint("res: \(result.toMap())")
-            
-//            let recoveryResult = try await appWrite.account.updateRecovery(userId: result.userId, secret: result.secret, password: password)
-//            AppPrint.debugPrint("recoveryResult: \(recoveryResult.toMap())")
-            
+            isLoading = true
+            let result = try await appWrite.account.updatePassword(password: newPassword, oldPassword: oldPassword)
+            isLoading = false
+            return true
         } catch {
+            isLoading = false
             toast = Toast(message: error.localizedDescription)
+            return false
         }
     }
 }

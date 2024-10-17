@@ -6,42 +6,59 @@
 //
 
 import Foundation
- 
+
 protocol HomeViewDelegate {
-    func getBannerData(method: HTTPMethod, params: JSON, completion: @escaping(Result<MDLNews, APIError>) -> Void)
-    func getFeedData(method: HTTPMethod, params: JSON, completion: @escaping(Result<MDLNews, APIError>) -> Void)
-    func getPopularData(method: HTTPMethod, params: JSON, completion: @escaping(Result<MDLNews, APIError>) -> Void)
+    func getBannerData(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError>
+    func getFeedData(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError>
+    func getPopularData(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError>
 }
 
 class HomeViewService: HomeViewDelegate {
-    func getBannerData(method: HTTPMethod, params: JSON, completion: @escaping (Result<MDLNews, APIError>) -> Void) {
-        NetworkManager.shared.fetchRequest(
-            method: .get,
-            endpoint: .headline,
-            params: params,
-            type: MDLNews.self,
-            completion: completion
-        )
-    }
-    
-    func getFeedData(method: HTTPMethod, params: JSON, completion: @escaping (Result<MDLNews, APIError>) -> Void) {
-        NetworkManager.shared.fetchRequest(
-            method: .get,
-            endpoint: .everything,
-            params: params,
-            type: MDLNews.self,
-            completion: completion
-        )
+    func getBannerData(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError> {
+        do {
+            let newsData = try await NetworkManager.shared.fetchRequest(
+                method: method,
+                endpoint: .headline,
+                params: params,
+                type: MDLNews.self
+            )
+            return .success(newsData)
+        } catch let error as APIError {
+            return .failure(error)
+        } catch {
+            return .failure(.decodingError)
+        }
     }
 
-    func getPopularData(method: HTTPMethod, params: JSON, completion: @escaping (Result<MDLNews, APIError>) -> Void) {
-        NetworkManager.shared.fetchRequest(
-            method: .get,
-            endpoint: .everything,
-            params: params,
-            type: MDLNews.self,
-            completion: completion
-        )
+    func getFeedData(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError> {
+        do {
+            let newsData = try await NetworkManager.shared.fetchRequest(
+                method: method,
+                endpoint: .everything,
+                params: params,
+                type: MDLNews.self
+            )
+            return .success(newsData)
+        } catch let error as APIError {
+            return .failure(error)
+        } catch {
+            return .failure(.decodingError)
+        }
+    }
+
+    func getPopularData(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError> {
+        do {
+            let newsData = try await NetworkManager.shared.fetchRequest(
+                method: method,
+                endpoint: .everything,
+                params: params,
+                type: MDLNews.self
+            )
+            return .success(newsData)
+        } catch let error as APIError {
+            return .failure(error)
+        } catch {
+            return .failure(.decodingError)
+        }
     }
 }
-

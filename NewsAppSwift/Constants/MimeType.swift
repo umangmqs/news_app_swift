@@ -17,14 +17,14 @@ enum MimeType: String {
     case mp3 = "audio/mpeg"
     case pdf = "application/pdf"
     case zip = "application/zip"
-    
+
     // Add more MIME types as needed
-    
+
     // A computed property to get the MIME type as a string
     var type: String {
-        return self.rawValue
+        rawValue
     }
-    
+
     // An initializer that takes a MIME type string and returns the corresponding enum case if it exists
     init?(type: String) {
         self.init(rawValue: type)

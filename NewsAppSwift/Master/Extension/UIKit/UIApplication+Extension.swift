@@ -9,8 +9,8 @@ import UIKit
 
 extension UIApplication {
     func topMostVC(viewController: UIViewController? = (UIApplication.shared.connectedScenes
-        .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene)?.windows.first?.visibleViewController()) -> UIViewController? {
-        
+            .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene)?.windows.first?.visibleViewController()) -> UIViewController?
+    {
         if let navigationViewController = viewController as? UINavigationController {
             return UIApplication.shared.topMostVC(viewController: navigationViewController.visibleViewController)
         }

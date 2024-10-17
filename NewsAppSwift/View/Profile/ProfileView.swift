@@ -5,61 +5,94 @@
 //  Created by MQF-6 on 03/07/24.
 //
 
-import SwiftUI
 import SDWebImageSwiftUI
+import SwiftUI
 
 struct MDLSetting: Identifiable {
-    var id: UUID = UUID()
+    var id: UUID = .init()
     var title: String
     var image: ImageResource
+    
+    
+    enum Titles: String, CaseIterable, CustomStringConvertible {
+        case notificationsCenter = "Notifications Center"
+        case changePassword = "Change Password"
+        case language = "Language"
+        case faqs = "FAQs"
+        
+         var description: String {
+            self.rawValue
+        }
+    }
 }
 
 struct ProfileView: View {
+    @EnvironmentObject private var router: Router
     @StateObject var profileVM: ProfileViewModel
-    
+
     var arrSettings = [
-        MDLSetting(title: "Notifications Center", image: .icNotification),
-        MDLSetting(title: "Change Password", image: .icKey),
-        MDLSetting(title: "Language ", image: .icLang),
-        MDLSetting(title: "FAQs", image: .icFaq),
+        MDLSetting(title: "\(MDLSetting.Titles.notificationsCenter)", image: .icNotification),
+        MDLSetting(title: "\(MDLSetting.Titles.changePassword)", image: .icKey),
+        MDLSetting(title: "\(MDLSetting.Titles.language)", image: .icLang),
+        MDLSetting(title: "\(MDLSetting.Titles.faqs)", image: .icFaq),
     ]
-    
+
     @State private var showAlert = false
-    
+    @State private var showWebView = false
+
+    @State private var notificationON = false
+
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             VStack {
                 AppNavigationBar(type: .title, searchText: .constant(""), title: "Profile")
-                
+
                 profileSection
-                
-                HStack(spacing: 20.aspectRatio) {
-                    ForEach(0..<3) { _ in
-                        profileMiddleSection
-                    }
-                }
-                .foregroundStyle(.white)
-                .frame(height: 75.aspectRatio)
-                .padding(.top, 25.aspectRatio)
+
+//                HStack(spacing: 20.aspectRatio) {
+//                    ForEach(0..<3) { _ in
+//                        profileMiddleSection
+//                    }
+//                }
+//                .foregroundStyle(.white)
+//                .frame(height: 75.aspectRatio)
+//                .padding(.top, 25.aspectRatio)
             }
-            
-            Text("Settings")
-                .font(.montserrat(.medium, size: 24))
-                .padding(.top, 25.aspectRatio)
-            
+
+            HStack {
+                Text("Settings")
+                    .font(.montserrat(.medium, size: 24))
+                    .padding(.top, 25.aspectRatio)
+                Spacer()
+            }
+
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(arrSettings, id: \.id) { data in
-                        SettingCell(data: data, lastId: arrSettings[arrSettings.count - 1].id) {
-                            AppPrint.debugPrint(data.id)
+                        if data.title == "Notifications Center" {
+                            SettingCell(data: data, hasSwitch: true, isOn: $notificationON) { _ in
+                            }
+                        } else {
+                            SettingCell(data: data, lastId: arrSettings[arrSettings.count - 1].id, isOn: .constant(false)) { setting in
+                                if setting.title == "\(MDLSetting.Titles.faqs)" {
+//                                    showWebView = true
+                                } else if setting.title == "\(MDLSetting.Titles.changePassword)" {
+                                    router.push(to: .changePassword)
+                                } else if setting.title == "\(MDLSetting.Titles.language)" {
+                                    router.push(to: .languegeSelection)
+                                }
+                            }
                         }
                     }
                 }
             }
             .scrollIndicators(.hidden)
-            
+            .onChange(of: notificationON) { newValue in
+                AppPrint.debugPrint("NotificationON: \(newValue)")
+            }
+
             Spacer()
-            
+
             HStack(spacing: 12.aspectRatio) {
                 Button(action: {
                     showAlert = true
@@ -77,11 +110,12 @@ struct ProfileView: View {
             }
         }
         .padding(.horizontal, 16.aspectRatio)
+//        .navigationDestination(isPresented: $showWebView, destination: {
+//            WebView(url: "https://www.google.com")
+//        })
         .alert("Logout", isPresented: $showAlert) {
-            Button("No") {
-                
-            }
-            
+            Button("No") {}
+
             Button("Yes") {
                 Task {
                     await profileVM.logoutAction()
@@ -90,7 +124,6 @@ struct ProfileView: View {
         } message: {
             Text("Are you sure want to logout?")
         }
-
     }
 }
 
@@ -101,35 +134,25 @@ extension ProfileView {
                 ZStack {
                     Image(.icUser)
                         .resizable()
-                    WebImage(url: URL(string: Constants.userInfo.profileImage ?? ""))
+                    WebImage(url: URL(string: Constants.userInfo?.profileImage ?? ""))
                         .resizable()
                         .scaledToFit()
                         .transition(.fade(duration: 2))
                 }
                 .frame(width: 100.aspectRatio, height: 100.aspectRatio)
                 .corner(radius: 50.aspectRatio)
-                
-                Button(action: {
-                    
-                }, label: {
-                    Image(.icPlus)
-                        .resizable()
-                        .frame(width: 40.aspectRatio, height: 40.aspectRatio)
-                        .offset(y: 10.0.aspectRatio)
-                        .shadow(color: .appGrey.opacity(0.6), radius: 8, y: 8)
-                })
             }
             .padding(.top, 8.aspectRatio)
-            
+
             VStack(spacing: 6.aspectRatio) {
-                Text(Constants.userInfo.fullname ?? "")
+                Text(Constants.userInfo?.fullname ?? "")
                     .font(.montserrat(.medium, size: 18))
-                
+
                 HStack(alignment: .bottom) {
-                    Text(verbatim: Constants.userInfo.email ?? "")
+                    Text(verbatim: Constants.userInfo?.email ?? "")
                         .foregroundStyle(.appGrey)
                         .font(.lato(size: 12))
-                    
+
                     Button(action: {}) {
                         Image(.icEdit)
                     }
@@ -137,7 +160,7 @@ extension ProfileView {
             }
         }
     }
-    
+
     var profileMiddleSection: some View {
         RoundedRectangle(cornerRadius: 25.0.aspectRatio)
             .fill(.appPrimary)
@@ -146,11 +169,10 @@ extension ProfileView {
                 VStack {
                     Text("5")
                         .font(.montserrat(.bold, size: 24))
-                    
+
                     Text("Interesting")
                         .font(.montserrat(.medium, size: 12))
                 }
-                    
             }
             .shadow(color: .appShadow, radius: 10, y: 4)
     }
@@ -159,4 +181,3 @@ extension ProfileView {
 #Preview {
     ProfileView(profileVM: ProfileViewModel(appWrite: Appwrite()))
 }
-

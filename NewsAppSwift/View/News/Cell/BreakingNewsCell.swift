@@ -5,23 +5,28 @@
 //  Created by MQF-6 on 03/07/24.
 //
 
-import SwiftUI
 import SDWebImageSwiftUI
+import SwiftUI
 
 struct BreakingNewsCell: View {
     var data: MDLArticle
-    var onTap: () -> ()
-    
+    var onTap: () -> Void
+
     var body: some View {
         ZStack(alignment: .topTrailing) {
             //            Image(.icNews)
+            ZStack {
+                Color.appGreyLight
+                Image(.icNewsPlaceholder)
+            }
+
             WebImage(url: URL(string: data.urlToImage ?? ""))
                 .resizable()
-                .frame(width: 263.aspectRatio, height: 206.aspectRatio)
-                .corner(radius: 12.aspectRatio)
                 .scaledToFill()
                 .transition(.fade(duration: 1))
         }
+        .frame(width: 263.aspectRatio, height: 206.aspectRatio)
+        .corner(radius: 12.aspectRatio)
         .overlay {
             VStack(alignment: .leading) {
                 Spacer()
@@ -34,7 +39,7 @@ struct BreakingNewsCell: View {
                 }
                 .lineLimit(1)
                 .font(.lato(.medium, size: 12))
-                
+
                 Text(data.title ?? "")
                     .font(.lato(.bold, size: 14))
                     .multilineTextAlignment(.leading)

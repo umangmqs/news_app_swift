@@ -1,5 +1,5 @@
 //
-//  Costants.swift
+//  Constants.swift
 //  NewsAppSwift
 //
 //  Created by MQF-6 on 03/07/24.
@@ -18,18 +18,18 @@ let databaseId = "668baef400337460e110"
 let storageId = "668bc45f000e97dd51ad"
 
 class Constants {
-    static var userInfo: MDLUser!
-    
-    
+    static var userInfo: MDLUser?
+
     static func getDeviceUUID() -> String {
-        return UIDevice.current.identifierForVendor?.uuidString ?? ""
+        UIDevice.current.identifierForVendor?.uuidString ?? ""
     }
 }
 
-struct StorageKey {
+enum StorageKey {
     static let onboarded = "onboarded"
     static let userInfo = "userInfo"
     static let sessionId = "sessionId"
     static let remembarEmail = "remembarEmail"
     static let remembarPass = "remembarPass"
+    static let appLocale = "appLocale"
 }

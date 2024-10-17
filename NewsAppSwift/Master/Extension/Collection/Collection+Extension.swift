@@ -8,20 +8,18 @@
 
 import Foundation
 
-
 extension Collection {
-    
     func toData() throws -> Data {
-        return try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+        try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
     }
-    
+
     func toJson(shouldPrettyPrinted: Bool = true) -> String {
         do {
-            var options:JSONSerialization.WritingOptions = []
+            var options: JSONSerialization.WritingOptions = []
             if shouldPrettyPrinted {
                 options = [.prettyPrinted]
             }
-            
+
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: options)
             guard let jsonString = String(data: jsonData, encoding: String.Encoding.utf8) else {
                 print("Can't create string with data.")
@@ -35,10 +33,9 @@ extension Collection {
     }
 }
 
-
 extension Dictionary {
-   func castToObject<T: Decodable>() -> T? {
-       let json = try? JSONSerialization.data(withJSONObject: self)
-       return json == nil ? nil : try? JSONDecoder().decode(T.self, from: json!)
-   }
+    func castToObject<T: Decodable>() -> T? {
+        let json = try? JSONSerialization.data(withJSONObject: self)
+        return json == nil ? nil : try? JSONDecoder().decode(T.self, from: json!)
+    }
 }

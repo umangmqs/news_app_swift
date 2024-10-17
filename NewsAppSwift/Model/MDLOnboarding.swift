@@ -8,7 +8,7 @@
 import Foundation
 
 struct MDLOnboarding: Identifiable, Hashable {
-    var id: UUID = UUID()
+    var id: UUID = .init()
     var title: String
     var subTitle: String
     var image: String

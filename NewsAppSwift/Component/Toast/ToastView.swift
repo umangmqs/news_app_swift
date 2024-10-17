@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct ToastView: View {
-     
     var message: String
     var width = CGFloat.infinity
-    
+
     var body: some View {
         HStack(alignment: .center, spacing: 12.aspectRatio) {
             Text(message)
                 .font(.montserrat(.semibold, size: 16))
                 .foregroundColor(.white)
                 .lineLimit(3)
-            
+
             Spacer(minLength: 10.aspectRatio)
         }
         .padding()

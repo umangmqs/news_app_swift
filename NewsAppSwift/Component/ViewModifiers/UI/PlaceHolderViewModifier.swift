@@ -1,5 +1,5 @@
 //
-//  Placeholder.swift
+//  PlaceHolderViewModifier.swift
 //  NewsAppSwift
 //
 //  Created by MQF-6 on 28/06/24.
@@ -24,6 +24,6 @@ struct PlaceHolderViewModifier: ViewModifier {
 
 extension View {
     func placeHolder(_ holder: String, show: Bool) -> some View {
-        self.modifier(PlaceHolderViewModifier(placeHolder:holder, show: show))
+        modifier(PlaceHolderViewModifier(placeHolder: holder, show: show))
     }
 }

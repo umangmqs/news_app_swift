@@ -20,5 +20,10 @@
 		<string>Lato-Regular.ttf</string>
 		<string>Lato-Medium.ttf</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

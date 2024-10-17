@@ -7,84 +7,84 @@
 
 import Foundation
 import UIKit
+import SwiftUICore
 
 extension String {
     func removeAsterisks() -> String {
-        return self.replacingOccurrences(of: "**", with: "")
+        replacingOccurrences(of: "**", with: "")
     }
 }
 
 // MARK: - Extension of String For Converting it TO Int AND URL.
+
 extension String {
-    
     /// A Computed Property (only getter) of Int For getting the Int? value from String.
     /// This Computed Property (only getter) returns Int? , it means this Computed Property (only getter) return nil value also , while using this Computed Property (only getter) please use if let. If you are not using if let and if this Computed Property (only getter) returns nil and when you are trying to unwrapped this value("Int!") then application will crash.
     var toInt: Int? {
-        return Int(self)
+        Int(self)
     }
+
     var toDouble: Double? {
-        return Double(self)
+        Double(self)
     }
+
     var toFloat: Float? {
-        return Float(self)
+        Float(self)
     }
+
     /// A Computed Property (only getter) of URL For getting the URL from String.
     /// This Computed Property (only getter) returns URL? , it means this Computed Property (only getter) return nil value also , while using this Computed Property (only getter) please use if let. If you are not using if let and if this Computed Property (only getter) returns nil and when you are trying to unwrapped this value("URL!") then application will crash.
     var toURL: URL? {
-        return URL(string: self)
+        URL(string: self)
     }
 }
 
 extension String {
-    
     var trim: String {
-        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+        trimmingCharacters(in: .whitespacesAndNewlines)
     }
-    
+
     var isBlank: Bool {
-        return self.trim.isEmpty
+        trim.isEmpty
     }
-    
+
     var isAlphanumeric: Bool {
-      return !isBlank && rangeOfCharacter(from: .alphanumerics) != nil
+        !isBlank && rangeOfCharacter(from: .alphanumerics) != nil
     }
-    
+
     var isValidEmail: Bool {
-        
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        
+
         let predicate = NSPredicate(
-            format:"SELF MATCHES %@",
+            format: "SELF MATCHES %@",
             emailRegEx
         )
-        
-        return predicate.evaluate(with:self)
+
+        return predicate.evaluate(with: self)
     }
-    
+
     var isValidPhoneNo: Bool {
-        
         let phoneCharacters = CharacterSet(charactersIn: "+0123456789").inverted
-        let arrCharacters = self.components(separatedBy: phoneCharacters)
+        let arrCharacters = components(separatedBy: phoneCharacters)
         return self == arrCharacters.joined(separator: "")
     }
 }
 
 extension String {
-    
     func getWidth(font: UIFont) -> CGFloat {
-        let bounds = (self as NSString).size(withAttributes: [.font:font])
+        let bounds = (self as NSString).size(withAttributes: [.font: font])
         return bounds.width
     }
-    
+
     func getHeight(font: UIFont) -> CGFloat {
-        let bounds = (self as NSString).size(withAttributes: [.font:font])
+        let bounds = (self as NSString).size(withAttributes: [.font: font])
         return bounds.height
     }
 }
 
 extension String {
     var jsonToDictionary: [String: Any]? {
-        if let data = self.data(using: .utf8) {
+        if let data = data(using: .utf8) {
             do {
                 return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             } catch {
@@ -100,19 +100,20 @@ extension String {
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return nil }
         do {
-            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
         } catch {
             return nil
         }
     }
+
     var htmlToString: String {
-        return htmlToAttributedString?.string ?? ""
+        htmlToAttributedString?.string ?? ""
     }
 }
 
 extension String {
     func toJSON() -> Any? {
-        guard let data = self.data(using: .utf8, allowLossyConversion: false) else { return nil }
+        guard let data = data(using: .utf8, allowLossyConversion: false) else { return nil }
         return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
     }
 }
@@ -129,10 +130,27 @@ extension String {
 extension String {
     func getIntegerValue() -> String {
         let value = self
-        let okayChars : Set<Character> =
-        Set("1234567890")
-        let output = String(value.filter {okayChars.contains($0)})
+        let okayChars: Set<Character> =
+            Set("1234567890")
+        let output = String(value.filter { okayChars.contains($0) })
         print(output)
         return output
     }
+}
+
+extension StringProtocol { // for Swift 4 you need to add the constrain `where Index == String.Index`
+    var byWords: [SubSequence] {
+        var byWords: [SubSequence] = []
+        enumerateSubstrings(in: startIndex..., options: .byWords) { _, range, _, _ in
+            byWords.append(self[range])
+        }
+        return byWords
+    }
+}
+
+extension String {
+    func localized(withComment comment: String? = nil) -> String {
+        return NSLocalizedString(self, comment: comment ?? "")
+    }
+
 }

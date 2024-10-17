@@ -7,7 +7,6 @@ import Foundation
 import Network
 
 class NetworkMonitor: ObservableObject {
-
     let monitor = NWPathMonitor()
     private var status: NWPath.Status = .requiresConnection
     @Published var isReachable: Bool?
@@ -15,7 +14,7 @@ class NetworkMonitor: ObservableObject {
 
     func startMonitoring() {
         monitor.pathUpdateHandler = { [weak self] path in
-            guard let `self` = self else {
+            guard let self else {
                 return
             }
             status = path.status

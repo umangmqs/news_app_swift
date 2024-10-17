@@ -10,7 +10,7 @@ import SwiftUI
 struct SegmentedView: View {
     @Binding var arrFeedMenu: [MDLFeedMenu]
     @Binding var selectedIndex: Int
-    
+
     var body: some View {
         HStack(spacing: 0) {
             ForEach(arrFeedMenu.indices, id: \.self) { index in

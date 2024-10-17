@@ -8,11 +8,10 @@
 import SwiftUI
 
 private struct BorderViewModifier: ViewModifier {
-    
     var radius: CGFloat
     var color: Color
     var lineWidth: CGFloat
-            
+
     func body(content: Content) -> some View {
         content
             .corner(radius: radius)

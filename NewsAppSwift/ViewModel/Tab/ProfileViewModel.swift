@@ -9,10 +9,10 @@ import Foundation
 
 class ProfileViewModel: ObservableObject {
     let appWrite: Appwrite
-    
+
     @Published var toast: Toast?
     @Published var isLoading = false
-    
+
     init(appWrite: Appwrite) {
         self.appWrite = appWrite
     }

@@ -9,18 +9,21 @@ import SwiftUI
 
 struct TitleSeeMore: View {
     var title: String
-    var onSeeMore: () -> ()
-    
+    var onSeeMore: () -> Void
+
     var body: some View {
         HStack {
             Text(title)
                 .font(.lato(.medium, size: 16))
-            
+
             Spacer()
-            
-            Button(action: onSeeMore, label: {
+
+            Button(action: {
+                onSeeMore()
+            }, label: {
                 Text("See More")
                     .font(.lato(size: 12))
+                    .foregroundStyle(.appPrimary)
             })
         }
         .padding(.bottom, 16.aspectRatio)

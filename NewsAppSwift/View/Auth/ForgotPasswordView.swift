@@ -10,12 +10,12 @@ import SwiftUI
 struct ForgotPasswordView: View {
     @EnvironmentObject private var router: Router
     @Environment(\.dismiss) private var dismiss
-    
+
     @StateObject var forgetVM: ForgotPasswordViewModel
     @StateObject var verifyVM: VerifyOTPViewModel
-    
+
     @State private var showAlert = false
-    
+
     var body: some View {
         VStack {
             AppNavigationBar(
@@ -27,18 +27,18 @@ struct ForgotPasswordView: View {
                 leadingImage: .icBack,
                 title: "Forget Password"
             )
-            
+
             ScrollView {
                 Image(.forgetPassword)
                     .resizable()
                     .frame(height: 280.aspectRatio)
                     .padding(.bottom, 22.aspectRatio)
-                
+
                 Text("Enter your email address we'll send you a link to reset password")
                     .multilineTextAlignment(.center)
                     .font(.lato(.medium, size: 16))
                     .padding(.horizontal, 30.aspectRatio)
-                
+
                 AppTextField(
                     text: $forgetVM.email,
                     title: "Email",
@@ -46,15 +46,15 @@ struct ForgotPasswordView: View {
                     keyboard: .emailAddress
                 )
                 .padding(.bottom, 16.aspectRatio)
-                
+
                 AppPrimaryButton(title: "Submit") {
                     Task {
                         if await forgetVM.checkEmailExist() {
-                            showAlert = await forgetVM.storeOTP() 
+                            showAlert = await forgetVM.storeOTP()
                         }
                     }
                 }
-                
+
                 Spacer()
             }
             .scrollIndicators(.hidden)
@@ -66,7 +66,7 @@ struct ForgotPasswordView: View {
         .alert(forgetVM.otp, isPresented: $showAlert) {
             Button(action: {
                 verifyVM.email = forgetVM.email
-                router.navigate(to: .verifyOtp)
+                router.push(to: .verifyOtp)
             }, label: {
                 Text("Okay")
             })

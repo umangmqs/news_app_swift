@@ -5,8 +5,8 @@
 //  Created by MQF-6 on 02/07/24.
 //
 
-import SwiftUI
 import SDWebImageSwiftUI
+import SwiftUI
 
 enum NavigationBarType {
     case imageHeader
@@ -17,43 +17,33 @@ enum NavigationBarType {
     case titleAndLeading
 }
 
-
 struct AppNavigationBar: View {
     var type: NavigationBarType
     @Binding var searchText: String
-    
+
     var leadingAction: (() -> Void)?
     var trailingAction: (() -> Void)?
     var trailing2Action: (() -> Void)?
-    
+
     var leadingImage: ImageResource!
     var trailingImage: ImageResource!
     var traling2Image: ImageResource!
-    
+
     var title: String?
     var isShowingDot: Bool = false
-    
+
     @State private var greeting: String = ""
-    
+
     var body: some View {
         if type == .imageHeader {
             Image(.icLogo)
-            
+
         } else if type == .searchWithLeadingTrailing {
-            HStack(spacing: 12.aspectRatio) { 
+            HStack(spacing: 12.aspectRatio) {
                 AppSearchField(text: $searchText, placeholder: "Search")
-                
-                Circle()
-                    .fill(.appPrimary)
-                    .overlay {
-                        Image(trailingImage!)
-                    }
-                    .onTapGesture {
-                        trailingAction?()
-                    }
             }
             .frame(height: 50.aspectRatio)
-            
+
         } else if type == .multipleTrailingWithBack {
             HStack(spacing: 12.aspectRatio) {
                 Circle()
@@ -64,22 +54,21 @@ struct AppNavigationBar: View {
                     .onTapGesture {
                         leadingAction?()
                     }
-                
+
                 Spacer()
-                
+
                 commonButtons
-                
             }
             .frame(height: 50.aspectRatio)
 
         } else if type == .title {
-                Text(title ?? "")
-                    .font(.montserrat(.semibold, size: 24))  
+            Text(title ?? "")
+                .font(.montserrat(.semibold, size: 24))
         } else if type == .titleAndLeading {
             ZStack {
                 Text(title ?? "")
                     .font(.montserrat(.semibold, size: 24))
-                
+
                 HStack {
                     Button {
                         leadingAction?()
@@ -88,11 +77,8 @@ struct AppNavigationBar: View {
                             .renderingMode(.template)
                             .foregroundStyle(.appPrimary)
                     }
-
-                    
                     Spacer()
                 }
-                
             }
         } else if type == .multipleTrailingWithProfile {
             HStack {
@@ -101,17 +87,17 @@ struct AppNavigationBar: View {
                         Image(.icUser)
                             .resizable()
                             .scaledToFit()
-                        WebImage(url: URL(string: "\(Constants.userInfo.profileImage ?? "" + "11231")"))
+                        WebImage(url: URL(string: "\(Constants.userInfo?.profileImage ?? "" + "11231")"))
                             .resizable()
                             .transition(.fade(duration: 2))
                     }
                     .frame(width: 60.aspectRatio, height: 60.aspectRatio)
                     .corner(radius: 30.aspectRatio)
-                    
+
                     VStack(alignment: .leading) {
                         Text(greeting)
                             .font(.montserrat(size: 12))
-                        Text("\(Constants.userInfo.fullname ?? "")")
+                        Text("\(Constants.userInfo?.fullname ?? "")")
                             .font(.montserrat(.medium, size: 14))
                             .lineLimit(1)
                     }
@@ -120,13 +106,13 @@ struct AppNavigationBar: View {
                     }
                 }
                 Spacer()
-                
+
                 commonButtons
             }
             .frame(height: 50.aspectRatio)
         }
     }
-    
+
     var commonButtons: some View {
         HStack {
             Circle()
@@ -137,18 +123,18 @@ struct AppNavigationBar: View {
                 .onTapGesture {
                     trailingAction?()
                 }
-            
+
             Circle()
                 .fill(.appPrimary)
                 .overlay {
                     Image(traling2Image!)
                         .overlay {
-                        isShowingDot ?
-                            AnyView(Circle()
-                                .fill(.blue)
-                                .frame(width: 8.aspectRatio, height: 8.aspectRatio)
-                                .offset(x: 10.0.aspectRatio, y: -6.0.aspectRatio))
-                            : AnyView(EmptyView())
+                            isShowingDot ?
+                                AnyView(Circle()
+                                    .fill(.blue)
+                                    .frame(width: 8.aspectRatio, height: 8.aspectRatio)
+                                    .offset(x: 10.0.aspectRatio, y: -6.0.aspectRatio))
+                                : AnyView(EmptyView())
                         }
                 }
                 .onTapGesture {
@@ -156,10 +142,10 @@ struct AppNavigationBar: View {
                 }
         }
     }
-    
+
     func updateGreeting() {
         let hour = Calendar.current.component(.hour, from: Date())
-        
+
         if hour < 12 {
             greeting = "Good Morning"
         } else if hour < 18 {

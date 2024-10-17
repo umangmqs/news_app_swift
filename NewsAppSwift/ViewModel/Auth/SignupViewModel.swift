@@ -1,67 +1,67 @@
 //
-//  LoginViewModel.swift
+//  SignupViewModel.swift
 //  NewsAppSwift
 //
 //  Created by MQF-6 on 03/07/24.
 //
 
-import SwiftUI
-import Combine
 import Appwrite
-    
+import Combine
+import SwiftUI
+
 class SignupViewModel: ObservableObject {
-    
     let appWrite: Appwrite
-    
+
     @Published var toast: Toast?
-    
+
     @Published var email: String = ""
     @Published var phone: String = ""
     @Published var fullname: String = ""
     @Published var password: String = ""
     @Published var confirmPassword: String = ""
-    
+
     @Published var secured: Bool = true
     @Published var confirmSecured: Bool = true
 
     @Published var isLoading: Bool = false
-    
+
     @Published var profileImage = Image(.icUser)
 
-    var mediaPicker: MediaManager = MediaManager()
+    var mediaPicker: MediaManager = .init()
 
-    
     init(appWrite: Appwrite) {
         self.appWrite = appWrite
     }
 }
 
 // MARK: - Action
+
 extension SignupViewModel {
     func btnCameraAction() {
         mediaPicker.allowsEditing = true
-        mediaPicker.openCamera() { [weak self] image, info in
-            guard let `self` = self else {
+        mediaPicker.openCamera { [weak self] image, _ in
+            guard let self else {
                 return
             }
-            guard let image = image else { return }
+            guard let image else { return }
             profileImage = Image(uiImage: image)
         }
     }
-    
+
     func btnGalleryAction() {
         mediaPicker.allowsEditing = true
-        mediaPicker.openGallery() { [weak self] image, info in
-            guard let `self` = self else {
+        mediaPicker.openGallery { [weak self] image, _ in
+            guard let self else {
                 return
             }
-            guard let image = image else { return }
+            guard let image else { return }
             profileImage = Image(uiImage: image)
         }
     }
 }
 
 // MARK: - API
+
 extension SignupViewModel {
     @MainActor
     func validate() -> Bool {
@@ -78,10 +78,10 @@ extension SignupViewModel {
             toast = Toast(message: msg)
             return false
         }
-        
+
         return true
     }
-      
+
     @MainActor
     func signup() async -> Bool {
         do {
@@ -95,7 +95,7 @@ extension SignupViewModel {
                 createdAt: user.createdAt,
                 updatedAt: user.updatedAt
             )
-            
+
             if profileImage != Image(.icUser) {
                 let uploadStatus = await uploadProfile()
                 if uploadStatus.0 {
@@ -107,27 +107,27 @@ extension SignupViewModel {
                 } else {
                     return false
                 }
-                
+
             } else {
                 guard let dict = model.dictionary else {
                     return false
                 }
                 return await createUserInDB(data: dict)
             }
-                        
+
         } catch {
             isLoading = false
             toast = Toast(message: error.localizedDescription)
             return false
         }
     }
-    
+
     @MainActor
     private func uploadProfile() async -> (Bool, String?) {
         guard let data = ImageRenderer(content: profileImage).uiImage?.pngData() else {
             return (false, nil)
         }
-        
+
         do {
             let file = try await appWrite.storage.createFile(
                 bucketId: storageId,
@@ -136,8 +136,8 @@ extension SignupViewModel {
                     data, filename: "profile_\(Date().millisecondsSince1970)", mimeType: MimeType.png.type
                 )
             ) { progress in
-               AppPrint.debugPrint("progress: \(progress.progress)")
-           }
+                AppPrint.debugPrint("progress: \(progress.progress)")
+            }
             let url = appWrite.getFileURL(fileId: file.id)
 
             return (true, url)
@@ -147,14 +147,15 @@ extension SignupViewModel {
             return (false, nil)
         }
     }
-    
+
     @MainActor
     private func createUserInDB(data: [String: Any]) async -> Bool {
         do {
             let _ = try await appWrite.databases.createDocument(
                 databaseId: databaseId,
                 collectionId: CollectionName.users,
-                documentId: ID.unique(), data: data)
+                documentId: ID.unique(), data: data
+            )
             isLoading = false
             let mdl: MDLUser? = data.castToObject()
             try UserDefaults.standard.set<MDLUser>(object: mdl, forKey: StorageKey.userInfo)
@@ -166,4 +167,3 @@ extension SignupViewModel {
         }
     }
 }
- 

@@ -1,28 +1,38 @@
 //
-//  AppNavView.swift
+//  AppNavigationView.swift
 //  NavigationDemo
 //
 //  Created by MQF-6 on 02/04/24.
 //
 
 import SwiftUI
-  
+
 struct AppNavigationView: View {
-    
     @ObservedObject var router = Router()
     @AppStorage(StorageKey.onboarded) var onboarded = false
-    
+
     var appWrite = Appwrite()
     var networkMonitor = NetworkMonitor()
     var verifyOTPViewModel: VerifyOTPViewModel!
-    
+    var newsDetailViewModel: NewsDetailViewModel!
+    var seeAllNewsViewModel: SeeAllViewModel!
+    var bookmarkViewModel: BookmarkViewModel!
+    var languageViewModel: LanguageViewModel!
+
     init() {
         networkMonitor.startMonitoring()
-        Constants.userInfo = try? UserDefaults.standard.get(objectType: MDLUser.self, forKey: StorageKey.userInfo)
-        
+        Constants.userInfo = try? UserDefaults.standard.get(
+            objectType: MDLUser.self, forKey: StorageKey.userInfo)
+
         verifyOTPViewModel = VerifyOTPViewModel(appWrite: appWrite)
+        newsDetailViewModel = NewsDetailViewModel(appWrite: appWrite)
+        bookmarkViewModel = BookmarkViewModel(appWrite: appWrite)
+        seeAllNewsViewModel = SeeAllViewModel(service: SeeAllService())
+        languageViewModel = LanguageViewModel()
+
+        languageViewModel.getSelectedLanguage()
     }
-    
+
     var body: some View {
         NavigationStack(path: $router.navPath) {
             ZStack {
@@ -38,7 +48,7 @@ struct AppNavigationView: View {
                         OnBoardingView()
                     }
                 }
-                .navigationDestination(for: Router.Destination.self) { destination in
+                .navigationDestination(for: Destination.self) { destination in
                     switch destination {
                     case .login:
                         loginView
@@ -54,7 +64,7 @@ struct AppNavigationView: View {
                         ForgotPasswordView(
                             forgetVM: ForgotPasswordViewModel(
                                 appWrite: appWrite
-                            ), 
+                            ),
                             verifyVM: verifyOTPViewModel
                         )
                     case .changePassword:
@@ -70,23 +80,39 @@ struct AppNavigationView: View {
                     case .tabbar:
                         tabView
                     case .newsDetail:
-                        NewsDetailView()
+                        NewsDetailView(
+                            newsDetailVM: newsDetailViewModel
+                        )
+                    case .seeAllNews:
+                        SeeAllView(
+                            seeAllVM: seeAllNewsViewModel,
+                            newsDetailVM: newsDetailViewModel
+                        )
+                    case .languegeSelection:
+                        LanguageView(languageViewModel: languageViewModel)
                     }
                 }
             }
         }
         .environmentObject(router)
+        .environment(\.locale, languageViewModel.selectedLocale)
+        .environment(
+            \.layoutDirection,
+            languageViewModel.selectedLocale.identifier == "ar"
+                ? .rightToLeft : .leftToRight
+        )
         .onReceive(networkMonitor.isReachable.publisher) { newValue in
-            AppPrint.debugPrint("NewValue: \(newValue)")
+            // TODO: Handle Network
         }
     }
-    
+
     var loginView: some View {
-        LoginView(loginVM: LoginViewModel(
-            appWrite: appWrite
-        ))
+        LoginView(
+            loginVM: LoginViewModel(
+                appWrite: appWrite
+            ))
     }
-    
+
     var tabView: some View {
         TabBarView(
             tabVM: TabViewModel(),
@@ -95,12 +121,10 @@ struct AppNavigationView: View {
             ),
             profileVM: ProfileViewModel(
                 appWrite: appWrite
-            )
+            ), newsDetailVM: newsDetailViewModel,
+            seeAllVM: seeAllNewsViewModel,
+            bookmarkVM: bookmarkViewModel
         )
     }
-}
-
-#Preview {
-    AppNavigationView()
 }
 

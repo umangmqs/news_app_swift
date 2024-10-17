@@ -9,13 +9,13 @@ import SwiftUI
 
 struct FirstAppear: ViewModifier {
     @State private var hasAppeared = false
-    let action: () -> Void
+    let action: () async -> Void
 
     func body(content: Content) -> some View {
         content
-            .onAppear {
+            .task {
                 if !hasAppeared {
-                    action()
+                    await action()
                     hasAppeared = true
                 }
             }
@@ -24,6 +24,6 @@ struct FirstAppear: ViewModifier {
 
 extension View {
     func onFirstAppear(perform action: @escaping () -> Void) -> some View {
-        self.modifier(FirstAppear(action: action))
+        modifier(FirstAppear(action: action))
     }
 }

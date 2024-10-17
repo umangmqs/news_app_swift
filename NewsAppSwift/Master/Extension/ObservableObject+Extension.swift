@@ -9,7 +9,7 @@ import SwiftUI
 
 extension ObservableObject {
     func binding<T>(for keyPath: ReferenceWritableKeyPath<Self, T>) -> Binding<T> {
-        return Binding(
+        Binding(
             get: { self[keyPath: keyPath] },
             set: { self[keyPath: keyPath] = $0 }
         )

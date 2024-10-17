@@ -8,10 +8,10 @@
 import Foundation
 
 class MDLFeedMenu: Identifiable, ObservableObject {
-    var id: UUID = UUID()
+    var id: UUID = .init()
     var title: String
     @Published var selected: Bool
-    
+
     init(title: String, selected: Bool) {
         self.title = title
         self.selected = selected

@@ -5,16 +5,16 @@
 //  Created by MQF-6 on 08/07/24.
 //
 
-import SwiftUI
 import LoaderUI
+import SwiftUI
 
 struct LoaderView: ViewModifier {
     var isLoading = false
-    
+
     init(isLoading: Bool = false) {
         self.isLoading = isLoading
     }
-    
+
     func body(content: Content) -> some View {
         content
             .overlay {
@@ -32,7 +32,6 @@ struct LoaderView: ViewModifier {
                     }
                     .background(.black.opacity(0.3))
                     .ignoresSafeArea()
-
                 }
             }
     }

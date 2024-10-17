@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  ExploreView.swift
 //  NewsAppSwift
 //
 //  Created by MQF-6 on 02/07/24.
@@ -7,43 +7,75 @@
 
 import SwiftUI
 
-struct MDLNewsData: Identifiable {
-    var id: UUID = UUID()
-    var source: String
-    var title: String
-    var date: String
-    var category: String
-}
-
 struct ExploreView: View {
-    @State var search = ""
-    
+    @EnvironmentObject private var router: Router
+
+    @StateObject var exploreVM: ExploreViewModel
+    @StateObject var newsDetailVM: NewsDetailViewModel
+    @StateObject var seeAllVM: SeeAllViewModel
+
     var body: some View {
         VStack {
-            AppNavigationBar(type: .searchWithLeadingTrailing, searchText: $search, trailingImage: .icOption)
-            
-            VStack(spacing: 16.aspectRatio) {
-                ScrollView {
-                    TitleSeeMore(title: "Trending in Gujarat") {
-                        
-                    }
-                    
-                    ForEach(0..<3) { _ in
-                        NewsCell()
+            AppNavigationBar(
+                type: .searchWithLeadingTrailing,
+                searchText: $exploreVM.search,
+                trailingImage: .icOption
+            )
+
+            ScrollView {
+                VStack(spacing: 16.aspectRatio) {
+                    if exploreVM.searchData != [] {
+                        ForEach(exploreVM.searchData, id: \.id) { article in
+                            NewsCell(data: article) { data in
+                                newsDetailVM.article = data
+                                router.push(to: .newsDetail)
+                            }
+                        }
+                    } else {
+                        ForEach(exploreVM.newsData.indices, id: \.self) { index in
+                            VStack {
+                                TitleSeeMore(title: "\("Trending in".localized()) \(exploreVM.newsData[index].key)") {
+                                    seeAllVM.topic = exploreVM.newsData[index].key
+                                    router.push(to: .seeAllNews)
+                                }
+
+                                ForEach(exploreVM.newsData[index].value) { article in
+                                    NewsCell(data: article) { data in
+                                        newsDetailVM.article = data
+                                        router.push(to: .newsDetail)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                .scrollIndicators(.hidden)
+                .padding(.top, 20.aspectRatio)
             }
-            .padding(.top, 20.aspectRatio)
-            
+            .scrollIndicators(.hidden)
+
             Spacer()
         }
         .padding(.horizontal, 16.aspectRatio)
+        .loader(loading: exploreVM.isLoading)
+        .toast(toast: $exploreVM.toast)
+        .onFirstAppear {
+            Task {
+                await exploreVM.getNewsByCountry()
+            }
+        }
     }
 }
 
 #Preview {
-    ExploreView()
+    ExploreView(
+        exploreVM: ExploreViewModel(
+            service: ExploreService()
+        ),
+        newsDetailVM: NewsDetailViewModel(
+            appWrite: Appwrite()
+        ),
+        seeAllVM: SeeAllViewModel(
+            service: SeeAllService()
+        )
+    )
 }
-
-

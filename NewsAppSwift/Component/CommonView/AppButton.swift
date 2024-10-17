@@ -10,8 +10,8 @@ import SwiftUI
 struct AppPrimaryButton: View {
     var title: String
     var width: CGFloat?
-    var onTap: () -> ()
-    
+    var onTap: () -> Void
+
     var body: some View {
         Button(action: onTap) {
             HStack {
@@ -29,11 +29,10 @@ struct AppPrimaryButton: View {
 }
 
 struct AppSocialButton: View {
-    
     var title: String
     var image: String
-    var onTap: () -> ()
-    
+    var onTap: () -> Void
+
     var body: some View {
         Button(action: onTap) {
             HStack(spacing: 14.aspectRatio) {
@@ -41,7 +40,7 @@ struct AppSocialButton: View {
                 Image(image)
                     .resizable()
                     .frame(width: 24.aspectRatio, height: 24.aspectRatio)
-                
+
                 Text(title)
                     .font(.lato(.bold, size: 14))
                     .foregroundStyle(.appBlack)
@@ -55,6 +54,22 @@ struct AppSocialButton: View {
     }
 }
 
+struct CircularButton: View {
+    var image: ImageResource
+    var onTap: () -> Void
+
+    var body: some View {
+        Circle()
+            .fill(.appPrimary)
+            .frame(width: 50.aspectRatio, height: 50.aspectRatio)
+            .overlay {
+                Image(image)
+            }
+            .onTapGesture {
+                onTap()
+            }
+    }
+}
 
 #Preview {
     AppSocialButton(title: "Login", image: "ic_google") {

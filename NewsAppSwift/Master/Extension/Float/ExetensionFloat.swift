@@ -10,24 +10,23 @@ import Foundation
 import UIKit
 
 extension Float {
-    
-    var toInt:Int? {
-        return Int(self)
+    var toInt: Int? {
+        Int(self)
     }
-    
-    var toDouble:Double? {
-        return Double(self)
+
+    var toDouble: Double? {
+        Double(self)
     }
-    
-    var toString:String {
-        return "\(self)"
+
+    var toString: String {
+        "\(self)"
     }
-    
-    var toCGFloat:CGFloat {
-        return CGFloat(self)
+
+    var toCGFloat: CGFloat {
+        CGFloat(self)
     }
-    
+
     var aspectRatio: CGFloat {
-        return UIDevice.screenWidth * (self.toCGFloat / UIDevice.width)
+        UIDevice.screenWidth * (toCGFloat / UIDevice.width)
     }
 }

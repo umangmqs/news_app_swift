@@ -6,20 +6,20 @@
 //
 
 import SwiftUI
-  
+
 struct HomeView: View {
     @EnvironmentObject var router: Router
     @StateObject var tabVM: TabViewModel
-    @StateObject var homeVM: HomeViewModel 
-    
+    @StateObject var homeVM: HomeViewModel
+    @StateObject var newsDetailVM: NewsDetailViewModel
+
     @State var arrFeedMenu: [MDLFeedMenu] = [
         MDLFeedMenu(title: "Feeds", selected: true),
         MDLFeedMenu(title: "Popular", selected: false),
-        MDLFeedMenu(title: "Following", selected: false)
     ]
-    
+
     @State private var selectedIndex: Int = 0
-    
+
     var body: some View {
         VStack {
             AppNavigationBar(
@@ -34,7 +34,7 @@ struct HomeView: View {
                 trailingImage: .icSearch,
                 traling2Image: .icOption
             )
-            
+
             ScrollView {
                 if homeVM.bannerData?.articles?.count ?? 0 > 0 {
                     VStack {
@@ -42,12 +42,13 @@ struct HomeView: View {
                             AppPrint.debugPrint("Breaking News See more")
                         }
                         .padding(.top, 16.aspectRatio)
-                        
+
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(homeVM.bannerData!.articles!, id: \.id) { data in
-                                    BreakingNewsCell(data: data) {
-                                        router.navigate(to: .newsDetail)
+                                    BreakingNewsCell(data: data) { 
+                                        newsDetailVM.article = data
+                                        router.push(to: .newsDetail)
                                     }
                                 }
                             }
@@ -55,7 +56,7 @@ struct HomeView: View {
                     }
                     .scrollIndicators(.hidden)
                 }
-                
+
                 RoundedRectangle(cornerRadius: 25.0.aspectRatio)
                     .fill(.appPrimary)
                     .frame(height: 40.aspectRatio)
@@ -69,45 +70,46 @@ struct HomeView: View {
                     }
                     .padding(.top, 20.aspectRatio)
                     .padding(.bottom, 16.aspectRatio)
-                
+
                 if selectedIndex == 0 {
                     if homeVM.feedData?.articles?.count ?? 0 > 0 {
                         ForEach(homeVM.feedData!.articles!, id: \.id) { data in
-                            NewsCell(data: data)
+                            NewsCell(data: data) { _ in
+                                newsDetailVM.article = data
+                                router.push(to: .newsDetail)
+                            }
                         }
                     } else {
-                        Text("NO DATA FOUND")
-                            .font(.montserrat(.bold, size: 24.aspectRatio))
-                            .foregroundStyle(.appPrimaryLight)
-                            .padding(.top, 60.aspectRatio)
+                        noDataView
                     }
-                    
+
                 } else if selectedIndex == 1 {
                     if homeVM.popularData?.articles?.count ?? 0 > 0 {
                         ForEach(homeVM.popularData!.articles!, id: \.id) { data in
-                            NewsCell(data: data)
+                            NewsCell(data: data) { _ in
+                                newsDetailVM.article = data
+                                router.push(to: .newsDetail)
+                            }
                         }
-                    }
-                } else {
-                    ForEach(0..<10, id: \.self) { _ in
-                        NewsCell()
+                    } else {
+                        noDataView
                     }
                 }
             }
             .scrollIndicators(.hidden)
             .ignoresSafeArea(edges: .bottom)
-            
+
             Spacer()
         }
         .onFirstAppear {
             Task {
                 await homeVM.getBannerData()
-                
+
                 await homeVM.getFeedData()
             }
         }
         .onChange(of: selectedIndex) { newValue in
-            print("Name changed to \(newValue)!")
+            print("\("Name changed to") \(newValue)!")
             Task {
                 if newValue == 0 {
                     if homeVM.feedData == nil {
@@ -117,9 +119,7 @@ struct HomeView: View {
                     if homeVM.popularData == nil {
                         await homeVM.getPopularData()
                     }
-                } else {
-                    
-                }
+                } else {}
             }
         }
         .padding(.horizontal, 16.aspectRatio)
@@ -129,14 +129,21 @@ struct HomeView: View {
     }
 }
 
+extension HomeView {
+    var noDataView: some View {
+        Text("NO DATA FOUND")
+            .font(.montserrat(.bold, size: 24.aspectRatio))
+            .foregroundStyle(.appPrimaryLight)
+            .padding(.top, 60.aspectRatio)
+    }
+}
+
 #Preview {
     HomeView(
         tabVM: TabViewModel(),
         homeVM: HomeViewModel(
             service: HomeViewService()
-        )
+        ),
+        newsDetailVM: NewsDetailViewModel(appWrite: Appwrite())
     )
 }
-
-
- 

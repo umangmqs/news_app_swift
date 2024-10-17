@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AppTextField: View {
-    
     @Binding var text: String
     var title: String?
     var placeholder: String = ""
@@ -18,40 +17,39 @@ struct AppTextField: View {
     var maxLength: Int = 40
     var textAlignment: TextAlignment = .leading
     @FocusState var isFocused: Bool
-    var suffixAction: (() -> ())?
-    
+    var suffixAction: (() -> Void)?
+
     var body: some View {
         VStack(alignment: .leading) {
-            if let title = title {
+            if let title {
                 Text(title)
                     .font(.lato(.medium, size: 14))
                     .foregroundStyle(.appGrey)
             }
-            
+
             HStack {
                 commonStyle {
-                    secured ? 
-                    AnyView(SecureField("", text: $text)) :
-                    AnyView(
-                        TextField("", text: $text)
-                            .multilineTextAlignment(textAlignment)
-                            .textInputAutocapitalization(.never)
-                            .onChange(of: text) { newValue in
-                                if newValue.count > maxLength {
-                                    text = String(newValue.prefix(maxLength))
+                    secured ?
+                        AnyView(SecureField("", text: $text)) :
+                        AnyView(
+                            TextField("", text: $text)
+                                .multilineTextAlignment(textAlignment)
+                                .textInputAutocapitalization(.never)
+                                .onChange(of: text) { newValue in
+                                    if newValue.count > maxLength {
+                                        text = String(newValue.prefix(maxLength))
+                                    }
                                 }
-                            }
-                            .focused($isFocused)
-                    )
+                                .focused($isFocused)
+                        )
                 }
-                
+
                 if !suffixImage.isEmpty {
                     Image(systemName: suffixImage)
                         .onTapGesture {
                             suffixAction?()
                         }
                         .foregroundStyle(.appPrimaryLight)
-                        
                 }
             }
             .frame(height: 55.aspectRatio)
@@ -61,10 +59,10 @@ struct AppTextField: View {
         }
         .padding(.top, 16.aspectRatio)
     }
-    
+
     @ViewBuilder
-    func commonStyle<Content: View>(
-        @ViewBuilder content: () -> Content
+    func commonStyle(
+        @ViewBuilder content: () -> some View
     ) -> some View {
         VStack {
             content()
@@ -78,7 +76,7 @@ struct AppTextField: View {
 struct AppSearchField: View {
     @Binding var text: String
     @State var placeholder: String = ""
-    
+
     var body: some View {
         HStack {
             TextField("", text: $text)
@@ -93,9 +91,6 @@ struct AppSearchField: View {
     }
 }
 
-
-
 #Preview {
-    AppTextField(text: .constant(""), title: "Email address", placeholder: "abx@xyz.com", suffixImage: "eye", secured: true) {
-    }
+    AppTextField(text: .constant(""), title: "Email address", placeholder: "abx@xyz.com", suffixImage: "eye", secured: true) {}
 }

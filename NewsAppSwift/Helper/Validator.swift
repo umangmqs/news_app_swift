@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Validator {
+enum Validator {
     static func validateFullname(_ fullname: String) -> String? {
         if fullname.isEmpty {
             return "Fullname cannot be empty"
         }
         return nil
     }
-    
+
     static func validateEmail(_ email: String) -> String? {
         if email.isEmpty {
             return "Email cannot be empty"
@@ -23,7 +23,7 @@ struct Validator {
         }
         return nil
     }
-    
+
     static func validatePassword(_ password: String) -> String? {
         if password.isEmpty {
             return "Password cannot be empty"
@@ -32,7 +32,16 @@ struct Validator {
         }
         return nil
     }
-    
+
+    static func validateNewPassword(_ password: String) -> String? {
+        if password.isEmpty {
+            return "New password cannot be empty"
+        } else if password.count < 6 {
+            return "New password must be at least 6 characters"
+        }
+        return nil
+    }
+
     static func validateConfirmPassword(_ confirmPassword: String, password: String) -> String? {
         if confirmPassword.isEmpty {
             return "Confirm Password cannot be empty"

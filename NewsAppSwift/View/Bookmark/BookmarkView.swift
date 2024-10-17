@@ -8,11 +8,37 @@
 import SwiftUI
 
 struct BookmarkView: View {
+    @EnvironmentObject var router: Router
+    @StateObject var bookmarkVM: BookmarkViewModel
+    @StateObject var newsDetailVM: NewsDetailViewModel
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            AppNavigationBar(
+                type: .title, searchText: .constant(""), title: "Bookmarks")
+            
+            
+            ScrollView {
+                ForEach(bookmarkVM.arrBookmark, id: \.article.id) { bookmark in
+                    NewsCell(data: bookmark.article) { article in
+                        newsDetailVM.article = article
+                        router.push(to: .newsDetail)
+                    }
+                }
+            }
+            .padding(.horizontal, 16.aspectRatio)
+        }
+        .toast(toast: $bookmarkVM.toast)
+        .loader(loading: bookmarkVM.isLoading)
+        .task {
+            await bookmarkVM.getBookmarks()
+        }
     }
 }
 
 #Preview {
-    BookmarkView()
+    BookmarkView(
+        bookmarkVM: BookmarkViewModel(appWrite: Appwrite()),
+        newsDetailVM: NewsDetailViewModel(appWrite: Appwrite())
+    )
 }

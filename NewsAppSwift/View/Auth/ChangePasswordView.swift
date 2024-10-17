@@ -1,21 +1,22 @@
 //
-//  ChangePassword.swift
+//  ChangePasswordView.swift
 //  NewsAppSwift
 //
 //  Created by MQF-6 on 10/07/24.
 //
 
-import SwiftUI
 import AVKit
+import SwiftUI
 
 struct ChangePasswordView: View {
     @EnvironmentObject private var router: Router
     @Environment(\.dismiss) private var dismiss
-    
+
     @StateObject var changePassVM: ChangePasswordViewModel
-    
-    @State var player = AVPlayer()
-    
+
+    @State private var player = AVPlayer()
+    @State var showAlert = false
+
     var body: some View {
         VStack {
             AppNavigationBar(
@@ -25,9 +26,9 @@ struct ChangePasswordView: View {
                     dismiss.callAsFunction()
                 },
                 leadingImage: .icBack,
-                title: "Reset Password"
+                title: "Change Password"
             )
-            
+
             ScrollView {
                 PlayerView(player: $player)
                     .frame(height: 300.aspectRatio)
@@ -36,22 +37,32 @@ struct ChangePasswordView: View {
                         player.play()
                     })
                     .disabled(true)
-                
+
                 Text("You have passed verification, now you can change your password")
                     .multilineTextAlignment(.center)
                     .font(.lato(.medium, size: 16))
                     .padding(.horizontal, 30.aspectRatio)
-                
+
                 AppTextField(
-                    text: $changePassVM.password,
-                    title: "Password",
+                    text: $changePassVM.oldPassword,
+                    title: "Old Password",
                     placeholder: "*********",
-                    suffixImage: changePassVM.secured ? "eye.slash" : "eye",
-                    secured: changePassVM.secured
+                    suffixImage: changePassVM.oldSecured ? "eye.slash" : "eye",
+                    secured: changePassVM.oldSecured
                 ) {
-                    changePassVM.secured.toggle()
+                    changePassVM.oldSecured.toggle()
                 }
-                 
+
+                AppTextField(
+                    text: $changePassVM.newPassword,
+                    title: "New Password",
+                    placeholder: "*********",
+                    suffixImage: changePassVM.newSecured ? "eye.slash" : "eye",
+                    secured: changePassVM.newSecured
+                ) {
+                    changePassVM.newSecured.toggle()
+                }
+
                 AppTextField(
                     text: $changePassVM.confirmPassword,
                     title: "Confirm Password",
@@ -62,21 +73,30 @@ struct ChangePasswordView: View {
                     changePassVM.confirmSecured.toggle()
                 }
                 .padding(.bottom, 16.aspectRatio)
-                
+
                 AppPrimaryButton(title: "Submit") {
                     Task {
-                        await changePassVM.changePassword()
+                        router.popToView(destination: .tabbar)
                     }
                 }
-                
+
                 Spacer()
             }
             .scrollIndicators(.hidden)
-
         }
         .padding(.horizontal, 16)
         .toast(toast: $changePassVM.toast)
         .loader(loading: changePassVM.isLoading)
+        .navigationBarBackButtonHidden()
+        .alert("Password Change", isPresented: $showAlert) {
+            Button(action: {
+                dismiss()
+            }, label: {
+                Text("Okay")
+            })
+        } message: {
+            Text("Password has been changed successfully.")
+        }
     }
 }
 
@@ -86,4 +106,4 @@ struct ChangePasswordView: View {
             appWrite: Appwrite()
         )
     )
-} 
+}
