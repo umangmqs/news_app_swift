@@ -13,7 +13,7 @@ struct PlaceHolderViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         ZStack(alignment: .leading) {
             if show {
-                Text(placeHolder)
+                Text(LocalizedStringKey(placeHolder))
                     .font(.lato(.regular, size: 16))
                     .foregroundStyle(.secondary.opacity(0.6))
             }

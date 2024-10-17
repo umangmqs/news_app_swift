@@ -46,13 +46,13 @@ struct OnBoardingView: View {
                         Image(arrOnboarding[index].image)
                             .padding(.bottom, 50.aspectRatio)
 
-                        Text(arrOnboarding[index].title)
+                        Text(LocalizedStringKey(arrOnboarding[index].title))
                             .font(.montserrat(.medium, size: 24))
                             .multilineTextAlignment(.center)
                             .padding(.bottom, 16.aspectRatio)
                             .padding(.horizontal, 30.aspectRatio)
 
-                        Text(arrOnboarding[index].subTitle)
+                        Text(LocalizedStringKey(arrOnboarding[index].subTitle))
                             .font(.lato(size: 14))
                             .foregroundColor(.appGrey)
                             .multilineTextAlignment(.center)

@@ -13,7 +13,7 @@ struct TitleSeeMore: View {
 
     var body: some View {
         HStack {
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(.lato(.medium, size: 16))
 
             Spacer()
@@ -21,7 +21,7 @@ struct TitleSeeMore: View {
             Button(action: {
                 onSeeMore()
             }, label: {
-                Text("See More")
+                Text(LocalizedStringKey("See More"))
                     .font(.lato(size: 12))
                     .foregroundStyle(.appPrimary)
             })

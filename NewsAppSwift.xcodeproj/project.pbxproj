@@ -66,6 +66,7 @@
 		24AD5D3C2CC0E363005932FB /* MDLLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AD5D3B2CC0E363005932FB /* MDLLanguage.swift */; };
 		24AD5D3F2CC10529005932FB /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AD5D3E2CC10529005932FB /* LanguageCell.swift */; };
 		24AD5D422CC10967005932FB /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AD5D412CC1095E005932FB /* LanguageViewModel.swift */; };
+		24AD5D532CC12AC7005932FB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24AD5D512CC12AC7005932FB /* Localizable.strings */; };
 		24BC2A212C3D443A00C84AD0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2424EAC62C3D207200539145 /* NetworkManager.swift */; };
 		24BC2A232C3D55AA00C84AD0 /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BC2A222C3D55AA00C84AD0 /* NewsDetailView.swift */; };
 		24BC2A252C3D61C200C84AD0 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BC2A242C3D61C200C84AD0 /* TabViewModel.swift */; };
@@ -166,6 +167,9 @@
 		24AD5D3B2CC0E363005932FB /* MDLLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDLLanguage.swift; sourceTree = "<group>"; };
 		24AD5D3E2CC10529005932FB /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		24AD5D412CC1095E005932FB /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
+		24AD5D522CC12AC7005932FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		24AD5D562CC12B79005932FB /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		24AD5D572CC12B7A005932FB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		24BC2A222C3D55AA00C84AD0 /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 		24BC2A242C3D61C200C84AD0 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		24CD53A02C2EB8BF003A5C50 /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
@@ -458,6 +462,7 @@
 				24D33DF22C2E86FD007D266C /* Master */,
 				24D33E0C2C2E8C94007D266C /* Resources */,
 				24D33DDE2C2E7E47007D266C /* Preview Content */,
+				24AD5D512CC12AC7005932FB /* Localizable.strings */,
 			);
 			path = NewsAppSwift;
 			sourceTree = "<group>";
@@ -808,6 +813,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24D33E162C2E8CF9007D266C /* Montserrat-SemiBold.ttf in Resources */,
+				24AD5D532CC12AC7005932FB /* Localizable.strings in Resources */,
 				24D33DE02C2E7E47007D266C /* Preview Assets.xcassets in Resources */,
 				24D33E172C2E8CF9007D266C /* Montserrat-Medium.ttf in Resources */,
 				24D33DDD2C2E7E47007D266C /* Assets.xcassets in Resources */,
@@ -936,6 +942,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		24AD5D512CC12AC7005932FB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24AD5D522CC12AC7005932FB /* en */,
+				24AD5D562CC12B79005932FB /* ar */,
+				24AD5D572CC12B7A005932FB /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		24D33DE12C2E7E47007D266C /* Debug */ = {

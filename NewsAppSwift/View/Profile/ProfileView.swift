@@ -31,10 +31,10 @@ struct ProfileView: View {
     @StateObject var profileVM: ProfileViewModel
 
     var arrSettings = [
-        MDLSetting(title: "\(MDLSetting.Titles.notificationsCenter)", image: .icNotification),
-        MDLSetting(title: "\(MDLSetting.Titles.changePassword)", image: .icKey),
-        MDLSetting(title: "\(MDLSetting.Titles.language)", image: .icLang),
-        MDLSetting(title: "\(MDLSetting.Titles.faqs)", image: .icFaq),
+        MDLSetting(title: "\(MDLSetting.Titles.notificationsCenter)".localized(), image: .icNotification),
+        MDLSetting(title: "\(MDLSetting.Titles.changePassword)".localized(), image: .icKey),
+        MDLSetting(title: "\(MDLSetting.Titles.language)".localized(), image: .icLang),
+        MDLSetting(title: "\(MDLSetting.Titles.faqs)".localized(), image: .icFaq),
     ]
 
     @State private var showAlert = false
@@ -45,7 +45,7 @@ struct ProfileView: View {
     var body: some View {
         VStack(alignment: .center) {
             VStack {
-                AppNavigationBar(type: .title, searchText: .constant(""), title: "Profile")
+                AppNavigationBar(type: .title, searchText: .constant(""), title: "Profile".localized())
 
                 profileSection
 
@@ -60,7 +60,7 @@ struct ProfileView: View {
             }
 
             HStack {
-                Text("Settings")
+                Text(LocalizedStringKey("Settings"))
                     .font(.montserrat(.medium, size: 24))
                     .padding(.top, 25.aspectRatio)
                 Spacer()
@@ -69,7 +69,7 @@ struct ProfileView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(arrSettings, id: \.id) { data in
-                        if data.title == "Notifications Center" {
+                        if data.title == "Notifications Center".localized() {
                             SettingCell(data: data, hasSwitch: true, isOn: $notificationON) { _ in
                             }
                         } else {
@@ -99,7 +99,7 @@ struct ProfileView: View {
                 }) {
                     Spacer()
                     Image(.icLogout)
-                    Text("Log Out")
+                    Text(LocalizedStringKey("Log Out"))
                         .font(.lato(.bold, size: 14))
                         .foregroundStyle(.appRed)
                     Spacer()
@@ -113,16 +113,16 @@ struct ProfileView: View {
 //        .navigationDestination(isPresented: $showWebView, destination: {
 //            WebView(url: "https://www.google.com")
 //        })
-        .alert("Logout", isPresented: $showAlert) {
-            Button("No") {}
+        .alert("Logout".localized(), isPresented: $showAlert) {
+            Button("No".localized()) {}
 
-            Button("Yes") {
+            Button("Yes".localized()) {
                 Task {
                     await profileVM.logoutAction()
                 }
             }
         } message: {
-            Text("Are you sure want to logout?")
+            Text(LocalizedStringKey("Are you sure want to logout?"))
         }
     }
 }

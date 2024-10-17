@@ -62,11 +62,11 @@ struct AppNavigationBar: View {
             .frame(height: 50.aspectRatio)
 
         } else if type == .title {
-            Text(title ?? "")
+            Text(LocalizedStringKey(title ?? ""))
                 .font(.montserrat(.semibold, size: 24))
         } else if type == .titleAndLeading {
             ZStack {
-                Text(title ?? "")
+                Text(LocalizedStringKey(title ?? ""))
                     .font(.montserrat(.semibold, size: 24))
 
                 HStack {
@@ -95,9 +95,9 @@ struct AppNavigationBar: View {
                     .corner(radius: 30.aspectRatio)
 
                     VStack(alignment: .leading) {
-                        Text(greeting)
+                        Text(LocalizedStringKey(greeting))
                             .font(.montserrat(size: 12))
-                        Text("\(Constants.userInfo?.fullname ?? "")")
+                        Text(LocalizedStringKey("\(Constants.userInfo?.fullname ?? "")"))
                             .font(.montserrat(.medium, size: 14))
                             .lineLimit(1)
                     }

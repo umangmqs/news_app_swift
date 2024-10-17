@@ -131,7 +131,7 @@ struct HomeView: View {
 
 extension HomeView {
     var noDataView: some View {
-        Text("NO DATA FOUND")
+        Text(LocalizedStringKey("NO DATA FOUND"))
             .font(.montserrat(.bold, size: 24.aspectRatio))
             .foregroundStyle(.appPrimaryLight)
             .padding(.top, 60.aspectRatio)

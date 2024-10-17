@@ -20,7 +20,7 @@ struct SettingCell: View {
                 Image(data.image)
                     .frame(width: 33.aspectRatio, height: 20.aspectRatio)
 
-                Text(data.title.localized())
+                Text(LocalizedStringKey(data.title))
                     .font(.lato(.medium, size: 14))
 
                 Spacer()

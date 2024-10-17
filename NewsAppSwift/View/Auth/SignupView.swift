@@ -93,12 +93,12 @@ struct SignupView: View {
                 Spacer()
 
                 HStack {
-                    Text("Already have an account?")
+                    Text(LocalizedStringKey("Already have an account?"))
                         .foregroundStyle(.appGrey)
                     Button(action: {
                         dismiss.callAsFunction()
                     }, label: {
-                        Text("Login")
+                        Text(LocalizedStringKey("Login"))
                     })
                 }
                 .font(.lato(.medium, size: 16))
@@ -109,17 +109,17 @@ struct SignupView: View {
         .padding(16.aspectRatio)
         .toast(toast: $signVM.toast)
         .loader(loading: signVM.isLoading)
-        .confirmationDialog("Choose image to pick from", isPresented: $showConfirmationDialog, actions: {
+        .confirmationDialog("Choose image to pick from".localized(), isPresented: $showConfirmationDialog, actions: {
             Button {
                 //                signVM.btnCameraAction()
             } label: {
-                Text("Camera")
+                Text(LocalizedStringKey("Camera"))
             }
 
             Button {
                 signVM.btnGalleryAction()
             } label: {
-                Text("Photos")
+                Text(LocalizedStringKey("Photos"))
             }
 
         })

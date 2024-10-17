@@ -1,0 +1,71 @@
+/* 
+  Localizable.strings
+  NewsAppSwift
+
+  Created by MQF-6 on 17/10/24.
+  
+*/
+
+"Home" = "Home";
+"Explore" = "Explore";
+"Bookmark" = "Bookmark";
+"Profile" = "Profile";
+"Email" = "Email";
+"Password" = "Password";
+"Remember me" = "Remember me";
+"Forgot password?" = "Forgot password?";
+"Login" = "Login";
+"Don’t have an account?" = "Don’t have an account?";
+"Sign Up" = "Sign Up";
+"Or Sign In With" = "Or Sign In With";
+"The best digital magazine." = "The best digital magazine.";
+"Start exploring the hottest news topics around the world with us anywhere." = "Start exploring the hottest news topics around the world with us anywhere.";
+"Stay up to date with selected news" = "Stay up to date with selected news";
+"Get the latest news selected by editors according to your interests from all over the world." = "Get the latest news selected by editors according to your interests from all over the world.";
+"Enrich your understanding of the world." = "Enrich your understanding of the world.";
+"The latest and hottest news from around the world, making you understand more about your surroundings." = "The latest and hottest news from around the world, making you understand more about your surroundings.";
+"Done" = "Done";
+"Next" = "Next";
+"Fullname" = "Fullname";
+"Phone" = "Phone";
+"Confirm Password" = "Confirm Password";
+"Singup" = "Singup";
+"Choose image to pick from" = "Choose image to pick from";
+"Camera" = "Camera";
+"Photos" = "Photos";
+"Verify OTP" = "Verify OTP";
+"We have sent otp to" = "We have sent otp to";
+"Verify OTP" = "Verify OTP";
+"OTP Vetified successfully" = "OTP Vetified successfully";
+"Forget Password" = "Forget Password";
+"Enter your email address we'll send you a link to reset password" = "Enter your email address we'll send you a link to reset password";
+"Submit" = "Submit";
+"Okay" = "Okay";
+"Change Password" = "Change Password";
+"You have passed verification, now you can change your password" = "You have passed verification, now you can change your password";
+"Old Password" = "Old Password";
+"New Password" = "New Password";
+"Confirm Password" = "Confirm Password";
+"Password Change" = "Password Change";
+"Password has been changed successfully." = "Password has been changed successfully.";
+"See More" = "See More";
+"Trending in" = "Trending in";
+"Feeds" = "Feeds";
+"Popular" = "Popular";
+"Menu" = "Menu";
+"Breaking News" = "Breaking News";
+"Breaking News See more" = "Breaking News See more";
+"Name changed to" = "Name changed to";
+"NO DATA FOUND" = "NO DATA FOUND";
+"Bookmarks" = "Bookmarks";
+"Profile" = "Profile";
+"Settings" = "Settings";
+"Notifications Center" = "Notifications Center";
+"Log Out" = "Log Out";
+"Logout" = "Logout";
+"No" = "No";
+"Yes" = "Yes";
+"Are you sure want to logout?" = "Are you sure want to logout?";
+"Good Morning" = "Good Morning";
+"Good Afternoon" = "Good Afternoon";
+"Good Evening" = "Good Evening";

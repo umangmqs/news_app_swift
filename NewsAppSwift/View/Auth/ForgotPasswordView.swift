@@ -34,7 +34,7 @@ struct ForgotPasswordView: View {
                     .frame(height: 280.aspectRatio)
                     .padding(.bottom, 22.aspectRatio)
 
-                Text("Enter your email address we'll send you a link to reset password")
+                Text(LocalizedStringKey("Enter your email address we'll send you a link to reset password"))
                     .multilineTextAlignment(.center)
                     .font(.lato(.medium, size: 16))
                     .padding(.horizontal, 30.aspectRatio)
@@ -68,10 +68,10 @@ struct ForgotPasswordView: View {
                 verifyVM.email = forgetVM.email
                 router.push(to: .verifyOtp)
             }, label: {
-                Text("Okay")
+                Text(LocalizedStringKey("Okay"))
             })
         } message: {
-            Text("OTP is valid till 2 minutes")
+            Text(LocalizedStringKey("OTP is valid till 2 minutes"))
         }
     }
 }

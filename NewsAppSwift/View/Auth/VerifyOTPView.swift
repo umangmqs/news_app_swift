@@ -38,7 +38,7 @@ struct VerifyOTPView: View {
                     .frame(height: 320.aspectRatio)
                     .padding(.bottom, 22.aspectRatio)
 
-                Text("\("We have sent otp to") \(verifyVM.email)")
+                Text(LocalizedStringKey("\("We have sent otp to") \(verifyVM.email)"))
                     .multilineTextAlignment(.center)
                     .font(.lato(.medium, size: 16))
                     .padding(.horizontal, 30.aspectRatio)

@@ -1,0 +1,124 @@
+
+"Are you sure want to logout?" = "هل أنت متأكد من أنك تريد تسجيل الخروج؟";
+
+"Bookmark" = "علامة مرجعية";
+
+"Bookmarks" = "العلامات المرجعية";
+
+"Breaking News" = "اخبار عاجلة";
+
+"Breaking News See more" = "أخبار عاجلة شاهد المزيد";
+
+"Camera" = "آلة تصوير";
+
+"Change Password" = "تغيير كلمة المرور";
+
+"Choose image to pick from" = "اختر الصورة للاختيار من بينها";
+
+"Confirm Password" = "تأكيد كلمة المرور";
+
+"Done" = "منتهي";
+
+"Don’t have an account?" = "ليس لديك حساب؟";
+
+"Email" = "بريد إلكتروني";
+
+"Enrich your understanding of the world." = "إثراء فهمك للعالم.";
+
+"Enter your email address we'll send you a link to reset password" = "أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور";
+
+"Explore" = "يستكشف";
+
+"Feeds" = "الأعلاف";
+
+"Forget Password" = "نسيت كلمة المرور";
+
+"Forgot password?" = "هل نسيت كلمة السر؟";
+
+"Fullname" = "الاسم الكامل";
+
+"Get the latest news selected by editors according to your interests from all over the world." = "احصل على آخر الأخبار المختارة من قبل المحررين وفقًا لاهتماماتك من جميع أنحاء العالم.";
+
+"Good Afternoon" = "مساء الخير";
+
+"Good Evening" = "مساء الخير";
+
+"Good Morning" = "صباح الخير";
+
+/* Localizable.strings
+  NewsAppSwift
+
+  Created by MQF-6 on 17/10/24. */
+"Home" = "بيت";
+
+"Log Out" = "تسجيل الخروج";
+
+"Login" = "تسجيل الدخول";
+
+"Logout" = "تسجيل الخروج";
+
+"Menu" = "قائمة طعام";
+
+"NO DATA FOUND" = "لم يتم العثور على أي بيانات";
+
+"Name changed to" = "تم تغيير الاسم إلى";
+
+"New Password" = "كلمة المرور الجديدة";
+
+"Next" = "التالي";
+
+"No" = "لا";
+
+"Notifications Center" = "مركز الإشعارات";
+
+"OTP Vetified successfully" = "تم التحقق من OTP بنجاح";
+
+"Okay" = "تمام";
+
+"Old Password" = "كلمة المرور القديمة";
+
+"Or Sign In With" = "أو قم بتسجيل الدخول باستخدام";
+
+"Password" = "كلمة المرور";
+
+"Password Change" = "تغيير كلمة المرور";
+
+"Password has been changed successfully." = "تم تغيير كلمة المرور بنجاح.";
+
+"Phone" = "هاتف";
+
+"Photos" = "الصور";
+
+"Popular" = "شائع";
+
+"Profile" = "حساب تعريفي";
+
+"Remember me" = "تذكرنى";
+
+"See More" = "شاهد المزيد";
+
+"Settings" = "إعدادات";
+
+"Sign Up" = "اشتراك";
+
+"Singup" = "سجل";
+
+"Start exploring the hottest news topics around the world with us anywhere." = "ابدأ باستكشاف أهم موضوعات الأخبار حول العالم معنا في أي مكان.";
+
+"Stay up to date with selected news" = "ابق على اطلاع بأحدث الأخبار المختارة";
+
+"Submit" = "يُقدِّم";
+
+"The best digital magazine." = "أفضل مجلة رقمية.";
+
+"The latest and hottest news from around the world, making you understand more about your surroundings." = "أحدث الأخبار وأكثرها سخونة من جميع أنحاء العالم، مما يجعلك تفهم المزيد عن محيطك.";
+
+"Trending in" = "الأكثر رواجًا في";
+
+"Verify OTP" = "التحقق من كلمة المرور لمرة واحدة";
+
+"We have sent otp to" = "لقد أرسلنا OTP إلى";
+
+"Yes" = "نعم";
+
+"You have passed verification, now you can change your password" = "لقد اجتزت عملية التحقق، يمكنك الآن تغيير كلمة المرور الخاصة بك";

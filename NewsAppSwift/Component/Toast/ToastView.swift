@@ -13,7 +13,7 @@ struct ToastView: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 12.aspectRatio) {
-            Text(message)
+            Text(LocalizedStringKey(message))
                 .font(.montserrat(.semibold, size: 16))
                 .foregroundColor(.white)
                 .lineLimit(3)

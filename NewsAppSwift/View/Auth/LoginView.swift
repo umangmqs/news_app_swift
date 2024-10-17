@@ -46,10 +46,13 @@ struct LoginView: View {
                         HStack(spacing: 4) {
                             Image(loginVM.remember ? .icChecked : .icUnchecked)
                                 .resizable()
-                                .frame(width: 24.aspectRatio, height: 24.aspectRatio)
+                                .frame(
+                                    width: 24.aspectRatio,
+                                    height: 24.aspectRatio
+                                )
                                 .foregroundStyle(.appPrimaryLight)
 
-                            Text("Remember me")
+                            Text(LocalizedStringKey("Remember me"))
                                 .font(.lato(.medium, size: 14.aspectRatio))
                                 .foregroundStyle(.appGrey)
                         }
@@ -60,7 +63,7 @@ struct LoginView: View {
 
                         Spacer()
 
-                        Text("Forgot password?")
+                        Text(LocalizedStringKey("Forgot password?"))
                             .font(.lato(.regular, size: 14.aspectRatio))
                             .foregroundStyle(.black)
                             .onTapGesture {
@@ -80,18 +83,20 @@ struct LoginView: View {
                     }
                     .padding(.vertical, 30.aspectRatio)
                 }
-//                socialLoginView
+                //                socialLoginView
 
                 Spacer()
 
                 HStack {
-                    Text("Don’t have an account?")
+                    Text(LocalizedStringKey("Don’t have an account?"))
                         .foregroundStyle(.appGrey)
-                    Button(action: {
-                        router.push(to: .signup)
-                    }, label: {
-                        Text("Sign Up")
-                    })
+                    Button(
+                        action: {
+                            router.push(to: .signup)
+                        },
+                        label: {
+                            Text(LocalizedStringKey("Sign Up"))
+                        })
                 }
                 .font(.lato(.medium, size: 16))
                 .padding(.top, 16.aspectRatio)
@@ -113,7 +118,7 @@ struct LoginView: View {
 
     var socialLoginView: some View {
         VStack {
-            Text("Or Sign In With")
+            Text(LocalizedStringKey("Or Sign In With"))
                 .font(.lato(.medium, size: 14))
                 .foregroundStyle(.secondary)
             HStack(spacing: 14.aspectRatio) {
@@ -136,14 +141,18 @@ struct LoginView: View {
 struct HeaderComponent: View {
     var body: some View {
         VStack(spacing: 14.aspectRatio) {
-            Text("Welcome Back!")
+            Text(LocalizedStringKey("Welcome Back!"))
                 .font(.montserrat(.semibold, size: 25))
 
-            Text("Start exploring various hottest news topics around the world with us.")
-                .font(.lato(.regular, size: 14))
-                .foregroundStyle(.appGrey)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 60.aspectRatio)
+            Text(
+                LocalizedStringKey(
+                    "Start exploring various hottest news topics around the world with us."
+                )
+            )
+            .font(.lato(.regular, size: 14))
+            .foregroundStyle(.appGrey)
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 60.aspectRatio)
         }
     }
 }

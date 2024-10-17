@@ -16,7 +16,7 @@ struct AppPrimaryButton: View {
         Button(action: onTap) {
             HStack {
                 Spacer()
-                Text(title)
+                Text(LocalizedStringKey(title))
                     .font(.lato(.bold, size: 14))
                     .foregroundStyle(.white)
                 Spacer()
@@ -41,7 +41,7 @@ struct AppSocialButton: View {
                     .resizable()
                     .frame(width: 24.aspectRatio, height: 24.aspectRatio)
 
-                Text(title)
+                Text(LocalizedStringKey(title))
                     .font(.lato(.bold, size: 14))
                     .foregroundStyle(.appBlack)
                 Spacer()

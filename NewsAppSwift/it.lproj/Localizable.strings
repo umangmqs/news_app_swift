@@ -1,0 +1,124 @@
+
+"Are you sure want to logout?" = "Vuoi davvero disconnetterti?";
+
+"Bookmark" = "Segnalibro";
+
+"Bookmarks" = "Segnalibri";
+
+"Breaking News" = "Ultime notizie";
+
+"Breaking News See more" = "Ultime notizie Vedi altro";
+
+"Camera" = "Telecamera";
+
+"Change Password" = "Cambiare la password";
+
+"Choose image to pick from" = "Scegli l'immagine da cui scegliere";
+
+"Confirm Password" = "Conferma password";
+
+"Done" = "Fatto";
+
+"Don’t have an account?" = "Non hai un account?";
+
+"Email" = "E-mail";
+
+"Enrich your understanding of the world." = "Arricchisci la tua comprensione del mondo.";
+
+"Enter your email address we'll send you a link to reset password" = "Inserisci il tuo indirizzo email, ti invieremo un link per reimpostare la password";
+
+"Explore" = "Esplorare";
+
+"Feeds" = "Feed";
+
+"Forget Password" = "Password dimenticata";
+
+"Forgot password?" = "Ha dimenticato la password?";
+
+"Fullname" = "Nome e cognome";
+
+"Get the latest news selected by editors according to your interests from all over the world." = "Ricevi le ultime notizie selezionate dai redattori in base ai tuoi interessi da tutto il mondo.";
+
+"Good Afternoon" = "Buon pomeriggio";
+
+"Good Evening" = "Buonasera";
+
+"Good Morning" = "Buongiorno";
+
+/* Localizable.strings
+  NewsAppSwift
+
+  Created by MQF-6 on 17/10/24. */
+"Home" = "Casa";
+
+"Log Out" = "Esci";
+
+"Login" = "Login";
+
+"Logout" = "Esci";
+
+"Menu" = "Menu";
+
+"NO DATA FOUND" = "NESSUN DATO TROVATO";
+
+"Name changed to" = "Nome cambiato in";
+
+"New Password" = "Nuova password";
+
+"Next" = "Prossimo";
+
+"No" = "NO";
+
+"Notifications Center" = "Centro notifiche";
+
+"OTP Vetified successfully" = "OTP verificato con successo";
+
+"Okay" = "Va bene";
+
+"Old Password" = "Vecchia password";
+
+"Or Sign In With" = "Oppure accedi con";
+
+"Password" = "Password";
+
+"Password Change" = "Modifica password";
+
+"Password has been changed successfully." = "La password è stata modificata con successo.";
+
+"Phone" = "Telefono";
+
+"Photos" = "Foto";
+
+"Popular" = "Popolare";
+
+"Profile" = "Profilo";
+
+"Remember me" = "Ricordati di me";
+
+"See More" = "Vedi altro";
+
+"Settings" = "Impostazioni";
+
+"Sign Up" = "Iscrizione";
+
+"Singup" = "Iscriviti";
+
+"Start exploring the hottest news topics around the world with us anywhere." = "Inizia ad esplorare con noi, ovunque tu sia, gli argomenti di attualità più scottanti del mondo.";
+
+"Stay up to date with selected news" = "Rimani aggiornato con le notizie selezionate";
+
+"Submit" = "Invia";
+
+"The best digital magazine." = "La migliore rivista digitale.";
+
+"The latest and hottest news from around the world, making you understand more about your surroundings." = "Le ultime e più scottanti notizie da tutto il mondo, per farti comprendere meglio ciò che ti circonda.";
+
+"Trending in" = "Di tendenza in";
+
+"Verify OTP" = "Verifica OTP";
+
+"We have sent otp to" = "Abbiamo inviato otp a";
+
+"Yes" = "SÌ";
+
+"You have passed verification, now you can change your password" = "Hai superato la verifica, ora puoi cambiare la tua password";

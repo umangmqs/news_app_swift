@@ -16,7 +16,7 @@ struct HomeFeedView: View {
     var body: some View {
         let itemWidth = (UIDevice.screenWidth - 50.aspectRatio) / CGFloat(totalCount)
 
-        Text(feedMenu.title)
+        Text(LocalizedStringKey(feedMenu.title))
             .font(.montserrat(.medium, size: 14.aspectRatio))
             .foregroundColor(feedMenu.selected ? .black : .white)
             .frame(width: itemWidth, height: 28.aspectRatio)

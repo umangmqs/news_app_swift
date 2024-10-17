@@ -16,8 +16,7 @@ struct BookmarkView: View {
         VStack {
             AppNavigationBar(
                 type: .title, searchText: .constant(""), title: "Bookmarks")
-            
-            
+
             ScrollView {
                 ForEach(bookmarkVM.arrBookmark, id: \.article.id) { bookmark in
                     NewsCell(data: bookmark.article) { article in

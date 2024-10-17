@@ -21,7 +21,7 @@ struct LanguageCell: View {
                         height: 30.aspectRatio
                     )
 
-                Text(item.languageName)
+                Text(LocalizedStringKey(item.languageName))
                     .font(.montserrat(size: 16))
                     .fontWeight(.medium)
                     .padding(.leading, 10.aspectRatio)

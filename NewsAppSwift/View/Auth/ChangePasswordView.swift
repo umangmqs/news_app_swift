@@ -38,7 +38,7 @@ struct ChangePasswordView: View {
                     })
                     .disabled(true)
 
-                Text("You have passed verification, now you can change your password")
+                Text(LocalizedStringKey("You have passed verification, now you can change your password"))
                     .multilineTextAlignment(.center)
                     .font(.lato(.medium, size: 16))
                     .padding(.horizontal, 30.aspectRatio)
@@ -88,14 +88,14 @@ struct ChangePasswordView: View {
         .toast(toast: $changePassVM.toast)
         .loader(loading: changePassVM.isLoading)
         .navigationBarBackButtonHidden()
-        .alert("Password Change", isPresented: $showAlert) {
+        .alert("Password Change".localized(), isPresented: $showAlert) {
             Button(action: {
                 dismiss()
             }, label: {
-                Text("Okay")
+                Text(LocalizedStringKey("Okay"))
             })
         } message: {
-            Text("Password has been changed successfully.")
+            Text(LocalizedStringKey("Password has been changed successfully."))
         }
     }
 }
