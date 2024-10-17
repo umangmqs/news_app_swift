@@ -6,16 +6,17 @@
 //
 
 import Foundation
+import LanguageManager_iOS
 
 struct MDLLanguage: Identifiable { 
     
     var id: String = UUID().uuidString
     var languageName: String
     var image: ImageResource
-    var locale: Locale
+    var locale: Languages
     var selected: Bool = false
     
-    init(id: String = UUID().uuidString, languageName: String, image: ImageResource, selected: Bool = false, locale: Locale) {
+    init(id: String = UUID().uuidString, languageName: String, image: ImageResource, selected: Bool = false, locale: Languages) {
         self.id = id
         self.languageName = languageName
         self.image = image

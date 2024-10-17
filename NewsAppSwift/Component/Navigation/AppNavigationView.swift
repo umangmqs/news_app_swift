@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LanguageManager_iOS
 
 struct AppNavigationView: View {
     @ObservedObject var router = Router()
@@ -29,8 +30,10 @@ struct AppNavigationView: View {
         bookmarkViewModel = BookmarkViewModel(appWrite: appWrite)
         seeAllNewsViewModel = SeeAllViewModel(service: SeeAllService())
         languageViewModel = LanguageViewModel()
+        
+        LanguageManager.shared.defaultLanguage = .en
 
-        languageViewModel.getSelectedLanguage()
+//        languageViewModel.getSelectedLanguage()
     }
 
     var body: some View {
@@ -95,11 +98,10 @@ struct AppNavigationView: View {
             }
         }
         .environmentObject(router)
-        .environment(\.locale, languageViewModel.selectedLocale)
+        .environment(\.locale, LanguageManager.shared.appLocale)
         .environment(
             \.layoutDirection,
-            languageViewModel.selectedLocale.identifier == "ar"
-                ? .rightToLeft : .leftToRight
+             LanguageManager.shared.isRightToLeft ? .rightToLeft : .leftToRight
         )
         .onReceive(networkMonitor.isReachable.publisher) { newValue in
             // TODO: Handle Network

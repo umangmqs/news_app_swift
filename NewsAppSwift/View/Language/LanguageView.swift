@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LanguageManager_iOS
 
 struct LanguageView: View {
     @Environment(\.dismiss) private var dismiss
@@ -22,7 +23,7 @@ struct LanguageView: View {
                     dismiss.callAsFunction()
                 },
                 leadingImage: .icBack,
-                title: "Language".localized()
+                title: "Language".localiz()
             )
 
             VStack {
@@ -35,11 +36,13 @@ struct LanguageView: View {
 
             Spacer()
         }
-        .environment(\.locale, languageViewModel.selectedLocale)
+        .onAppear(perform: {
+            languageViewModel.getSelectedLanguage()
+        })
+        .environment(\.locale, LanguageManager.shared.appLocale)
         .environment(
             \.layoutDirection,
-            languageViewModel.selectedLocale.identifier == "ar"
-                ? .rightToLeft : .leftToRight
+             LanguageManager.shared.isRightToLeft ? .rightToLeft : .leftToRight
         )
         .navigationBarBackButtonHidden()
         .padding(.horizontal, 16.aspectRatio)

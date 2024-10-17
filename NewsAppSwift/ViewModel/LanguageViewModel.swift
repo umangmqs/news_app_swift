@@ -6,20 +6,21 @@
 //
 
 import SwiftUI
+import LanguageManager_iOS
 
 class LanguageViewModel: ObservableObject {
-    @Published var selectedLocale: Locale = Locale(identifier: "en")
+    @Published var selectedLocale: Languages = .en
     
     @Published var arrLanguage: [MDLLanguage] = [
         MDLLanguage(
             languageName: "English", image: .en, selected: false,
-            locale: Locale(identifier: "en")),
+            locale: Languages.en),
         MDLLanguage(
             languageName: "Arabic", image: .ar, selected: false,
-            locale: Locale(identifier: "ar")),
+            locale: Languages.ar),
         MDLLanguage(
             languageName: "Italian", image: .it, selected: false,
-            locale: Locale(identifier: "it")),
+            locale: Languages.it),
     ]
     
     func updateNewLanguage(at model: MDLLanguage) {
@@ -37,18 +38,17 @@ class LanguageViewModel: ObservableObject {
               
             selectedLocale = locale
             
-            UserDefaults.standard.set(locale.identifier, forKey: StorageKey.appLocale)
+            LanguageManager.shared.setLanguage(language: locale)
+        
+            AppPrint.debugPrint(LanguageManager.shared.currentLanguage)
         }
     }
     
     func getSelectedLanguage() {
-        let localeIdentier = UserDefaults.standard.value(forKey: StorageKey.appLocale) as? String ?? "en"
-//        var _ = arrLanguage.filter({localeIdentier.contains($0.locale.identifier)}).first?.selected = true
-//        res?.selected = true
-        
-        if let firstIndex = arrLanguage.firstIndex(where: {localeIdentier.contains($0.locale.identifier)}) {
-            arrLanguage[firstIndex].selected = true
-            selectedLocale = arrLanguage[firstIndex].locale
+        if let index = arrLanguage.firstIndex(where: {$0.locale == LanguageManager.shared.currentLanguage}) {
+            DispatchQueue.main.async {
+                self.arrLanguage[index].selected = true
+            }
         }
     }
 }

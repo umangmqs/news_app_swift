@@ -1,4 +1,6 @@
 
+"Arabic" = "ايطالي";
+
 "Are you sure want to logout?" = "Vuoi davvero disconnetterti?";
 
 "Bookmark" = "Segnalibro";
@@ -22,6 +24,8 @@
 "Don’t have an account?" = "Non hai un account?";
 
 "Email" = "E-mail";
+
+"English" = "English";
 
 "Enrich your understanding of the world." = "Arricchisci la tua comprensione del mondo.";
 
@@ -50,6 +54,10 @@
 
   Created by MQF-6 on 17/10/24. */
 "Home" = "Casa";
+
+"Italian" = "Italiano";
+
+"Language" = "Lingua";
 
 "Log Out" = "Esci";
 
@@ -95,6 +103,8 @@
 
 "Remember me" = "Ricordati di me";
 
+"Search" = "Ricerca";
+
 "See More" = "Vedi altro";
 
 "Settings" = "Impostazioni";
@@ -104,6 +114,8 @@
 "Singup" = "Iscriviti";
 
 "Start exploring the hottest news topics around the world with us anywhere." = "Inizia ad esplorare con noi, ovunque tu sia, gli argomenti di attualità più scottanti del mondo.";
+
+"Start exploring various hottest news topics around the world with us." = "Inizia ad esplorare con noi i vari argomenti di attualità più scottanti provenienti da tutto il mondo.";
 
 "Stay up to date with selected news" = "Rimani aggiornato con le notizie selezionate";
 
@@ -118,6 +130,8 @@
 "Verify OTP" = "Verifica OTP";
 
 "We have sent otp to" = "Abbiamo inviato otp a";
+
+"Welcome Back!" = "Bentornato!";
 
 "Yes" = "SÌ";
 

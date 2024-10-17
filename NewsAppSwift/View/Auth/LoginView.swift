@@ -46,6 +46,7 @@ struct LoginView: View {
                         HStack(spacing: 4) {
                             Image(loginVM.remember ? .icChecked : .icUnchecked)
                                 .resizable()
+                                .flipsForRightToLeftLayoutDirection(true)
                                 .frame(
                                     width: 24.aspectRatio,
                                     height: 24.aspectRatio

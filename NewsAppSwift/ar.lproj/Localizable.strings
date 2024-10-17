@@ -1,4 +1,6 @@
 
+"Arabic" = "ايطالي";
+
 "Are you sure want to logout?" = "هل أنت متأكد من أنك تريد تسجيل الخروج؟";
 
 "Bookmark" = "علامة مرجعية";
@@ -22,6 +24,8 @@
 "Don’t have an account?" = "ليس لديك حساب؟";
 
 "Email" = "بريد إلكتروني";
+
+"English" = "English";
 
 "Enrich your understanding of the world." = "إثراء فهمك للعالم.";
 
@@ -50,6 +54,10 @@
 
   Created by MQF-6 on 17/10/24. */
 "Home" = "بيت";
+
+"Italian" = "Italiano";
+
+"Language" = "لغة";
 
 "Log Out" = "تسجيل الخروج";
 
@@ -95,6 +103,8 @@
 
 "Remember me" = "تذكرنى";
 
+"Search" = "يبحث";
+
 "See More" = "شاهد المزيد";
 
 "Settings" = "إعدادات";
@@ -104,6 +114,8 @@
 "Singup" = "سجل";
 
 "Start exploring the hottest news topics around the world with us anywhere." = "ابدأ باستكشاف أهم موضوعات الأخبار حول العالم معنا في أي مكان.";
+
+"Start exploring various hottest news topics around the world with us." = "ابدأ باستكشاف مختلف موضوعات الأخبار الأكثر سخونة حول العالم معنا.";
 
 "Stay up to date with selected news" = "ابق على اطلاع بأحدث الأخبار المختارة";
 
@@ -118,6 +130,8 @@
 "Verify OTP" = "التحقق من كلمة المرور لمرة واحدة";
 
 "We have sent otp to" = "لقد أرسلنا OTP إلى";
+
+"Welcome Back!" = "مرحبًا بعودتك!";
 
 "Yes" = "نعم";
 

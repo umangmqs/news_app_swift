@@ -34,7 +34,7 @@ struct ExploreView: View {
                     } else {
                         ForEach(exploreVM.newsData.indices, id: \.self) { index in
                             VStack {
-                                TitleSeeMore(title: "\("Trending in".localized()) \(exploreVM.newsData[index].key)") {
+                                TitleSeeMore(title: "\("Trending in".localiz()) \(exploreVM.newsData[index].key)") {
                                     seeAllVM.topic = exploreVM.newsData[index].key
                                     router.push(to: .seeAllNews)
                                 }

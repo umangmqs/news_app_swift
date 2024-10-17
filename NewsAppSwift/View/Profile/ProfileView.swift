@@ -31,10 +31,10 @@ struct ProfileView: View {
     @StateObject var profileVM: ProfileViewModel
 
     var arrSettings = [
-        MDLSetting(title: "\(MDLSetting.Titles.notificationsCenter)".localized(), image: .icNotification),
-        MDLSetting(title: "\(MDLSetting.Titles.changePassword)".localized(), image: .icKey),
-        MDLSetting(title: "\(MDLSetting.Titles.language)".localized(), image: .icLang),
-        MDLSetting(title: "\(MDLSetting.Titles.faqs)".localized(), image: .icFaq),
+        MDLSetting(title: "\(MDLSetting.Titles.notificationsCenter)".localiz(), image: .icNotification),
+        MDLSetting(title: "\(MDLSetting.Titles.changePassword)".localiz(), image: .icKey),
+        MDLSetting(title: "\(MDLSetting.Titles.language)".localiz(), image: .icLang),
+        MDLSetting(title: "\(MDLSetting.Titles.faqs)".localiz(), image: .icFaq),
     ]
 
     @State private var showAlert = false
@@ -45,7 +45,7 @@ struct ProfileView: View {
     var body: some View {
         VStack(alignment: .center) {
             VStack {
-                AppNavigationBar(type: .title, searchText: .constant(""), title: "Profile".localized())
+                AppNavigationBar(type: .title, searchText: .constant(""), title: "Profile".localiz())
 
                 profileSection
 
@@ -69,16 +69,16 @@ struct ProfileView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(arrSettings, id: \.id) { data in
-                        if data.title == "Notifications Center".localized() {
+                        if data.title.localiz() == "\(MDLSetting.Titles.notificationsCenter)".localiz() {
                             SettingCell(data: data, hasSwitch: true, isOn: $notificationON) { _ in
                             }
                         } else {
                             SettingCell(data: data, lastId: arrSettings[arrSettings.count - 1].id, isOn: .constant(false)) { setting in
-                                if setting.title == "\(MDLSetting.Titles.faqs)" {
+                                if setting.title.localiz() == "\(MDLSetting.Titles.faqs)".localiz() {
 //                                    showWebView = true
-                                } else if setting.title == "\(MDLSetting.Titles.changePassword)" {
+                                } else if setting.title.localiz() == "\(MDLSetting.Titles.changePassword)".localiz() {
                                     router.push(to: .changePassword)
-                                } else if setting.title == "\(MDLSetting.Titles.language)" {
+                                } else if setting.title.localiz() == "\(MDLSetting.Titles.language)".localiz() {
                                     router.push(to: .languegeSelection)
                                 }
                             }
@@ -113,10 +113,10 @@ struct ProfileView: View {
 //        .navigationDestination(isPresented: $showWebView, destination: {
 //            WebView(url: "https://www.google.com")
 //        })
-        .alert("Logout".localized(), isPresented: $showAlert) {
-            Button("No".localized()) {}
+        .alert("Logout".localiz(), isPresented: $showAlert) {
+            Button("No".localiz()) {}
 
-            Button("Yes".localized()) {
+            Button("Yes".localiz()) {
                 Task {
                     await profileVM.logoutAction()
                 }
@@ -155,6 +155,8 @@ extension ProfileView {
 
                     Button(action: {}) {
                         Image(.icEdit)
+                            .flipsForRightToLeftLayoutDirection(true)
+
                     }
                 }
             }

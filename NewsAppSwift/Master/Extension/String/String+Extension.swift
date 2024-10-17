@@ -148,9 +148,9 @@ extension StringProtocol { // for Swift 4 you need to add the constrain `where I
     }
 }
 
-extension String {
-    func localized(withComment comment: String? = nil) -> String {
-           return NSLocalizedString(self, tableName: nil, bundle: .main, value: "", comment: comment ?? "")
-       }
-
-}
+//extension String {
+//    func localized(withComment comment: String? = nil) -> String {
+//           return NSLocalizedString(self, tableName: nil, bundle: .main, value: "", comment: comment ?? "")
+//       }
+//
+//}

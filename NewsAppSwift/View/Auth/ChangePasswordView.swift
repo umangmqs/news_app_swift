@@ -88,7 +88,7 @@ struct ChangePasswordView: View {
         .toast(toast: $changePassVM.toast)
         .loader(loading: changePassVM.isLoading)
         .navigationBarBackButtonHidden()
-        .alert("Password Change".localized(), isPresented: $showAlert) {
+        .alert("Password Change".localiz(), isPresented: $showAlert) {
             Button(action: {
                 dismiss()
             }, label: {

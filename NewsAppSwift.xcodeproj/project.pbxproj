@@ -67,6 +67,7 @@
 		24AD5D3F2CC10529005932FB /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AD5D3E2CC10529005932FB /* LanguageCell.swift */; };
 		24AD5D422CC10967005932FB /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AD5D412CC1095E005932FB /* LanguageViewModel.swift */; };
 		24AD5D532CC12AC7005932FB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24AD5D512CC12AC7005932FB /* Localizable.strings */; };
+		24AD5D5D2CC13DD9005932FB /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 24AD5D5C2CC13DD9005932FB /* LanguageManager-iOS */; };
 		24BC2A212C3D443A00C84AD0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2424EAC62C3D207200539145 /* NetworkManager.swift */; };
 		24BC2A232C3D55AA00C84AD0 /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BC2A222C3D55AA00C84AD0 /* NewsDetailView.swift */; };
 		24BC2A252C3D61C200C84AD0 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BC2A242C3D61C200C84AD0 /* TabViewModel.swift */; };
@@ -220,6 +221,7 @@
 				2424EAC42C3D173F00539145 /* SDWebImageSwiftUI in Frameworks */,
 				24BC2A282C3D64F600C84AD0 /* IQKeyboardManagerSwift in Frameworks */,
 				2441399D2C3559F000DDC524 /* Appwrite in Frameworks */,
+				24AD5D5D2CC13DD9005932FB /* LanguageManager-iOS in Frameworks */,
 				2424EAC12C3D06F700539145 /* LoaderUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -761,6 +763,7 @@
 				2424EAC02C3D06F700539145 /* LoaderUI */,
 				2424EAC32C3D173F00539145 /* SDWebImageSwiftUI */,
 				24BC2A272C3D64F600C84AD0 /* IQKeyboardManagerSwift */,
+				24AD5D5C2CC13DD9005932FB /* LanguageManager-iOS */,
 			);
 			productName = NewsAppSwift;
 			productReference = 24D33DD32C2E7E46007D266C /* NewsAppSwift.app */;
@@ -797,6 +800,7 @@
 				2424EABF2C3D06F700539145 /* XCRemoteSwiftPackageReference "LoaderUI" */,
 				2424EAC22C3D173F00539145 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				24BC2A262C3D64F500C84AD0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				24AD5D5B2CC13DD9005932FB /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
 			);
 			productRefGroup = 24D33DD42C2E7E46007D266C /* Products */;
 			projectDirPath = "";
@@ -1198,6 +1202,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		24AD5D5B2CC13DD9005932FB /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Abedalkareem/LanguageManager-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.9;
+			};
+		};
 		24BC2A262C3D64F500C84AD0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
@@ -1223,6 +1235,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2441399B2C3559F000DDC524 /* XCRemoteSwiftPackageReference "sdk-for-apple" */;
 			productName = Appwrite;
+		};
+		24AD5D5C2CC13DD9005932FB /* LanguageManager-iOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24AD5D5B2CC13DD9005932FB /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */;
+			productName = "LanguageManager-iOS";
 		};
 		24BC2A272C3D64F600C84AD0 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;

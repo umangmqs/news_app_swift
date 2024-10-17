@@ -50,6 +50,7 @@ struct AppNavigationBar: View {
                     .fill(.appPrimary)
                     .overlay {
                         Image(leadingImage)
+                            .flipsForRightToLeftLayoutDirection(true)
                     }
                     .onTapGesture {
                         leadingAction?()
@@ -76,6 +77,7 @@ struct AppNavigationBar: View {
                         Image(leadingImage)
                             .renderingMode(.template)
                             .foregroundStyle(.appPrimary)
+                            .flipsForRightToLeftLayoutDirection(true)
                     }
                     Spacer()
                 }
@@ -119,6 +121,7 @@ struct AppNavigationBar: View {
                 .fill(.appPrimary)
                 .overlay {
                     Image(trailingImage!)
+                        .flipsForRightToLeftLayoutDirection(true)
                 }
                 .onTapGesture {
                     trailingAction?()
@@ -128,6 +131,7 @@ struct AppNavigationBar: View {
                 .fill(.appPrimary)
                 .overlay {
                     Image(traling2Image!)
+                        .flipsForRightToLeftLayoutDirection(true)
                         .overlay {
                             isShowingDot ?
                                 AnyView(Circle()

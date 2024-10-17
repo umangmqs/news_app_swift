@@ -22,7 +22,7 @@ struct AppTextField: View {
     var body: some View {
         VStack(alignment: .leading) {
             if let title {
-                Text(title)
+                Text(title.localiz())
                     .font(.lato(.medium, size: 14))
                     .foregroundStyle(.appGrey)
             }

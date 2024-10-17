@@ -30,6 +30,7 @@ struct SignupView: View {
                     }, label: {
                         Image(.icPlus)
                             .resizable()
+                            .flipsForRightToLeftLayoutDirection(true)
                             .frame(width: 40.aspectRatio, height: 40.aspectRatio)
                             .offset(y: 12.0.aspectRatio)
                             .shadow(color: .appGrey.opacity(0.6), radius: 8, y: 8)
@@ -109,7 +110,7 @@ struct SignupView: View {
         .padding(16.aspectRatio)
         .toast(toast: $signVM.toast)
         .loader(loading: signVM.isLoading)
-        .confirmationDialog("Choose image to pick from".localized(), isPresented: $showConfirmationDialog, actions: {
+        .confirmationDialog("Choose image to pick from".localiz(), isPresented: $showConfirmationDialog, actions: {
             Button {
                 //                signVM.btnCameraAction()
             } label: {
