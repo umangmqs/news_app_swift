@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol HomeViewDelegate {
+protocol HomeViewDelegate: AnyObject {
     func getBannerData(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError>
     func getFeedData(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError>
     func getPopularData(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError>

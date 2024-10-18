@@ -24,7 +24,7 @@ class ExploreViewModel: ObservableObject {
     var cancellable = Set<AnyCancellable>()
 
     let stateCountry = [
-        "Gujarat",
+        "Gujarat"
         //        "Maharastra",
         //        "Rajasthan",
         //        "India",
@@ -54,10 +54,11 @@ extension ExploreViewModel {
         let params: JSON = [
             "apiKey": newsKey,
             "q": country,
-            "pageSize": 5,
+            "pageSize": 5
         ]
 
-        let result = await service.getNewsByCountry(method: .get, params: params)
+        let result = await service.getNewsByCountry(
+            method: .get, params: params)
         switch result {
         case let .success(response):
             return response.articles ?? []
@@ -89,10 +90,11 @@ extension ExploreViewModel {
         let params: JSON = [
             "apiKey": newsKey,
             "q": search,
-            "pageSize": 10,
+            "pageSize": 10
         ]
         isLoading = true
-        let result = await service.getNewsBySearching(method: .get, params: params)
+        let result = await service.getNewsBySearching(
+            method: .get, params: params)
 
         isLoading = false
         switch result {

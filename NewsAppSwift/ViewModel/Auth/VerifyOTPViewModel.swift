@@ -44,7 +44,9 @@ extension VerifyOTPViewModel {
             let result = try await appWrite.databases.listDocuments(
                 databaseId: databaseId,
                 collectionId: CollectionName.otp,
-                queries: [Query.equal("deviceId", value: Constants.getDeviceUUID())]
+                queries: [
+                    Query.equal("deviceId", value: Constants.getDeviceUUID())
+                ]
             )
 
             if result.total > 0 {
@@ -63,7 +65,7 @@ extension VerifyOTPViewModel {
                     return false
                 } else {
                     if enteredOTP == otp {
-                        let _ = try await appWrite.databases.deleteDocument(
+                        _ = try await appWrite.databases.deleteDocument(
                             databaseId: databaseId,
                             collectionId: CollectionName.otp,
                             documentId: result.documents[0].id

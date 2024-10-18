@@ -15,7 +15,6 @@ struct LanguageCell: View {
         HStack {
             HStack {
                 Image(item.image)
-                
                     .resizable()
                     .frame(
                         width: 30.aspectRatio,

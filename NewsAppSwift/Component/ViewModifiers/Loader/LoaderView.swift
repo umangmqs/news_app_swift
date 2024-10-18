@@ -11,10 +11,6 @@ import SwiftUI
 struct LoaderView: ViewModifier {
     var isLoading = false
 
-    init(isLoading: Bool = false) {
-        self.isLoading = isLoading
-    }
-
     func body(content: Content) -> some View {
         content
             .overlay {
@@ -24,7 +20,10 @@ struct LoaderView: ViewModifier {
                         HStack {
                             Spacer()
                             CubeTransition()
-                                .frame(width: 60.aspectRatio, height: 60.aspectRatio)
+                                .frame(
+                                    width: 60.aspectRatio,
+                                    height: 60.aspectRatio
+                                )
                                 .foregroundStyle(.white)
                             Spacer()
                         }

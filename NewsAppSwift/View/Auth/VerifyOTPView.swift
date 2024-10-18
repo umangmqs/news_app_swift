@@ -121,32 +121,32 @@ extension VerifyOTPView {
             firstFocused = true
         })
         .onChange(of: verifyVM.first) { value in
-            if value.count > 0 {
+            if value.isEmpty {
                 secondFocused = true
             }
         }
         .onChange(of: verifyVM.second) { value in
-            if value.count > 0 {
+            if value.isEmpty {
                 thirdFocused = true
             }
         }
         .onChange(of: verifyVM.third) { value in
-            if value.count > 0 {
+            if value.isEmpty {
                 fourthFocused = true
             }
         }
         .onChange(of: verifyVM.fourth) { value in
-            if value.count > 0 {
+            if value.isEmpty {
                 fifthFocused = true
             }
         }
         .onChange(of: verifyVM.fifth) { value in
-            if value.count > 0 {
+            if value.isEmpty {
                 sixthFocused = true
             }
         }
         .onChange(of: verifyVM.sixth) { value in
-            if value.count > 0 {
+            if value.isEmpty {
                 sixthFocused = false
             }
         }

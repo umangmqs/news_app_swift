@@ -1,5 +1,5 @@
 {
-  "originHash" : "e559ac0043a78c0e26c6ea2e4dbcaaca0abccc8f52f9133e06be889d91d09820",
+  "originHash" : "488235704dfb66bfd1ab900f824b4ac9c3998c72c6de6b702048f6fb35e194d3",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "0ae99db85b2b9d1e79b362bd31fd1ffe492f7c47",
         "version" : "1.21.2"
+      }
+    },
+    {
+      "identity" : "dotlottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LottieFiles/dotlottie-ios",
+      "state" : {
+        "revision" : "d84ba19c566a8b787893b3c4dbb796961638bce7",
+        "version" : "0.6.3"
       }
     },
     {

@@ -31,7 +31,7 @@ struct OnBoardingView: View {
             title: "Enrich your understanding of the world.",
             subTitle:
                 "The latest and hottest news from around the world, making you understand more about your surroundings.",
-            image: "ic_onboarding_3"),
+            image: "ic_onboarding_3")
     ]
 
     var body: some View {
@@ -98,8 +98,7 @@ struct OnBoardingView: View {
                     if value.translation.width > 50, offset > 0 {
                         offset -= 1
                     } else if value.translation.width < -50,
-                        offset < arrOnboarding.count - 1
-                    {
+                        offset < arrOnboarding.count - 1 {
                         offset += 1
                     }
                 }

@@ -19,14 +19,19 @@ final class MediaManager: NSObject, ObservableObject {
         return imagePickerController
     }()
 
-    private(set) var commpletion: ((_ image: UIImage?, _ info: [UIImagePickerController.InfoKey: Any]?) -> Void)?
+    private(set) var commpletion:
+        (
+            (_ image: UIImage?, _ info: [UIImagePickerController.InfoKey: Any]?)
+                -> Void
+        )?
 }
 
 extension MediaManager {
     var allowsEditing: Bool {
         get {
             imagePickerController.allowsEditing
-        } set {
+        }
+        set {
             imagePickerController.allowsEditing = newValue
         }
     }
@@ -65,12 +70,22 @@ extension MediaManager {
 }
 
 extension MediaManager {
-    func openCamera(commpletion: ((_ image: UIImage?, _ info: [UIImagePickerController.InfoKey: Any]?) -> Void)?) {
+    func openCamera(
+        commpletion: (
+            (_ image: UIImage?, _ info: [UIImagePickerController.InfoKey: Any]?)
+                -> Void
+        )?
+    ) {
         takeAPhoto()
         self.commpletion = commpletion
     }
 
-    func openGallery(commpletion: ((_ image: UIImage?, _ info: [UIImagePickerController.InfoKey: Any]?) -> Void)?) {
+    func openGallery(
+        commpletion: (
+            (_ image: UIImage?, _ info: [UIImagePickerController.InfoKey: Any]?)
+                -> Void
+        )?
+    ) {
         takeAPhotoGallery()
         self.commpletion = commpletion
     }
@@ -87,24 +102,38 @@ extension MediaManager {
             if response {
                 CGCDMainThread.async {
                     self.imagePickerController.sourceType = .camera
-                    self.imagePickerController.allowsEditing = self.allowsEditing
-                    topMostViewController?.present(self.imagePickerController, animated: true, completion: nil)
-                    topMostViewController?.present(self.imagePickerController, animated: true, completion: nil)
+                    self.imagePickerController.allowsEditing =
+                        self.allowsEditing
+                    topMostViewController?.present(
+                        self.imagePickerController, animated: true,
+                        completion: nil)
+                    topMostViewController?.present(
+                        self.imagePickerController, animated: true,
+                        completion: nil)
                 }
             } else {
                 CGCDMainThread.async {
-                    topMostViewController?.alertView(title: "", message: "Camera permission is denied. Please allow permission to camera for capturing photos using camera.", style: .alert, actions: [.Cancel, .Setting], handler: { [weak self] sender in
+                    topMostViewController?.alertView(
+                        title: "",
+                        message:
+                            "Camera permission is denied. Please allow permission to camera for capturing photos using camera.",
+                        style: .alert, actions: [.Cancel, .Setting],
+                        handler: { [weak self] sender in
 
-                        guard let `_` = self else {
-                            return
-                        }
-
-                        if sender == .Setting {
-                            if let url = URL(string: UIApplication.openSettingsURLString) {
-                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                            guard let `_` = self else {
+                                return
                             }
-                        }
-                    })
+
+                            if sender == .Setting {
+                                if let url = URL(
+                                    string: UIApplication.openSettingsURLString)
+                                {
+                                    UIApplication.shared.open(
+                                        url, options: [:],
+                                        completionHandler: nil)
+                                }
+                            }
+                        })
                 }
             }
         }
@@ -112,7 +141,8 @@ extension MediaManager {
 
     /// A private method used to select an image from camera.
     private func takeAPhotoGallery() {
-        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+        else {
             let msg = "Your device doesn't support camera."
             topMostViewController?.alertView(message: msg, actions: [.Ok])
             return
@@ -120,12 +150,14 @@ extension MediaManager {
 
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.allowsEditing = allowsEditing
-        topMostViewController?.present(imagePickerController, animated: true, completion: nil)
+        topMostViewController?.present(
+            imagePickerController, animated: true, completion: nil)
     }
 
     /// A private method used to select an image from photoLibrary.
     private func chooseFromPhotoLibrary() {
-        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+        else {
             let msg = "Your device doesn't support photo library."
             topMostViewController?.alertView(message: msg, actions: [.Ok])
             return
@@ -133,7 +165,8 @@ extension MediaManager {
 
         // Request permission to access photo library
         if #available(iOS 14, *) {
-            PHPhotoLibrary.requestAuthorization(for: .readWrite) { [unowned self] status in
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) {
+                [unowned self] status in
 
                 CGCDMainThread.async { [unowned self] in
                     showUI(for: status)
@@ -150,8 +183,11 @@ extension MediaManager {
                 case .authorized:
                     CGCDMainThread.async {
                         self.imagePickerController.sourceType = .photoLibrary
-                        self.imagePickerController.allowsEditing = self.allowsEditing
-                        topMostViewController?.present(self.imagePickerController, animated: true, completion: nil)
+                        self.imagePickerController.allowsEditing =
+                            self.allowsEditing
+                        topMostViewController?.present(
+                            self.imagePickerController, animated: true,
+                            completion: nil)
                     }
 
                 default:
@@ -163,7 +199,8 @@ extension MediaManager {
 
     /// A private method used to select an image from savedPhotosAlbum.
     private func chooseFromSavedPhotosAlbum() {
-        guard UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) else {
+        guard UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum)
+        else {
             let msg = "Your device doesn't support photo library."
             topMostViewController?.alertView(message: msg, actions: [.Ok])
             return
@@ -171,7 +208,8 @@ extension MediaManager {
 
         // Request permission to access photo library
         if #available(iOS 14, *) {
-            PHPhotoLibrary.requestAuthorization(for: .readWrite) { [unowned self] status in
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) {
+                [unowned self] status in
 
                 CGCDMainThread.async { [unowned self] in
                     showUI(for: status)
@@ -187,9 +225,13 @@ extension MediaManager {
 
                 case .authorized:
                     CGCDMainThread.async {
-                        self.imagePickerController.sourceType = .savedPhotosAlbum
-                        self.imagePickerController.allowsEditing = self.allowsEditing
-                        topMostViewController?.present(self.imagePickerController, animated: true, completion: nil)
+                        self.imagePickerController.sourceType =
+                            .savedPhotosAlbum
+                        self.imagePickerController.allowsEditing =
+                            self.allowsEditing
+                        topMostViewController?.present(
+                            self.imagePickerController, animated: true,
+                            completion: nil)
                     }
 
                 default:
@@ -226,50 +268,71 @@ extension MediaManager {
         CGCDMainThread.async {
             self.imagePickerController.sourceType = .photoLibrary
             self.imagePickerController.allowsEditing = self.allowsEditing
-            topMostViewController?.present(self.imagePickerController, animated: true, completion: nil)
+            topMostViewController?.present(
+                self.imagePickerController, animated: true, completion: nil)
         }
     }
 
     func showRestrictedAccessUI() {
         CGCDMainThread.async {
-            topMostViewController?.alertView(title: "", message: "Photos permission is denied. Please allow permission to gallery photos for selecting photos from gallery.", style: .alert, actions: [.Cancel, .Setting], handler: { sender in
+            topMostViewController?.alertView(
+                title: "",
+                message:
+                    "Photos permission is denied. Please allow permission to gallery photos for selecting photos from gallery.",
+                style: .alert, actions: [.Cancel, .Setting],
+                handler: { sender in
 
-                if sender == .Setting {
-                    if let url = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    if sender == .Setting {
+                        if let url = URL(
+                            string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(
+                                url, options: [:], completionHandler: nil)
+                        }
                     }
-                }
-            })
+                })
         }
     }
 
     func showAccessDeniedUI() {
         CGCDMainThread.async {
-            topMostViewController?.alertView(title: "", message: "Photos permission is denied. Please allow permission to gallery photos for selecting photos from gallery.", style: .alert, actions: [.Cancel, .Setting], handler: { sender in
+            topMostViewController?.alertView(
+                title: "",
+                message:
+                    "Photos permission is denied. Please allow permission to gallery photos for selecting photos from gallery.",
+                style: .alert, actions: [.Cancel, .Setting],
+                handler: { sender in
 
-                if sender == .Setting {
-                    if let url = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    if sender == .Setting {
+                        if let url = URL(
+                            string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(
+                                url, options: [:], completionHandler: nil)
+                        }
                     }
-                }
-            })
+                })
         }
     }
 }
 
-extension MediaManager: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+extension MediaManager: UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey:
+            Any]
+    ) {
         picker.dismiss(animated: true) { [weak self] in
 
             guard let self, let commpletion else {
                 return
             }
 
-            var image: UIImage? = if allowsEditing {
-                info[.editedImage] as? UIImage
-            } else {
-                info[.originalImage] as? UIImage
-            }
+            let image: UIImage? =
+                if allowsEditing {
+                    info[.editedImage] as? UIImage
+                } else {
+                    info[.originalImage] as? UIImage
+                }
 
             commpletion(image, info)
         }

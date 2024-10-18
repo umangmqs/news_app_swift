@@ -15,7 +15,7 @@ struct HomeView: View {
 
     @State var arrFeedMenu: [MDLFeedMenu] = [
         MDLFeedMenu(title: "Feeds", selected: true),
-        MDLFeedMenu(title: "Popular", selected: false),
+        MDLFeedMenu(title: "Popular", selected: false)
     ]
 
     @State private var selectedIndex: Int = 0
@@ -46,7 +46,7 @@ struct HomeView: View {
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(homeVM.bannerData!.articles!, id: \.id) { data in
-                                    BreakingNewsCell(data: data) { 
+                                    BreakingNewsCell(data: data) {
                                         newsDetailVM.article = data
                                         router.push(to: .newsDetail)
                                     }

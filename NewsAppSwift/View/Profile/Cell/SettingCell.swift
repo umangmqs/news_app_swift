@@ -26,13 +26,13 @@ struct SettingCell: View {
 
                 Spacer()
 
-                !hasSwitch ?
-                    AnyView(Image(.icArrowRight)) :
-                    AnyView(
-                        Toggle("", isOn: $isOn)
-                            .tint(.appPrimary)
-                            .padding(.trailing, 5.aspectRatio)
-                    )
+                if !hasSwitch {
+                    Image(.icArrowRight)
+                } else {
+                    Toggle("", isOn: $isOn)
+                        .tint(.appPrimary)
+                        .padding(.trailing, 5.aspectRatio)
+                }
             }
             .padding(.vertical, 10.aspectRatio)
 
@@ -40,7 +40,7 @@ struct SettingCell: View {
                 .fill(lastId == data.id ? .clear : .appGrey.opacity(0.2))
                 .frame(height: 2)
         }
-        
+
         .onTapGesture {
             onTap(data)
         }

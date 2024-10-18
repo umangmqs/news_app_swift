@@ -40,9 +40,10 @@ class NetworkManager {
 
     var baseURL = BaseUrl.stagging.url
 
-    init(apiHandler: APIHandlerDelegate = APIHandler(),
-         responseHandler: ResponseHandlerDelegate = ResponseHandler())
-    {
+    init(
+        apiHandler: APIHandlerDelegate = APIHandler(),
+        responseHandler: ResponseHandlerDelegate = ResponseHandler()
+    ) {
         self.apiHandler = apiHandler
         self.responseHandler = responseHandler
     }
@@ -56,23 +57,53 @@ class NetworkManager {
     ///   - type: Generic type that represents the model object of the API response.
     /// - Returns: A generic model representing the response or throws an error.
     ///
-    func fetchRequest<T: Codable>(method: HTTPMethod, endpoint: Endpoint, params: [String: Any], type: T.Type) async throws -> T {
+    func fetchRequest<T: Codable>(
+        method: HTTPMethod, endpoint: Endpoint, params: [String: Any],
+        type: T.Type
+    ) async throws -> T {
         guard let url = URL(string: baseURL.appending(endpoint.rawValue)) else {
             throw APIError.badURL
         }
 
-        let data = try await apiHandler.requestData(method: method, url: url, params: params)
+        let data = try await apiHandler.requestData(
+            method: method, url: url, params: params)
         let model = try await responseHandler.fetchModel(type: type, data: data)
         return model
     }
 }
 
-protocol APIHandlerDelegate {
-    func requestData(method: HTTPMethod, url: URL, params: [String: Any]) async throws -> Data
+protocol APIHandlerDelegate: AnyObject {
+    func requestData(method: HTTPMethod, url: URL, params: [String: Any])
+        async throws -> Data
 }
 
 class APIHandler: APIHandlerDelegate {
-    func requestData(method: HTTPMethod, url: URL, params: [String: Any]) async throws -> Data {
+    func requestData(method: HTTPMethod, url: URL, params: [String: Any])
+        async throws -> Data {
+        let finalUrl = try constructURL(
+            method: method, url: url, params: params)
+
+        AppPrint.debugPrint(
+            "========================================= URL ========================================="
+        )
+        AppPrint.debugPrint("\(finalUrl)\n")
+        AppPrint.debugPrint(
+            "========================================= PARAMETERS ========================================="
+        )
+        AppPrint.debugPrint("\(params)\n")
+
+        let request = createRequest(
+            method: method, url: finalUrl, params: params)
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        try handleResponse(response)
+
+        return data
+    }
+
+    private func constructURL(
+        method: HTTPMethod, url: URL, params: [String: Any]
+    ) throws -> URL {
         guard var components = URLComponents(string: url.absoluteString) else {
             throw APIError.badURL
         }
@@ -87,21 +118,25 @@ class APIHandler: APIHandlerDelegate {
             throw APIError.badURL
         }
 
-        AppPrint.debugPrint("========================================= URL =========================================")
-        AppPrint.debugPrint("\(finalUrl)\n")
-        AppPrint.debugPrint("========================================= PARAMETERS =========================================")
-        AppPrint.debugPrint("\(params)\n")
+        return finalUrl
+    }
 
-        var request = URLRequest(url: finalUrl)
+    private func createRequest(
+        method: HTTPMethod, url: URL, params: [String: Any]
+    ) -> URLRequest {
+        var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
 
         if method == .post {
-            let bodyData = try? JSONSerialization.data(withJSONObject: params, options: [])
+            let bodyData = try? JSONSerialization.data(
+                withJSONObject: params, options: [])
             request.httpBody = bodyData
         }
 
-        let (data, response) = try await URLSession.shared.data(for: request)
+        return request
+    }
 
+    private func handleResponse(_ response: URLResponse) throws {
         if let httpResponse = response as? HTTPURLResponse {
             switch httpResponse.statusCode {
             case 400: throw APIError.badRequest
@@ -112,12 +147,10 @@ class APIHandler: APIHandlerDelegate {
             default: break
             }
         }
-
-        return data
     }
 }
 
-protocol ResponseHandlerDelegate {
+protocol ResponseHandlerDelegate: AnyObject {
     func fetchModel<T: Codable>(type: T.Type, data: Data) async throws -> T
 }
 
@@ -125,7 +158,9 @@ class ResponseHandler: ResponseHandlerDelegate {
     func fetchModel<T: Codable>(type: T.Type, data: Data) async throws -> T {
         do {
             let decodedModel = try JSONDecoder().decode(type.self, from: data)
-            AppPrint.debugPrint("========================================= RESPONSE =========================================")
+            AppPrint.debugPrint(
+                "========================================= RESPONSE ========================================="
+            )
             AppPrint.debugPrint("\(decodedModel.prettyJSON)\n")
             return decodedModel
         } catch {

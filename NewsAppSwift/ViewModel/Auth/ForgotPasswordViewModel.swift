@@ -43,13 +43,14 @@ extension ForgotPasswordViewModel {
                 databaseId: databaseId,
                 collectionId: CollectionName.users,
                 queries: [
-                    Query.equal("email", value: email),
+                    Query.equal("email", value: email)
                 ]
             )
             isLoading = false
 
             if res.total == 0 {
-                toast = Toast(message: "User not found, enter valid email address.")
+                toast = Toast(
+                    message: "User not found, enter valid email address.")
                 return false
             }
 
@@ -68,21 +69,25 @@ extension ForgotPasswordViewModel {
         let expiry = Date().dateByAdd(minutes: 2).ISO8601Format()
 
         do {
-            let result = try await appWrite.databases.listDocuments(databaseId: databaseId, collectionId: CollectionName.otp, queries: [Query.equal("deviceId", value: deviceUniqueId)])
+            let result = try await appWrite.databases.listDocuments(
+                databaseId: databaseId, collectionId: CollectionName.otp,
+                queries: [Query.equal("deviceId", value: deviceUniqueId)])
 
             for d in result.documents {
                 Task {
-                    try await appWrite.databases.deleteDocument(databaseId: databaseId, collectionId: CollectionName.otp, documentId: d.id)
+                    try await appWrite.databases.deleteDocument(
+                        databaseId: databaseId,
+                        collectionId: CollectionName.otp, documentId: d.id)
                 }
             }
 
             let data: JSON = [
                 "otp": otp,
                 "deviceId": deviceUniqueId,
-                "expiry": expiry,
+                "expiry": expiry
             ]
 
-            let _ = try await appWrite.databases.createDocument(
+            _ = try await appWrite.databases.createDocument(
                 databaseId: databaseId,
                 collectionId: CollectionName.otp,
                 documentId: ID.unique(),
@@ -98,7 +103,7 @@ extension ForgotPasswordViewModel {
     private func generateOTP() -> String {
         let digits = "0123456789"
         var otp = ""
-        for _ in 1 ... 6 {
+        for _ in 1...6 {
             if let randomDigit = digits.randomElement() {
                 otp.append(randomDigit)
             }

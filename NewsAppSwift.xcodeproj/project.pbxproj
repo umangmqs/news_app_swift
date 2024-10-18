@@ -73,6 +73,9 @@
 		24BC2A252C3D61C200C84AD0 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BC2A242C3D61C200C84AD0 /* TabViewModel.swift */; };
 		24BC2A282C3D64F600C84AD0 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 24BC2A272C3D64F600C84AD0 /* IQKeyboardManagerSwift */; };
 		24CD53A12C2EB8BF003A5C50 /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD53A02C2EB8BF003A5C50 /* AppTextField.swift */; };
+		24D0AF1F2CC25CE300870EBC /* noInternet.lottie in Resources */ = {isa = PBXBuildFile; fileRef = 24D0AF1E2CC25CE300870EBC /* noInternet.lottie */; };
+		24D0AF222CC25DA400870EBC /* DotLottie in Frameworks */ = {isa = PBXBuildFile; productRef = 24D0AF212CC25DA400870EBC /* DotLottie */; };
+		24D0AF242CC2658B00870EBC /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D0AF232CC2658500870EBC /* NoInternetView.swift */; };
 		24D33DD72C2E7E46007D266C /* NewsAppSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D33DD62C2E7E46007D266C /* NewsAppSwiftApp.swift */; };
 		24D33DD92C2E7E46007D266C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D33DD82C2E7E46007D266C /* LoginView.swift */; };
 		24D33DDD2C2E7E47007D266C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24D33DDC2C2E7E47007D266C /* Assets.xcassets */; };
@@ -176,6 +179,9 @@
 		24BC2A222C3D55AA00C84AD0 /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 		24BC2A242C3D61C200C84AD0 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		24CD53A02C2EB8BF003A5C50 /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
+		24D0AF1D2CC2371D00870EBC /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		24D0AF1E2CC25CE300870EBC /* noInternet.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = noInternet.lottie; sourceTree = "<group>"; };
+		24D0AF232CC2658500870EBC /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 		24D33DD32C2E7E46007D266C /* NewsAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D33DD62C2E7E46007D266C /* NewsAppSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppSwiftApp.swift; sourceTree = "<group>"; };
 		24D33DD82C2E7E46007D266C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -225,6 +231,7 @@
 				2441399D2C3559F000DDC524 /* Appwrite in Frameworks */,
 				24AD5D672CC1494F005932FB /* LanguageManager-iOS in Frameworks */,
 				2424EAC12C3D06F700539145 /* LoaderUI in Frameworks */,
+				24D0AF222CC25DA400870EBC /* DotLottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +446,7 @@
 		24D33DCA2C2E7E46007D266C = {
 			isa = PBXGroup;
 			children = (
+				24D0AF1D2CC2371D00870EBC /* .swiftlint.yml */,
 				24D33DD52C2E7E46007D266C /* NewsAppSwift */,
 				24D33DD42C2E7E46007D266C /* Products */,
 			);
@@ -466,7 +474,6 @@
 				24D33DF22C2E86FD007D266C /* Master */,
 				24D33E0C2C2E8C94007D266C /* Resources */,
 				24D33DDE2C2E7E47007D266C /* Preview Content */,
-				24AD5D512CC12AC7005932FB /* Localizable.strings */,
 			);
 			path = NewsAppSwift;
 			sourceTree = "<group>";
@@ -597,11 +604,13 @@
 		24D33E0C2C2E8C94007D266C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				24AD5D512CC12AC7005932FB /* Localizable.strings */,
 				2424EAD12C3D330A00539145 /* Launch Screen.storyboard */,
 				241DC4CA2C3EA6270087ACAE /* reset_password.mp4 */,
 				24D33E0D2C2E8C9E007D266C /* Fonts */,
 				24D33DEB2C2E7F7C007D266C /* Info.plist */,
 				24D33DDC2C2E7E47007D266C /* Assets.xcassets */,
+				24D0AF1E2CC25CE300870EBC /* noInternet.lottie */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -639,6 +648,7 @@
 		24D33E202C2E97EA007D266C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				24D0AF232CC2658500870EBC /* NoInternetView.swift */,
 				24AD5D382CC0D739005932FB /* Language */,
 				244139952C3556C900DDC524 /* TabBar */,
 				24D33E212C2E97F4007D266C /* Auth */,
@@ -753,7 +763,7 @@
 				24D33DCF2C2E7E46007D266C /* Sources */,
 				24D33DD02C2E7E46007D266C /* Frameworks */,
 				24D33DD12C2E7E46007D266C /* Resources */,
-				24AD5D4E2CC1206B005932FB /* ShellScript */,
+				24D0AF1A2CC232ED00870EBC /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -766,6 +776,7 @@
 				2424EAC32C3D173F00539145 /* SDWebImageSwiftUI */,
 				24BC2A272C3D64F600C84AD0 /* IQKeyboardManagerSwift */,
 				24AD5D662CC1494F005932FB /* LanguageManager-iOS */,
+				24D0AF212CC25DA400870EBC /* DotLottie */,
 			);
 			productName = NewsAppSwift;
 			productReference = 24D33DD32C2E7E46007D266C /* NewsAppSwift.app */;
@@ -779,7 +790,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					24D33DD22C2E7E46007D266C = {
 						CreatedOnToolsVersion = 15.4;
@@ -805,6 +816,7 @@
 				2424EAC22C3D173F00539145 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				24BC2A262C3D64F500C84AD0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				24AD5D652CC1494F005932FB /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
+				24D0AF202CC25DA400870EBC /* XCRemoteSwiftPackageReference "dotlottie-ios" */,
 			);
 			productRefGroup = 24D33DD42C2E7E46007D266C /* Products */;
 			projectDirPath = "";
@@ -831,6 +843,7 @@
 				24D33E152C2E8CF9007D266C /* Montserrat-Regular.ttf in Resources */,
 				24D33E132C2E8CF9007D266C /* Montserrat-Bold.ttf in Resources */,
 				2424EAD22C3D330A00539145 /* Launch Screen.storyboard in Resources */,
+				24D0AF1F2CC25CE300870EBC /* noInternet.lottie in Resources */,
 				24D33E1E2C2E967B007D266C /* Lato-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -838,8 +851,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		24AD5D4E2CC1206B005932FB /* ShellScript */ = {
+		24D0AF1A2CC232ED00870EBC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -847,13 +861,15 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]\nthen\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -930,6 +946,7 @@
 				24EB8A092C3BEC9700662E23 /* MDLUser.swift in Sources */,
 				24917FC52CB6548D00C32304 /* MDLBookmark.swift in Sources */,
 				241B4D212C40069D00405D56 /* SeeAllView.swift in Sources */,
+				24D0AF242CC2658B00870EBC /* NoInternetView.swift in Sources */,
 				2424EACC2C3D208B00539145 /* HomeService.swift in Sources */,
 				244139902C35309900DDC524 /* ProfileView.swift in Sources */,
 				24AD5D3F2CC10529005932FB /* LanguageCell.swift in Sources */,
@@ -972,6 +989,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1036,6 +1054,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1100,6 +1119,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = FL7T8233P6;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsAppSwift/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1136,6 +1156,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = FL7T8233P6;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsAppSwift/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1224,6 +1245,14 @@
 				minimumVersion = 7.0.3;
 			};
 		};
+		24D0AF202CC25DA400870EBC /* XCRemoteSwiftPackageReference "dotlottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LottieFiles/dotlottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1251,6 +1280,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 24BC2A262C3D64F500C84AD0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		24D0AF212CC25DA400870EBC /* DotLottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24D0AF202CC25DA400870EBC /* XCRemoteSwiftPackageReference "dotlottie-ios" */;
+			productName = DotLottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

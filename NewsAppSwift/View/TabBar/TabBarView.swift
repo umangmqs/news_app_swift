@@ -9,13 +9,13 @@ import SwiftUI
 
 struct TabBarView: View {
     @StateObject var tabVM: TabViewModel
-    
+
     let homeVM: HomeViewModel
     let profileVM: ProfileViewModel
     let newsDetailVM: NewsDetailViewModel
     let seeAllVM: SeeAllViewModel
     let bookmarkVM: BookmarkViewModel
-    
+
     var body: some View {
         TabView(selection: tabVM.binding(for: \.selection)) {
             HomeView(
@@ -27,7 +27,7 @@ struct TabBarView: View {
                 Label("Home", systemImage: "house.fill")
             }
             .tag(0)
-            
+
             ExploreView(
                 exploreVM: ExploreViewModel(
                     service: ExploreService()
@@ -39,7 +39,7 @@ struct TabBarView: View {
                 Label("Explore", systemImage: "safari.fill")
             }
             .tag(1)
-            
+
             BookmarkView(
                 bookmarkVM: bookmarkVM,
                 newsDetailVM: newsDetailVM
@@ -48,7 +48,7 @@ struct TabBarView: View {
                 Label("Bookmark", systemImage: "bookmark.fill")
             }
             .tag(2)
-            
+
             ProfileView(
                 profileVM: profileVM
             )

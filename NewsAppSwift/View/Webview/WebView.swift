@@ -23,13 +23,6 @@ struct WebView: View {
     }
 }
 
-#Preview {
-    WebView(
-        url:
-            "https://www.aajtak.in/programmes/9-baj-gaye/video/after-lok-sabha-by-elections-on-13-assembly-seats-in-7-states-today-1981696-2024-07-10"
-    )
-}
-
 struct WebViewRepresentable: UIViewRepresentable {
     var url: String
     @Binding var isLoading: Bool

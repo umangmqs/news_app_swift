@@ -31,9 +31,9 @@ struct NewsCell: View {
             .corner(radius: 12.aspectRatio)
 
             VStack(alignment: .leading, spacing: 8.aspectRatio) {
-//                Text("Travel")
-//                    .font(.lato(size: 12))
-//                    .foregroundStyle(.appGrey)
+                //                Text("Travel")
+                //                    .font(.lato(size: 12))
+                //                    .foregroundStyle(.appGrey)
 
                 Text(data?.title ?? "")
                     .font(.lato(.medium, size: 14))
@@ -48,9 +48,13 @@ struct NewsCell: View {
                         .fill(.appGrey)
                         .frame(width: 4.aspectRatio, height: 4.aspectRatio)
 
-                    Text(Date(iso8601String: data?.publishedAt ?? "")?.convertToTimezone(.current).formattedRelativeString() ?? "")
-                        .font(.lato(size: 12))
-                        .foregroundStyle(.appGrey)
+                    Text(
+                        Date(iso8601String: data?.publishedAt ?? "")?
+                            .convertToTimezone(.current)
+                            .formattedRelativeString() ?? ""
+                    )
+                    .font(.lato(size: 12))
+                    .foregroundStyle(.appGrey)
                 }
                 .lineLimit(2)
             }

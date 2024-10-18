@@ -21,9 +21,10 @@ extension View {
         modifier(CornerRadiusViewModifier(radius: radius))
     }
 }
- 
+
 extension View {
-    func innerShadow(color: Color, radius: CGFloat, x: CGFloat, y: CGFloat) -> some View {
+    func innerShadow(color: Color, radius: CGFloat, x: CGFloat, y: CGFloat)
+        -> some View {
         self
             .overlay(
                 self

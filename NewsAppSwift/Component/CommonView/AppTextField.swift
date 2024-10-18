@@ -90,7 +90,3 @@ struct AppSearchField: View {
         .corner(radius: 23.aspectRatio)
     }
 }
-
-#Preview {
-    AppTextField(text: .constant(""), title: "Email address", placeholder: "abx@xyz.com", suffixImage: "eye", secured: true) {}
-}

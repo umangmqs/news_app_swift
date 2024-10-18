@@ -14,7 +14,11 @@ struct SegmentedView: View {
     var body: some View {
         HStack(spacing: 0) {
             ForEach(arrFeedMenu.indices, id: \.self) { index in
-                HomeFeedView(feedMenu: arrFeedMenu[index], isSelected: index == selectedIndex, totalCount: arrFeedMenu.count) {
+                HomeFeedView(
+                    feedMenu: arrFeedMenu[index],
+                    isSelected: index == selectedIndex,
+                    totalCount: arrFeedMenu.count
+                ) {
                     withAnimation {
                         selectedIndex = index
                         for i in arrFeedMenu.indices {
@@ -27,12 +31,18 @@ struct SegmentedView: View {
         .background(
             GeometryReader { geometry in
                 Color.white
-                    .frame(width: (geometry.size.width) / CGFloat(arrFeedMenu.count), height: 28.aspectRatio)
+                    .frame(
+                        width: (geometry.size.width)
+                            / CGFloat(arrFeedMenu.count), height: 28.aspectRatio
+                    )
                     .cornerRadius(20.aspectRatio)
-                    .offset(x: CGFloat(selectedIndex) * (geometry.size.width) / CGFloat(arrFeedMenu.count))
+                    .offset(
+                        x: CGFloat(selectedIndex) * (geometry.size.width)
+                            / CGFloat(arrFeedMenu.count)
+                    )
                     .animation(.easeInOut(duration: 0.3), value: selectedIndex)
             }
-            .clipped() // Prevents the background from overflowing
+            .clipped()  // Prevents the background from overflowing
         )
     }
 }

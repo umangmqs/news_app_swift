@@ -5,13 +5,13 @@
 //  Created by MQF-6 on 02/04/24.
 //
 
-import SwiftUI
 import LanguageManager_iOS
+import SwiftUI
 
 struct AppNavigationView: View {
     @ObservedObject var router = Router()
     @AppStorage(StorageKey.onboarded) var onboarded = false
-
+    
     var appWrite = Appwrite()
     var networkMonitor = NetworkMonitor()
     var verifyOTPViewModel: VerifyOTPViewModel!
@@ -19,6 +19,8 @@ struct AppNavigationView: View {
     var seeAllNewsViewModel: SeeAllViewModel!
     var bookmarkViewModel: BookmarkViewModel!
     var languageViewModel: LanguageViewModel!
+
+    @State var showNoInternet = false
 
     init() {
         networkMonitor.startMonitoring()
@@ -30,10 +32,8 @@ struct AppNavigationView: View {
         bookmarkViewModel = BookmarkViewModel(appWrite: appWrite)
         seeAllNewsViewModel = SeeAllViewModel(service: SeeAllService())
         languageViewModel = LanguageViewModel()
-        
-        LanguageManager.shared.defaultLanguage = .en
 
-//        languageViewModel.getSelectedLanguage()
+        LanguageManager.shared.defaultLanguage = .en
     }
 
     var body: some View {
@@ -93,6 +93,8 @@ struct AppNavigationView: View {
                         )
                     case .languegeSelection:
                         LanguageView(languageViewModel: languageViewModel)
+                    case .noInternet:
+                        NoInternetView()
                     }
                 }
             }
@@ -101,11 +103,23 @@ struct AppNavigationView: View {
         .environment(\.locale, LanguageManager.shared.appLocale)
         .environment(
             \.layoutDirection,
-             LanguageManager.shared.isRightToLeft ? .rightToLeft : .leftToRight
+            LanguageManager.shared.isRightToLeft ? .rightToLeft : .leftToRight
         )
-        .onReceive(networkMonitor.isReachable.publisher) { newValue in
-            // TODO: Handle Network
+        .fullScreenCover(isPresented: $showNoInternet) {
+            NoInternetView()
         }
+        .onReceive(
+            networkMonitor.$isReachable,
+            perform: { newValue in
+                AppPrint.debugPrint("New value: \(newValue)")
+                if !newValue && !showNoInternet {
+                    showNoInternet = true
+                }
+
+                if newValue {
+                    showNoInternet = false
+                }
+            })
     }
 
     var loginView: some View {
@@ -129,4 +143,3 @@ struct AppNavigationView: View {
         )
     }
 }
-

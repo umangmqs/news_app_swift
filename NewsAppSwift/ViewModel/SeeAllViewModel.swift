@@ -29,7 +29,7 @@ extension SeeAllViewModel {
             "q": topic,
             "pageSize": 15,
             "sortBy": "publishedAt",
-            "page": page,
+            "page": page
         ]
         isLoading = true
 

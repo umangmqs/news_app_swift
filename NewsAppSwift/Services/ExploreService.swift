@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ExploreServiceDelegate {
+protocol ExploreServiceDelegate: AnyObject {
     func getNewsByCountry(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError>
     func getNewsBySearching(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError>
 }

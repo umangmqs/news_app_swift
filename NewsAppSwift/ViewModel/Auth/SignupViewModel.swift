@@ -74,7 +74,8 @@ extension SignupViewModel {
         } else if let msg = Validator.validatePassword(password) {
             toast = Toast(message: msg)
             return false
-        } else if let msg = Validator.validateConfirmPassword(confirmPassword, password: password) {
+        } else if let msg = Validator.validateConfirmPassword(
+            confirmPassword, password: password) {
             toast = Toast(message: msg)
             return false
         }
@@ -86,7 +87,8 @@ extension SignupViewModel {
     func signup() async -> Bool {
         do {
             isLoading = true
-            let user = try await appWrite.account.create(userId: ID.unique(), email: email, password: password)
+            let user = try await appWrite.account.create(
+                userId: ID.unique(), email: email, password: password)
             var model = MDLUser(
                 userId: user.id,
                 fullname: fullname,
@@ -124,7 +126,8 @@ extension SignupViewModel {
 
     @MainActor
     private func uploadProfile() async -> (Bool, String?) {
-        guard let data = ImageRenderer(content: profileImage).uiImage?.pngData() else {
+        guard let data = ImageRenderer(content: profileImage).uiImage?.pngData()
+        else {
             return (false, nil)
         }
 
@@ -133,7 +136,8 @@ extension SignupViewModel {
                 bucketId: storageId,
                 fileId: ID.unique(),
                 file: InputFile.fromData(
-                    data, filename: "profile_\(Date().millisecondsSince1970)", mimeType: MimeType.png.type
+                    data, filename: "profile_\(Date().millisecondsSince1970)",
+                    mimeType: MimeType.png.type
                 )
             ) { progress in
                 AppPrint.debugPrint("progress: \(progress.progress)")
@@ -151,14 +155,15 @@ extension SignupViewModel {
     @MainActor
     private func createUserInDB(data: [String: Any]) async -> Bool {
         do {
-            let _ = try await appWrite.databases.createDocument(
+            _ = try await appWrite.databases.createDocument(
                 databaseId: databaseId,
                 collectionId: CollectionName.users,
                 documentId: ID.unique(), data: data
             )
             isLoading = false
             let mdl: MDLUser? = data.castToObject()
-            try UserDefaults.standard.set<MDLUser>(object: mdl, forKey: StorageKey.userInfo)
+            try UserDefaults.standard.set<MDLUser>(
+                object: mdl, forKey: StorageKey.userInfo)
             return true
         } catch {
             isLoading = false

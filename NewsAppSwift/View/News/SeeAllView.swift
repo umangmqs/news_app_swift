@@ -25,7 +25,7 @@ struct SeeAllView: View {
                 title: seeAllVM.topic
             )
 
-            if seeAllVM.arrArticles.count > 0 {
+            if seeAllVM.arrArticles.isEmpty {
                 List(seeAllVM.arrArticles, id: \.id) { data in
                     NewsCell(data: data) { article in
                         newsDetailVM.article = article

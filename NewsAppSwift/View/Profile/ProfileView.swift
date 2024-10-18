@@ -12,15 +12,14 @@ struct MDLSetting: Identifiable {
     var id: UUID = .init()
     var title: String
     var image: ImageResource
-    
-    
+
     enum Titles: String, CaseIterable, CustomStringConvertible {
         case notificationsCenter = "Notifications Center"
         case changePassword = "Change Password"
         case language = "Language"
         case faqs = "FAQs"
-        
-         var description: String {
+
+        var description: String {
             self.rawValue
         }
     }
@@ -31,10 +30,15 @@ struct ProfileView: View {
     @StateObject var profileVM: ProfileViewModel
 
     var arrSettings = [
-        MDLSetting(title: "\(MDLSetting.Titles.notificationsCenter)".localiz(), image: .icNotification),
-        MDLSetting(title: "\(MDLSetting.Titles.changePassword)".localiz(), image: .icKey),
-        MDLSetting(title: "\(MDLSetting.Titles.language)".localiz(), image: .icLang),
-        MDLSetting(title: "\(MDLSetting.Titles.faqs)".localiz(), image: .icFaq),
+        MDLSetting(
+            title: "\(MDLSetting.Titles.notificationsCenter)".localiz(),
+            image: .icNotification),
+        MDLSetting(
+            title: "\(MDLSetting.Titles.changePassword)".localiz(),
+            image: .icKey),
+        MDLSetting(
+            title: "\(MDLSetting.Titles.language)".localiz(), image: .icLang),
+        MDLSetting(title: "\(MDLSetting.Titles.faqs)".localiz(), image: .icFaq)
     ]
 
     @State private var showAlert = false
@@ -45,18 +49,20 @@ struct ProfileView: View {
     var body: some View {
         VStack(alignment: .center) {
             VStack {
-                AppNavigationBar(type: .title, searchText: .constant(""), title: "Profile".localiz())
+                AppNavigationBar(
+                    type: .title, searchText: .constant(""),
+                    title: "Profile".localiz())
 
                 profileSection
 
-//                HStack(spacing: 20.aspectRatio) {
-//                    ForEach(0..<3) { _ in
-//                        profileMiddleSection
-//                    }
-//                }
-//                .foregroundStyle(.white)
-//                .frame(height: 75.aspectRatio)
-//                .padding(.top, 25.aspectRatio)
+                //                HStack(spacing: 20.aspectRatio) {
+                //                    ForEach(0..<3) { _ in
+                //                        profileMiddleSection
+                //                    }
+                //                }
+                //                .foregroundStyle(.white)
+                //                .frame(height: 75.aspectRatio)
+                //                .padding(.top, 25.aspectRatio)
             }
 
             HStack {
@@ -69,16 +75,29 @@ struct ProfileView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(arrSettings, id: \.id) { data in
-                        if data.title.localiz() == "\(MDLSetting.Titles.notificationsCenter)".localiz() {
-                            SettingCell(data: data, hasSwitch: true, isOn: $notificationON) { _ in
+                        if data.title.localiz()
+                            == "\(MDLSetting.Titles.notificationsCenter)"
+                            .localiz() {
+                            SettingCell(
+                                data: data, hasSwitch: true,
+                                isOn: $notificationON
+                            ) { _ in
                             }
                         } else {
-                            SettingCell(data: data, lastId: arrSettings[arrSettings.count - 1].id, isOn: .constant(false)) { setting in
-                                if setting.title.localiz() == "\(MDLSetting.Titles.faqs)".localiz() {
-//                                    showWebView = true
-                                } else if setting.title.localiz() == "\(MDLSetting.Titles.changePassword)".localiz() {
+                            SettingCell(
+                                data: data,
+                                lastId: arrSettings[arrSettings.count - 1].id,
+                                isOn: .constant(false)
+                            ) { setting in
+                                if setting.title.localiz()
+                                    == "\(MDLSetting.Titles.faqs)".localiz() {
+                                    //                                    showWebView = true
+                                } else if setting.title.localiz()
+                                    == "\(MDLSetting.Titles.changePassword)"
+                                    .localiz() {
                                     router.push(to: .changePassword)
-                                } else if setting.title.localiz() == "\(MDLSetting.Titles.language)".localiz() {
+                                } else if setting.title.localiz()
+                                    == "\(MDLSetting.Titles.language)".localiz() {
                                     router.push(to: .languegeSelection)
                                 }
                             }
@@ -110,9 +129,9 @@ struct ProfileView: View {
             }
         }
         .padding(.horizontal, 16.aspectRatio)
-//        .navigationDestination(isPresented: $showWebView, destination: {
-//            WebView(url: "https://www.google.com")
-//        })
+        //        .navigationDestination(isPresented: $showWebView, destination: {
+        //            WebView(url: "https://www.google.com")
+        //        })
         .alert("Logout".localiz(), isPresented: $showAlert) {
             Button("No".localiz()) {}
 
@@ -134,10 +153,12 @@ extension ProfileView {
                 ZStack {
                     Image(.icUser)
                         .resizable()
-                    WebImage(url: URL(string: Constants.userInfo?.profileImage ?? ""))
-                        .resizable()
-                        .scaledToFit()
-                        .transition(.fade(duration: 2))
+                    WebImage(
+                        url: URL(string: Constants.userInfo?.profileImage ?? "")
+                    )
+                    .resizable()
+                    .scaledToFit()
+                    .transition(.fade(duration: 2))
                 }
                 .frame(width: 100.aspectRatio, height: 100.aspectRatio)
                 .corner(radius: 50.aspectRatio)

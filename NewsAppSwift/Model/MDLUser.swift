@@ -16,7 +16,11 @@ struct MDLUser: Codable {
     var updatedAt: String?
     var profileImage: String?
 
-    init(userId: String, fullname: String? = nil, phone: String? = nil, email: String? = nil, createdAt: String? = nil, updatedAt: String? = nil, profileImage: String? = nil) {
+    init(
+        userId: String, fullname: String? = nil, phone: String? = nil,
+        email: String? = nil, createdAt: String? = nil,
+        updatedAt: String? = nil, profileImage: String? = nil
+    ) {
         self.userId = userId
         self.fullname = fullname
         self.phone = phone
@@ -29,11 +33,15 @@ struct MDLUser: Codable {
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         fullname = try container.decodeIfPresent(String.self, forKey: .fullname)
-        userId = try container.decodeIfPresent(String.self, forKey: .userId) ?? ""
+        userId =
+            try container.decodeIfPresent(String.self, forKey: .userId) ?? ""
         email = try container.decodeIfPresent(String.self, forKey: .email)
         phone = try container.decodeIfPresent(String.self, forKey: .phone)
-        createdAt = try container.decodeIfPresent(String.self, forKey: .createdAt)
-        updatedAt = try container.decodeIfPresent(String.self, forKey: .updatedAt)
-        profileImage = try container.decodeIfPresent(String.self, forKey: .profileImage)
+        createdAt = try container.decodeIfPresent(
+            String.self, forKey: .createdAt)
+        updatedAt = try container.decodeIfPresent(
+            String.self, forKey: .updatedAt)
+        profileImage = try container.decodeIfPresent(
+            String.self, forKey: .profileImage)
     }
 }

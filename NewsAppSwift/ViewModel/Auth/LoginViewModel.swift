@@ -71,7 +71,7 @@ extension LoginViewModel {
                 queries: [Query.equal("userId", value: userId)]
             )
 
-            let data = result.documents.first?.toMap()["data"] as! Data
+            guard let data = result.documents.first?.toMap()["data"] as? Data else { return false }
             let obj = try JSONSerialization.jsonObject(with: data) as? [String: Any] ?? [:]
 
             let userModal: MDLUser? = obj.castToObject()

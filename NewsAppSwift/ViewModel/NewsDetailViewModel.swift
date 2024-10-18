@@ -32,34 +32,36 @@ extension NewsDetailViewModel {
 
             isLoading = true
             if !isBookmarked {
-//                try await appWrite.databases.listDocuments(
-//                    databaseId: databaseId,
-//                    collectionId: CollectionName.users,
-//                    queries: [
-//                        Query.equal("userId", value: Constants.userInfo?.userId ?? ""),
-//                    ]
-//                ).documents[0].id
+                //                try await appWrite.databases.listDocuments(
+                //                    databaseId: databaseId,
+                //                    collectionId: CollectionName.users,
+                //                    queries: [
+                //                        Query.equal("userId", value: Constants.userInfo?.userId ?? ""),
+                //                    ]
+                //                ).documents[0].id
 
                 let params: JSON = [
                     "url": article?.url ?? "",
                     "article": data.toJson(),
-                    "userId": Constants.userInfo?.userId ?? "",
+                    "userId": Constants.userInfo?.userId ?? ""
                 ]
 
-                let _ = try await appWrite.databases.createDocument(
+                _ = try await appWrite.databases.createDocument(
                     databaseId: databaseId,
                     collectionId: CollectionName.bookmark,
                     documentId: ID.unique(),
                     data: params.toJson()
                 )
- 
+
                 isLoading = false
 
             } else {
                 let doc = try await appWrite.databases.listDocuments(
                     databaseId: databaseId,
                     collectionId: CollectionName.bookmark,
-                    queries: [Query.equal("articleId", value: article!.id.uuidString)]
+                    queries: [
+                        Query.equal("articleId", value: article!.id.uuidString)
+                    ]
                 )
 
                 AppPrint.debugPrint("Document: \(doc.total)")

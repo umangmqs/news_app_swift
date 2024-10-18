@@ -30,7 +30,7 @@ extension HomeViewModel {
             "country": "in",
             "category": "",
             "pageSize": 10,
-            "sortBy": "publishedAt",
+            "sortBy": "publishedAt"
         ]
 
         isLoading = true
@@ -52,7 +52,7 @@ extension HomeViewModel {
             "apiKey": newsKey,
             "q": "india",
             "pageSize": 15,
-            "sortBy": "publishedAt",
+            "sortBy": "publishedAt"
         ]
 
         isLoading = true
@@ -78,7 +78,7 @@ extension HomeViewModel {
             "q": "india",
             "pageSize": 15,
             "page": 2,
-            "sortBy": "publishedAt",
+            "sortBy": "publishedAt"
         ]
 
         let result = await service.getPopularData(method: .get, params: params)

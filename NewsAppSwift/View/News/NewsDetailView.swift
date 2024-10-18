@@ -27,14 +27,20 @@ struct NewsDetailView: View {
                     }
                 },
                 trailing2Action: {
-                    let shareActivity = UIActivityViewController(activityItems: ["\(newsDetailVM.article?.title ?? "")\n\n\(newsDetailVM.article?.url ?? "")"], applicationActivities: nil)
+                    let shareActivity = UIActivityViewController(
+                        activityItems: [
+                            "\(newsDetailVM.article?.title ?? "")\n\n\(newsDetailVM.article?.url ?? "")"
+                        ], applicationActivities: nil)
                     if let vc = UIApplication.shared.topMostVC() {
-                        shareActivity.popoverPresentationController?.sourceView = vc.view
-                        vc.present(shareActivity, animated: true, completion: nil)
+                        shareActivity.popoverPresentationController?
+                            .sourceView = vc.view
+                        vc.present(
+                            shareActivity, animated: true, completion: nil)
                     }
                 },
                 leadingImage: .icBack,
-                trailingImage: newsDetailVM.isBookmarked ? .icBookmark : .icBookmarkUnfilled,
+                trailingImage: newsDetailVM.isBookmarked
+                    ? .icBookmark : .icBookmarkUnfilled,
                 traling2Image: .icShare
             )
             .padding(.horizontal, 16.aspectRatio)
@@ -65,7 +71,11 @@ extension NewsDetailView {
                 RoundedRectangle(cornerRadius: 2.aspectRatio)
                     .frame(width: 3.aspectRatio, height: 3.aspectRatio)
 
-                Text(Date(iso8601String: newsDetailVM.article?.publishedAt ?? "")?.convertToTimezone(.current).formattedRelativeString() ?? "")
+                Text(
+                    Date(
+                        iso8601String: newsDetailVM.article?.publishedAt ?? "")?
+                        .convertToTimezone(.current).formattedRelativeString()
+                        ?? "")
             }
             .font(.lato(size: 12 * scale))
             .foregroundStyle(.appGrey)
@@ -75,9 +85,11 @@ extension NewsDetailView {
                     Color.appGreyLight
                     Image(.icNewsPlaceholder)
                 }
-                WebImage(url: URL(string: newsDetailVM.article?.urlToImage ?? ""))
-                    .resizable()
-                    .transition(.fade(duration: 0.4))
+                WebImage(
+                    url: URL(string: newsDetailVM.article?.urlToImage ?? "")
+                )
+                .resizable()
+                .transition(.fade(duration: 0.4))
             }
             .frame(height: 220.aspectRatio * scale)
             .corner(radius: 16.aspectRatio)

@@ -35,7 +35,10 @@ struct BreakingNewsCell: View {
                     Circle()
                         .fill(.appGrey.opacity(0.4))
                         .frame(width: 4.aspectRatio, height: 4.aspectRatio)
-                    Text(Date(iso8601String: data.publishedAt ?? "")?.convertToTimezone(.current).formattedRelativeString() ?? "")
+                    Text(
+                        Date(iso8601String: data.publishedAt ?? "")?
+                            .convertToTimezone(.current)
+                            .formattedRelativeString() ?? "")
                 }
                 .lineLimit(1)
                 .font(.lato(.medium, size: 12))

@@ -5,15 +5,14 @@
 //  Created by MQF-6 on 17/10/24.
 //
 
-import SwiftUI
 import LanguageManager_iOS
+import SwiftUI
 
 struct LanguageView: View {
     @Environment(\.dismiss) private var dismiss
-    
+
     @StateObject var languageViewModel: LanguageViewModel
-    
-    
+
     var body: some View {
         VStack {
             AppNavigationBar(
@@ -32,7 +31,7 @@ struct LanguageView: View {
                         languageViewModel.updateNewLanguage(at: item)
                     }
                 }
-            } 
+            }
 
             Spacer()
         }
@@ -42,10 +41,9 @@ struct LanguageView: View {
         .environment(\.locale, LanguageManager.shared.appLocale)
         .environment(
             \.layoutDirection,
-             LanguageManager.shared.isRightToLeft ? .rightToLeft : .leftToRight
+            LanguageManager.shared.isRightToLeft ? .rightToLeft : .leftToRight
         )
         .navigationBarBackButtonHidden()
         .padding(.horizontal, 16.aspectRatio)
-
-    } 
+    }
 }

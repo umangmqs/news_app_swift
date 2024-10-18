@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SeeAllServiceDelegate {
+protocol SeeAllServiceDelegate: AnyObject {
     func getNews(method: HTTPMethod, params: JSON) async -> Result<MDLNews, APIError>
 }
 

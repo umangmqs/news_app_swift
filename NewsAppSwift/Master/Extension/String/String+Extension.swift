@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import UIKit
 import SwiftUICore
+import UIKit
 
 extension String {
     func removeAsterisks() -> String {
@@ -86,7 +86,8 @@ extension String {
     var jsonToDictionary: [String: Any]? {
         if let data = data(using: .utf8) {
             do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                return try JSONSerialization.jsonObject(with: data, options: [])
+                    as? [String: Any]
             } catch {
                 print(error.localizedDescription)
             }
@@ -100,7 +101,12 @@ extension String {
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return nil }
         do {
-            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+            return try NSAttributedString(
+                data: data,
+                options: [
+                    .documentType: NSAttributedString.DocumentType.html,
+                    .characterEncoding: String.Encoding.utf8.rawValue,
+                ], documentAttributes: nil)
         } catch {
             return nil
         }
@@ -113,16 +119,22 @@ extension String {
 
 extension String {
     func toJSON() -> Any? {
-        guard let data = data(using: .utf8, allowLossyConversion: false) else { return nil }
-        return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+        guard let data = data(using: .utf8, allowLossyConversion: false) else {
+            return nil
+        }
+        return try? JSONSerialization.jsonObject(
+            with: data, options: .mutableContainers)
     }
 }
 
 extension String {
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
-        
+        let constraintRect = CGSize(
+            width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(
+            with: constraintRect, options: .usesLineFragmentOrigin,
+            attributes: [NSAttributedString.Key.font: font], context: nil)
+
         return boundingBox.height
     }
 }
@@ -138,10 +150,11 @@ extension String {
     }
 }
 
-extension StringProtocol { // for Swift 4 you need to add the constrain `where Index == String.Index`
+extension StringProtocol {  // for Swift 4 you need to add the constrain `where Index == String.Index`
     var byWords: [SubSequence] {
         var byWords: [SubSequence] = []
-        enumerateSubstrings(in: startIndex..., options: .byWords) { _, range, _, _ in
+        enumerateSubstrings(in: startIndex..., options: .byWords) {
+            _, range, _, _ in
             byWords.append(self[range])
         }
         return byWords

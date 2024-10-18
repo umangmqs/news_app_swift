@@ -50,7 +50,7 @@ extension ChangePasswordViewModel {
 
         do {
             isLoading = true
-            let result = try await appWrite.account.updatePassword(password: newPassword, oldPassword: oldPassword)
+            _ = try await appWrite.account.updatePassword(password: newPassword, oldPassword: oldPassword)
             isLoading = false
             return true
         } catch {
