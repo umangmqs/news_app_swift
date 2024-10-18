@@ -1,0 +1,138 @@
+
+"Arabic" = "ايطالي";
+
+"Are you sure want to logout?" = "શું તમે ખરેખર લૉગઆઉટ કરવા માંગો છો?";
+
+"Bookmark" = "બુકમાર્ક";
+
+"Bookmarks" = "બુકમાર્ક્સ";
+
+"Breaking News" = "તાજા સમાચાર";
+
+"Breaking News See more" = "બ્રેકિંગ ન્યૂઝ વધુ જુઓ";
+
+"Camera" = "કેમેરા";
+
+"Change Password" = "પાસવર્ડ બદલો";
+
+"Choose image to pick from" = "પસંદ કરવા માટે છબી પસંદ કરો";
+
+"Confirm Password" = "પાસવર્ડની પુષ્ટિ કરો";
+
+"Done" = "થઈ ગયું";
+
+"Don’t have an account?" = "ખાતું નથી?";
+
+"Email" = "ઈમેલ";
+
+"English" = "અંગ્રેજી";
+
+"Enrich your understanding of the world." = "વિશ્વની તમારી સમજને સમૃદ્ધ બનાવો.";
+
+"Enter your email address we'll send you a link to reset password" = "તમારું ઇમેઇલ સરનામું દાખલ કરો અમે તમને પાસવર્ડ રીસેટ કરવા માટે એક લિંક મોકલીશું";
+
+"Explore" = "અન્વેષણ કરો";
+
+"Feeds" = "ફીડ્સ";
+
+"Forget Password" = "પાસવર્ડ ભૂલી જાઓ";
+
+"Forgot password?" = "પાસવર્ડ ભૂલી ગયા છો?";
+
+"Fullname" = "પૂરું નામ";
+
+"Get the latest news selected by editors according to your interests from all over the world." = "વિશ્વભરમાંથી તમારી રુચિઓ અનુસાર સંપાદકો દ્વારા પસંદ કરાયેલ નવીનતમ સમાચાર મેળવો.";
+
+"Good Afternoon" = "શુભ બપોર";
+
+"Good Evening" = "શુભ સાંજ";
+
+"Good Morning" = "શુભ સવાર";
+
+/* Localizable.strings
+  NewsAppSwift
+
+  Created by MQF-6 on 17/10/24. */
+"Home" = "ઘર";
+
+"Italian" = "ઇટાલિયન";
+
+"Language" = "ભાષા";
+
+"Log Out" = "લોગ આઉટ કરો";
+
+"Login" = "લૉગિન કરો";
+
+"Logout" = "લોગઆઉટ";
+
+"Menu" = "મેનુ";
+
+"NO DATA FOUND" = "કોઈ ડેટા મળ્યો નથી";
+
+"Name changed to" = "નામ બદલ્યું છે";
+
+"New Password" = "નવો પાસવર્ડ";
+
+"Next" = "આગળ";
+
+"No" = "ના";
+
+"Notifications Center" = "સૂચના કેન્દ્ર";
+
+"OTP Vetified successfully" = "OTP સફળતાપૂર્વક ચકાસાયેલ";
+
+"Okay" = "ઠીક છે";
+
+"Old Password" = "જૂનો પાસવર્ડ";
+
+"Or Sign In With" = "અથવા તેની સાથે સાઇન ઇન કરો";
+
+"Password" = "પાસવર્ડ";
+
+"Password Change" = "પાસવર્ડ બદલો";
+
+"Password has been changed successfully." = "પાસવર્ડ સફળતાપૂર્વક બદલવામાં આવ્યો છે.";
+
+"Phone" = "ફોન";
+
+"Photos" = "ફોટા";
+
+"Popular" = "લોકપ્રિય";
+
+"Profile" = "પ્રોફાઇલ";
+
+"Remember me" = "મને યાદ રાખો";
+
+"Search" = "શોધો";
+
+"See More" = "વધુ જુઓ";
+
+"Settings" = "સેટિંગ્સ";
+
+"Sign Up" = "સાઇન અપ કરો";
+
+"Singup" = "સિંગઅપ";
+
+"Start exploring the hottest news topics around the world with us anywhere." = "અમારી સાથે ગમે ત્યાં વિશ્વભરના સૌથી લોકપ્રિય સમાચાર વિષયોનું અન્વેષણ કરવાનું શરૂ કરો.";
+
+"Start exploring various hottest news topics around the world with us." = "અમારી સાથે વિશ્વભરના વિવિધ લોકપ્રિય સમાચાર વિષયોનું અન્વેષણ કરવાનું શરૂ કરો.";
+
+"Stay up to date with selected news" = "પસંદ કરેલા સમાચારો સાથે અદ્યતન રહો";
+
+"Submit" = "સબમિટ કરો";
+
+"The best digital magazine." = "શ્રેષ્ઠ ડિજિટલ મેગેઝિન.";
+
+"The latest and hottest news from around the world, making you understand more about your surroundings." = "વિશ્વભરના નવીનતમ અને સૌથી લોકપ્રિય સમાચાર, તમને તમારા આસપાસના વિશે વધુ સમજવા માટે.";
+
+"Trending in" = "વલણમાં છે";
+
+"Verify OTP" = "OTP ચકાસો";
+
+"We have sent otp to" = "અમે ઓટીપી મોકલી છે";
+
+"Welcome Back!" = "ફરી સ્વાગત છે!";
+
+"Yes" = "હા";
+
+"You have passed verification, now you can change your password" = "તમે વેરિફિકેશન પાસ કરી લીધું છે, હવે તમે તમારો પાસવર્ડ બદલી શકો છો";

@@ -8,6 +8,10 @@
 import SwiftUI
 import LanguageManager_iOS
 
+extension Languages {
+    
+}
+
 class LanguageViewModel: ObservableObject {
     @Published var selectedLocale: Languages = .en
     
@@ -21,6 +25,12 @@ class LanguageViewModel: ObservableObject {
         MDLLanguage(
             languageName: "Italian", image: .it, selected: false,
             locale: Languages.it),
+        MDLLanguage(
+            languageName: "Gujarati", image: .gu, selected: false,
+            locale: Languages.gu),
+        MDLLanguage(
+            languageName: "Hindi", image: .hi, selected: false,
+            locale: Languages.hi),
     ]
     
     func updateNewLanguage(at model: MDLLanguage) {

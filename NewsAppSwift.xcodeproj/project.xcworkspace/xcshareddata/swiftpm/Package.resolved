@@ -1,5 +1,5 @@
 {
-  "originHash" : "165bbcf810eb9db83b8594087d1fecf36cd397e963cf4786d77a1c01c3adbf7a",
+  "originHash" : "e559ac0043a78c0e26c6ea2e4dbcaaca0abccc8f52f9133e06be889d91d09820",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -22,10 +22,10 @@
     {
       "identity" : "languagemanager-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Abedalkareem/LanguageManager-iOS",
+      "location" : "https://github.com/umangmqs/LanguageManager-iOS",
       "state" : {
-        "revision" : "d948455d6820b65019bc3935eb9b4aff440096b0",
-        "version" : "1.2.9"
+        "branch" : "master",
+        "revision" : "8a039cc1db2c36ac110fe6f0aaffa9b955cbb475"
       }
     },
     {
